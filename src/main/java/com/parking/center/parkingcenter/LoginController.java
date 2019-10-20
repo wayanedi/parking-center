@@ -21,7 +21,7 @@ import javafx.scene.control.TextField;
  */
 public class LoginController implements Initializable{
     
-    Database database = new Database();
+    
     
     @FXML
     private TextField username;
@@ -33,9 +33,8 @@ public class LoginController implements Initializable{
     private void loginButton(ActionEvent event) throws SQLException {
         String user = username.getText();
         String pass = password.getText();
-        System.out.println(user);
-        System.out.println(pass);
-        database.userQuery(user, pass);
+        Database database = new Database();
+        database.connect(user, pass);
     }
     
     @Override
