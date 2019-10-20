@@ -1,0 +1,10 @@
+BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS "user" (
+	"iduser"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	"username"	TEXT NOT NULL UNIQUE,
+	"password"	TEXT,
+	"role"	TEXT NOT NULL DEFAULT 'user'
+);
+INSERT INTO "user" VALUES (2,'adit','12345','user');
+INSERT INTO "user" VALUES (3,'admin','12345','admin');
+COMMIT;
