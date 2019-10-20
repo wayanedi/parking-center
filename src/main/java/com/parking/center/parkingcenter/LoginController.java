@@ -19,7 +19,7 @@ public class LoginController implements Initializable {
     
     @FXML
     private void loginButton(ActionEvent event) {
-        System.out.println("You clicked me!");
+        
     }
     
     @Override
