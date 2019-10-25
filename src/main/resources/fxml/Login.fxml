@@ -1,23 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxWidth="-1.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="234.0" prefWidth="437.0003662109375" style="-fx-background-color: #181f19;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.parking.center.parkingcenter.LoginController">
+<AnchorPane id="AnchorPane" maxHeight="-1.0" maxWidth="-1.0" minHeight="-1.0" minWidth="-1.0" prefHeight="564.0" prefWidth="951.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.parking.center.parkingcenter.LoginController">
   <children>
-    <Label alignment="TOP_CENTER" layoutX="115.0" layoutY="20.0" prefHeight="25.0" prefWidth="219.0" text="PARKING CENTER" textAlignment="CENTER" textFill="WHITE" textOverrun="WORD_ELLIPSIS" underline="false">
+    <ImageView fitHeight="564.0" fitWidth="951.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="false" smooth="false">
+      <image>
+        <Image url="@../bg/bg.jpg" />
+      </image>
+    </ImageView>
+    <TextField fx:id="username" layoutX="570.0" layoutY="192.0" prefHeight="36.0" prefWidth="327.0" promptText="Username" style="-fx-background-insets: 0, 0 0 1 0 ;&#10;-fx-background-radius: 0 ;&#10;-fx-background-color: -fx-focus-color, -fx-background ;&#10;" />
+    <PasswordField fx:id="password" alignment="CENTER_LEFT" editable="true" focusTraversable="true" layoutX="570.0" layoutY="264.0" prefHeight="36.0" prefWidth="327.0" promptText="Password" style="-fx-background-insets: 0, 0 0 1 0 ;&#10;-fx-background-radius: 0 ;&#10;-fx-background-color: -fx-focus-color, -fx-background ;&#10;" />
+    <Label alignment="TOP_CENTER" layoutX="624.0" layoutY="62.0" prefHeight="25.0" prefWidth="219.0" style="-fx-text-fill: gray;" text="SIGN IN" textAlignment="CENTER" textFill="WHITE" textOverrun="WORD_ELLIPSIS" underline="false">
       <font>
-        <Font name="Swis721 BT Bold" size="20.0" />
+        <Font name="Swis721 BT Bold" size="30.0" />
       </font>
     </Label>
-    <PasswordField fx:id="password" alignment="CENTER_LEFT" editable="true" focusTraversable="true" layoutX="91.0" layoutY="144.0" prefWidth="268.0" />
-    <TextField fx:id="username" layoutX="90.0" layoutY="83.0" prefWidth="268.0" />
-    <Button layoutX="191.0" layoutY="188.0" mnemonicParsing="false" onAction="#loginButton" text="Login" textAlignment="CENTER" />
-    <Label layoutX="91.0" layoutY="63.0" prefWidth="89.0" text="Username" textFill="WHITE" />
-    <Label layoutX="91.0" layoutY="124.0" prefWidth="89.0" text="Password" textFill="WHITE" />
+    <Pane layoutX="713.0" layoutY="105.0" prefHeight="3.0" prefWidth="40.0" style="-fx-background-color: #4287f5;" />
+    <ImageView fitHeight="503.1000393261945" fitWidth="645.0000610351562" layoutX="-87.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@../bg/PARKING_CENTER.png" />
+      </image>
+    </ImageView>
+    <Button layoutX="570.0" layoutY="368.0" mnemonicParsing="false" onAction="#loginButton" prefHeight="36.0" prefWidth="300.0" style="-fx-background-color:#57caff;&#10;    -fx-text-fill: white;&#10;    -fx-background-radius:50;&#10;    -fx-border-color:#57caff;&#10;    -fx-border-width: 0 0 0 0;&#10;    -fx-background-insets: 0;" text="Login" />
   </children>
 </AnchorPane>
