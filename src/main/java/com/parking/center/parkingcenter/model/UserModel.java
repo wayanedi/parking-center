@@ -11,6 +11,7 @@ package com.parking.center.parkingcenter.model;
  */
 public class UserModel {
     private String username;
+    private String role;
     
     public void setUsername(String user){
         this.username = user;
@@ -18,5 +19,19 @@ public class UserModel {
     
     public String getUsername(){
         return this.username;
+    }
+
+    /**
+     * @return the role
+     */
+    public String getRole() {
+        return role;
+    }
+
+    /**
+     * @param role the role to set
+     */
+    public void setRole(String role) {
+        this.role = role;
     }
 }
