@@ -1,271 +1,155 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <left>
-      <Pane prefHeight="400.0" prefWidth="147.0" style="-fx-background-color: #57caff;" BorderPane.alignment="CENTER">
-         <children>
-            <Pane prefHeight="50.0" prefWidth="152.0">
-               <children>
-                  <Label layoutX="22.0" layoutY="10.0" style="-fx-text-fill: #ffffff;" text="Admin Page">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-               </children>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.parking.center.parkingcenter.AdminController">
+  <center>
+    <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <children>
+        <Pane prefHeight="400.0" prefWidth="452.0">
+          <children>
+            <Pane layoutY="-1.0" prefHeight="400.0" prefWidth="452.0" visible="true" />
+            <Pane fx:id="setup_Parkir" layoutX="1.0" layoutY="-1.0" prefHeight="672.0" prefWidth="803.0" visible="false">
+              <children>
+                <Label layoutX="299.0" layoutY="14.0" text="Setup Parkir">
+                  <font>
+                    <Font name="System Bold" size="35.0" />
+                  </font>
+                </Label>
+                <Label layoutX="83.0" layoutY="93.0" text="Total slot parkir   :">
+                  <font>
+                    <Font size="18.0" fx:id="x1" />
+                  </font>
+                </Label>
+                <Label font="$x1" layoutX="264.0" layoutY="93.0" text="50" />
+                <Label font="$x1" layoutX="83.0" layoutY="132.0" text="Nama Kendaraan" />
+                <TextField fx:id="namaKendaraan" layoutX="264.0" layoutY="126.0" prefHeight="35.0" prefWidth="400.0" />
+                <Label font="$x1" layoutX="83.0" layoutY="176.0" text="Harga Perjam" />
+                <TextField fx:id="hargaPerjam" layoutX="264.0" layoutY="170.0" prefHeight="35.0" prefWidth="400.0" />
+                <Label font="$x1" layoutX="83.0" layoutY="222.0" text="Harga Setengah hari" />
+                <TextField fx:id="hargaSetengah" layoutX="264.0" layoutY="216.0" prefHeight="35.0" prefWidth="400.0" />
+                <Label font="$x1" layoutX="83.0" layoutY="267.0" text="Harga Perhari" />
+                <TextField fx:id="hargaPerhari" layoutX="264.0" layoutY="261.0" prefHeight="35.0" prefWidth="400.0" />
+                <Label font="$x1" layoutX="85.0" layoutY="316.0" text="Slot Parkir" />
+                <TextField fx:id="slotParkir" layoutX="264.0" layoutY="310.0" prefHeight="35.0" prefWidth="400.0" />
+                <Button layoutX="526.0" layoutY="359.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="138.0" style="-fx-background-color:#57caff;&#10;    -fx-text-fill: white;&#10;    -fx-border-color:#57caff;&#10;    -fx-border-width: 0 0 0 0;&#10;    -fx-background-insets: 0;" text="Tambah" />
+                <TableView layoutX="12.0" layoutY="419.0" prefHeight="229.0" prefWidth="777.0">
+                  <columns>
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="189.0" text="Nama Kendaraan" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="138.0" text="Harga Perjam" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="182.0" text="Harga Setengah hari" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="137.0" text="Harga Perhari" />
+                    <TableColumn maxWidth="5000.0" minWidth="0.0" prefWidth="137.0" text="Slot Parkir" />
+                    <TableColumn prefWidth="94.0" text="Update" />
+                    <TableColumn prefWidth="75.0" text="Hapus" />
+                  </columns>
+                </TableView>
+              </children>
             </Pane>
-            <Pane layoutY="50.0" prefHeight="50.0" prefWidth="152.0">
-               <children>
-                  <Label alignment="CENTER" layoutX="29.0" layoutY="13.0" style="-fx-text-fill: #fff;" text="Tambah Staff">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-               </children>
+            <Pane fx:id="edit_profile_admin" layoutX="0.0" layoutY="0.0" prefHeight="671.0" prefWidth="811.0" visible="false">
+              <children>
+                <Button layoutX="572.0" layoutY="498.0" mnemonicParsing="false" prefHeight="33.251953125" prefWidth="159.00009999999747" style="-fx-background-color: #57caff; -fx-text-fill: white; -fx-background-radius: 0; -fx-border-color: #57caff; -fx-border-width: 0 0 0 0; -fx-background-insets: 0;" text="Update" />
+                <Label layoutX="326.0" layoutY="35.0" text="Edit Profile Admin">
+                  <font>
+                    <Font size="20.0" fx:id="x2" />
+                  </font>
+                </Label>
+                <Label font="$x2" layoutX="75.0" layoutY="151.0" text="Nama Petugas" />
+                <TextField fx:id="namaPetugas_edit" layoutX="251.0" layoutY="143.0" prefHeight="35.0" prefWidth="400.0" />
+                <Label font="$x2" layoutX="78.0" layoutY="204.0" text="Email" />
+                <TextField fx:id="email_edit" layoutX="251.0" layoutY="200.0" prefHeight="35.0" prefWidth="400.0" />
+                <Label font="$x2" layoutX="75.0" layoutY="263.0" text="Nomor KTP" />
+                <TextField fx:id="noKTP_edit" layoutX="251.0" layoutY="259.0" prefHeight="35.0" prefWidth="400.0" />
+                <Label font="$x2" layoutX="75.0" layoutY="319.0" text="Nomor Telepon" />
+                <TextField fx:id="notelp_edit" layoutX="251.0" layoutY="315.0" prefHeight="35.0" prefWidth="400.0" />
+                <ComboBox layoutX="251.0" layoutY="373.0" prefHeight="30.0" prefWidth="200.0" />
+                <Label font="$x2" layoutX="75.0" layoutY="375.0" text="Jenis Kelamin" />
+                <Label font="$x2" layoutX="75.0" layoutY="422.0" text="Password" />
+                <TextField fx:id="password_edit" layoutX="251.0" layoutY="420.0" prefHeight="35.0" prefWidth="400.0" />
+              </children>
             </Pane>
-            <Pane layoutY="100.0" prefHeight="50.0" prefWidth="152.0">
-               <children>
-                  <Label alignment="CENTER" layoutX="10.0" layoutY="3.0" prefHeight="45.0" prefWidth="132.0" style="-fx-text-fill: #fff;" text="Edit Profile Admin">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-               </children>
+            <Pane fx:id="tambah_Staff" layoutX="0.0" layoutY="-4.0" prefHeight="671.0" prefWidth="811.0" visible="true">
+              <children>
+                <Label font="$x1" layoutX="121.0" layoutY="356.0" text="Email" />
+                <Label font="$x1" layoutX="119.0" layoutY="132.0" text="Nama Petugas" />
+                <TextField fx:id="namaPetugas" layoutX="271.0" layoutY="446.0" prefHeight="30.0" prefWidth="400.0" />
+                <ComboBox layoutX="271.0" layoutY="302.0" prefWidth="200.0001220703125" visibleRowCount="2" />
+                <Label alignment="CENTER" layoutX="289.0" layoutY="35.0" prefHeight="51.0" prefWidth="233.0" text="Input Form">
+                  <font>
+                    <Font name="System Bold" size="30.0" />
+                  </font>
+                </Label>
+                <TextField fx:id="email" layoutX="271.0" layoutY="129.0" prefHeight="30.0" prefWidth="400.0" />
+                <Label font="$x1" layoutX="121.0" layoutY="171.0" prefHeight="30.0" text="Nomor KTP" />
+                <TextField fx:id="noKTP" layoutX="271.0" layoutY="171.0" prefHeight="30.0" prefWidth="400.0" />
+                <Label font="$x1" layoutX="119.0" layoutY="449.0" text="Nomor Telepon" />
+                <TextField fx:id="notelp" layoutX="271.0" layoutY="213.0" prefHeight="30.0" prefWidth="400.0" />
+                <Label font="$x1" layoutX="119.0" layoutY="402.0" text="Jenis Kelamin" />
+                <Label font="$x1" layoutX="121.0" layoutY="216.0" text="Username" />
+                <TextField fx:id="username" layoutX="271.0" layoutY="255.0" prefHeight="30.0" prefWidth="400.0" />
+                <Label font="$x1" layoutX="121.0" layoutY="258.0" text="Password" />
+                <TextField fx:id="password" layoutX="271.0" layoutY="353.0" prefHeight="30.0" prefWidth="400.0" />
+                <Label font="$x1" layoutX="121.0" layoutY="305.0" text="Role" />
+                <ComboBox layoutX="271.0" layoutY="403.0" prefWidth="200.0001220703125" visibleRowCount="2" />
+                <Button layoutX="537.0" layoutY="547.0" mnemonicParsing="false" prefHeight="33.251953125" prefWidth="200.00009999999747" style="-fx-text-fill: white; -fx-border-width: 0 0 0 0; -fx-background-insets: 0; -fx-border-color: #57caff; -fx-background-radius: 0; -fx-background-color: #57caff;" text="Tambah" />
+              </children>
             </Pane>
-            <Pane layoutY="150.0" prefHeight="50.0" prefWidth="152.0">
-               <children>
-                  <Label alignment="CENTER" layoutX="14.0" layoutY="13.0" prefHeight="23.0" prefWidth="133.0" style="-fx-text-fill: #fff;" text="Setup Parkir">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-               </children>
+            <Pane fx:id="daftar_Staff" cache="false" layoutX="0.0" layoutY="0.0" mouseTransparent="true" opacity="1.0" pickOnBounds="true" prefHeight="671.0" prefWidth="811.0" visible="false">
+              <children>
+                <Label font="$x2" layoutX="351.0" layoutY="14.0" text="Daftar Staff" />
+                <TableView layoutX="0.0" layoutY="82.0" prefHeight="589.0" prefWidth="801.0">
+                  <columns>
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="171.0" resizable="false" text="Nama Petugas" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="208.0" resizable="false" text="Email" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="138.0" resizable="false" text="Nomor KTP" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="179.0" resizable="false" text="Nomor telpon" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="110.0" resizable="false" text="Jenis Kelamin" />
+                    <TableColumn prefWidth="75.0" resizable="false" text="Update" />
+                    <TableColumn prefWidth="75.0" resizable="false" text="Hapus" />
+                  </columns>
+                </TableView>
+              </children>
             </Pane>
-            <Pane layoutY="200.0" prefHeight="50.0" prefWidth="152.0">
-               <children>
-                  <Label alignment="CENTER" layoutX="10.0" layoutY="13.0" prefHeight="23.0" prefWidth="133.0" style="-fx-text-fill: #fff;" text="Daftar Staff">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane layoutY="250.0" prefHeight="50.0" prefWidth="152.0">
-               <children>
-                  <Label alignment="CENTER" layoutX="47.0" layoutY="13.0" style="-fx-text-fill: #ffffff;" text="Laporan">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-         </children>
-      </Pane>
-   </left>
-   <center>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <Pane prefHeight="400.0" prefWidth="452.0">
-               <children>
-                  <Pane layoutY="-1.0" prefHeight="400.0" prefWidth="452.0" />
-                  <Pane fx:id="daftar_Staff" layoutX="-1.0" prefHeight="400.0" prefWidth="452.0">
-                     <children>
-                        <Label layoutX="180.0" layoutY="14.0" text="Daftar Staff">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="79.0" layoutY="86.0">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <TableView layoutX="8.0" layoutY="44.0" prefHeight="353.0" prefWidth="444.0">
-                          <columns>
-                              <TableColumn prefWidth="75.0" text="Nama Petugas" />
-                            <TableColumn prefWidth="75.0" text="Email" />
-                            <TableColumn prefWidth="75.0" text="Nomor KTP" />
-                              <TableColumn prefWidth="75.0" text="Nomor telpon" />
-                              <TableColumn prefWidth="75.0" text="Jenis Kelamin" />
-                              <TableColumn prefWidth="75.0" text="Update" />
-                              <TableColumn prefWidth="75.0" text="Hapus" />
-                          </columns>
-                        </TableView>
-                     </children></Pane>
-                  <Pane fx:id="setup_Parkir" layoutY="-1.0" prefHeight="400.0" prefWidth="452.0" visible="false">
-                     <children>
-                        <Label layoutX="173.0" layoutY="14.0" text="Setup Parkir">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="62.0" layoutY="65.0" text="Total slot parkir   :">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="235.0" layoutY="65.0" text="50">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="62.0" layoutY="97.0" text="Nama Kendaraan">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="namaKendaraan" layoutX="235.0" layoutY="95.0" />
-                        <Label layoutX="62.0" layoutY="130.0" text="Harga Perjam">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="hargaPerjam" layoutX="235.0" layoutY="128.0" />
-                        <Label layoutX="61.0" layoutY="160.0" text="Harga Setengah hari">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="hargaSetengah" layoutX="235.0" layoutY="158.0" />
-                        <Label layoutX="61.0" layoutY="190.0" text="Harga Perhari">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="hargaPerhari" layoutX="235.0" layoutY="188.0" />
-                        <Label layoutX="62.0" layoutY="221.0" text="Slot Parkir">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="slotParkir" layoutX="235.0" layoutY="219.0" />
-                        <Button layoutX="235.0" layoutY="264.0" mnemonicParsing="false" text="Update" />
-                        <Button layoutX="309.0" layoutY="264.0" mnemonicParsing="false" text="Delete" />
-                        <TableView layoutX="12.0" layoutY="297.0" prefHeight="94.0" prefWidth="439.0">
-                          <columns>
-                              <TableColumn prefWidth="83.0" text="Nama Kendaraan" />
-                              <TableColumn prefWidth="76.0" text="Harga Perjam" />
-                            <TableColumn prefWidth="66.0" text="Harga Setengah hari" />
-                            <TableColumn prefWidth="75.0" text="Harga Perhari" />
-                              <TableColumn minWidth="0.0" prefWidth="56.0" text="Slot Parkir" />
-                              <TableColumn prefWidth="94.0" text="Update" />
-                              <TableColumn prefWidth="75.0" text="Hapus" />
-                          </columns>
-                        </TableView>
-                     </children></Pane>
-                  <Pane fx:id="edit_profile_admin" prefHeight="400.0" prefWidth="452.0" visible="false">
-                     <children>
-                        <Button layoutX="269.0" layoutY="304.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: #57caff; -fx-text-fill: white; -fx-background-radius: 50; -fx-border-color: #57caff; -fx-border-width: 0 0 0 0; -fx-background-insets: 0;" text="Button" />
-                        <Label layoutX="147.0" layoutY="14.0" text="Edit Profile Admin">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="46.0" layoutY="66.0" text="Nama Petugas">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="namaPetugas_edit" layoutX="217.0" layoutY="64.0" />
-                        <Label layoutX="47.0" layoutY="95.0" text="Email">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="email_edit" layoutX="217.0" layoutY="93.0" />
-                        <Label layoutX="47.0" layoutY="125.0" text="Nomor KTP">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="noKTP_edit" layoutX="217.0" layoutY="123.0" />
-                        <Label layoutX="47.0" layoutY="157.0" text="Nomor Telepon">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="notelp_edit" layoutX="217.0" layoutY="155.0" />
-                        <ComboBox layoutX="216.0" layoutY="188.0" prefWidth="150.0" />
-                        <Label layoutX="46.0" layoutY="192.0" text="Jenis Kelamin">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="46.0" layoutY="227.0" text="Password">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="password_edit" layoutX="217.0" layoutY="225.0" />
-                     </children>
-                  </Pane>
-                  <Pane fx:id="tambah_Staff" prefHeight="400.0" prefWidth="452.0" visible="false">
-                     <children>
-                        <Label layoutX="48.0" layoutY="103.0" text="Email">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="48.0" layoutY="67.0" text="Nama Petugas">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="namaPetugas" layoutX="226.0" layoutY="67.0" />
-                        <ComboBox layoutX="225.0" layoutY="198.0" prefWidth="150.0" visibleRowCount="2" />
-                        <Label alignment="CENTER" layoutX="167.0" layoutY="14.0" text="Input Form">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="email" layoutX="226.0" layoutY="101.0" />
-                        <Label layoutX="48.0" layoutY="137.0" text="Nomor KTP">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="noKTP" layoutX="226.0" layoutY="135.0" />
-                        <Label layoutX="48.0" layoutY="168.0" text="Nomor Telepon">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="notelp" layoutX="226.0" layoutY="166.0" />
-                        <Label layoutX="48.0" layoutY="200.0" text="Jenis Kelamin">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="48.0" layoutY="229.0" text="Username">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="username" layoutX="226.0" layoutY="227.0" />
-                        <Label layoutX="48.0" layoutY="258.0" text="Password">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="password" layoutX="226.0" layoutY="256.0" />
-                        <Label layoutX="48.0" layoutY="290.0" text="Role">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <ComboBox layoutX="225.0" layoutY="288.0" prefWidth="150.0" visibleRowCount="2" />
-                        <Button layoutX="274.0" layoutY="340.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="101.0" style="-fx-text-fill: white; -fx-border-width: 0 0 0 0; -fx-background-insets: 0; -fx-border-color: #57caff; -fx-background-radius: 50; -fx-background-color: #57caff;" text="Tambah" />
-                     </children>
-                  </Pane>
-               </children>
-            </Pane>
-         </children>
-      </Pane>
-   </center>
+          </children>
+        </Pane>
+      </children>
+    </Pane>
+  </center>
+  <left>
+    <Pane prefHeight="671.0" prefWidth="189.0" style="-fx-background-color: #57caff;" BorderPane.alignment="CENTER">
+      <children>
+        <ImageView fitHeight="193.99996948242188" fitWidth="248.71792486843268" layoutX="-35.0" layoutY="502.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@../bg/PARKING_CENTER.png" />
+          </image>
+        </ImageView>
+        <Button id="tambahBtn" fx:id="addBtn" alignment="CENTER_LEFT" font="$x2" layoutX="1.0" layoutY="154.0" mnemonicParsing="false" onAction="#addStaff" prefHeight="60.0" prefWidth="187.0" style="-fx-background-color: #57caff;&#10;-fx-text-fill: #fff;" text="Tambah Staff" />
+        <Button fx:id="setupBtn" alignment="CENTER_LEFT" font="$x2" layoutX="0.0" layoutY="276.0" mnemonicParsing="false" onAction="#setupStaff" prefHeight="60.0" prefWidth="187.0" style="-fx-background-color: #57caff;&#10;-fx-text-fill: #fff;" text="Setup Parkir" />
+        <Button fx:id="editBtn" alignment="CENTER_LEFT" font="$x2" layoutX="0.0" layoutY="214.0" mnemonicParsing="false" onAction="#getEdit" prefHeight="60.0" prefWidth="189.0" style="-fx-background-color: #57caff;&#10;-fx-text-fill: #fff;" text="Edit Profile" />
+        <Button fx:id="daftarBtn" alignment="CENTER_LEFT" font="$x2" layoutX="0.0" layoutY="336.0" mnemonicParsing="false" onAction="#getDaftar" prefHeight="60.0" prefWidth="189.0" style="-fx-background-color: #57caff;&#10;-fx-text-fill: #fff;" text="Daftar Staff" />
+        <Button fx:id="laporanBtn" alignment="CENTER_LEFT" font="$x2" layoutX="1.0" layoutY="396.0" mnemonicParsing="false" onAction="#getLaporan" prefHeight="60.0" prefWidth="187.0" style="-fx-background-color: #57caff;&#10;-fx-text-fill: #fff;" text="Laporan" />
+        <Pane layoutX="-5.0" layoutY="48.0" prefHeight="63.0" prefWidth="189.0">
+          <children>
+            <Label layoutX="13.0" layoutY="5.0" style="-fx-text-fill: #ffffff;" text="Handi Hermawan">
+              <font>
+                <Font name="System Bold" size="20.0" />
+              </font>
+            </Label>
+            <Label layoutX="51.0" layoutY="-33.0" style="-fx-text-fill: #ffffff;" text="ADMIN">
+              <font>
+                <Font name="System Bold" size="25.0" />
+              </font>
+            </Label>
+            <Pane layoutX="84.0" layoutY="-1.0" prefHeight="2.0" prefWidth="22.0" style="-fx-background-color:#fff;" />
+          </children>
+        </Pane>
+      </children>
+    </Pane>
+  </left>
 </BorderPane>
