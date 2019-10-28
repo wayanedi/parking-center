@@ -18,7 +18,7 @@ public class MainApp extends Application {
         stage.setTitle("Parking Center");
         stage.setScene(scene);
         stage.setResizable(false);
-        stage.initStyle(StageStyle.UTILITY);
+//        stage.initStyle(StageStyle.UTILITY);
         stage.show();
     }
 
