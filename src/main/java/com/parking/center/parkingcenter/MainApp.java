@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 
 public class MainApp extends Application {
@@ -16,6 +17,8 @@ public class MainApp extends Application {
         Scene scene = new Scene(root);
         stage.setTitle("Parking Center");
         stage.setScene(scene);
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UTILITY);
         stage.show();
     }
 
