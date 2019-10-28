@@ -31,10 +31,10 @@ public class LoginController implements Initializable{
     
     @FXML
     private void loginButton(ActionEvent event) throws SQLException {
-        String user = username.getText();
-        String pass = password.getText();
-        Database database = new Database();
-        database.connect(user, pass);
+//        String user = username.getText();
+//        String pass = password.getText();
+//        Database database = new Database();
+//        database.connect(user, pass);
     }
     
     @Override
