@@ -7,6 +7,7 @@ package com.parking.center.parkingcenter;
 
 
 import com.parking.center.parkingcenter.DB.UserDAO;
+import com.parking.center.parkingcenter.model.UserModel;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -46,10 +47,10 @@ public class LoginController implements Initializable{
         
         System.out.println("masuk");
         
-        ArrayList<String> hasil;
+        UserModel hasil;
         hasil = UserDAO.cekLogin(user, pass);
         
-        if(hasil.get(0).equals("true")){
+        if(hasil !=null){
             System.out.println("berhasil");
             Alert alert;
             alert = new Alert(AlertType.INFORMATION);
@@ -59,7 +60,7 @@ public class LoginController implements Initializable{
             
             alert.showAndWait();
             Parent root = null;
-            if(hasil.get(1).equals("user")){
+            if(hasil.getRole().equals("user")){
                 
                 root = FXMLLoader.load(getClass().getResource("/fxml/User.fxml"));
 

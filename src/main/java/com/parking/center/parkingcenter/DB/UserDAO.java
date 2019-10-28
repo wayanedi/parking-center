@@ -5,6 +5,7 @@
  */
 package com.parking.center.parkingcenter.DB;
 
+import com.parking.center.parkingcenter.model.UserModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -23,30 +24,29 @@ public class UserDAO {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public static ArrayList<String> cekLogin(String username, String pass) throws SQLException, ClassNotFoundException{
+    public static UserModel cekLogin(String username, String pass) throws SQLException, ClassNotFoundException{
         
         String query = "SELECT * FROM user WHERE username='"+username+"' AND password = '"+pass+"'";
         
         ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
         
-        ArrayList<String> hasil = new ArrayList<String>();
+        UserModel userModel = null;
         
         if(rs.next()){
-            hasil.add("true");
-            hasil.add(rs.getString("role")); 
-        }
-        else{
-            hasil.add("false");
+            userModel = new UserModel(); 
+            userModel.setRole(rs.getString("role"));
         }
         
-        
-        return hasil;
+        return userModel;
     }
     
-    public boolean insertUser(){
+    public void insertUser(String username, String pass,  String role) throws SQLException, ClassNotFoundException{
         
-        
-        return false;
+        String query = "INSERT INTO user (username, password, role) VALUES('"+username+"','"+pass+"','"+role+"')";
+        DBUtil.getInstance().dbExecuteUpdate(query);
+    }
+    
+    public void insertDetailUser(){
         
     }
     
