@@ -19,6 +19,19 @@ import javafx.scene.control.Button;
  */
 public class JenisKendaraanDAO {
     
+    public static int getTotalSlot() throws SQLException, ClassNotFoundException{
+        String query = "SELECT sum(slot) as 'total' FROM jenis_kendaraan";
+        ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
+        
+        int hasil = 0;
+        
+        if(rs.next()){
+            hasil = rs.getInt("total");
+        }
+        
+        return hasil;
+    }
+    
     public static ArrayList<JenisKendaraanModel> getAllData() throws SQLException, ClassNotFoundException{
         
         String query = "SELECT * FROM jenis_kendaraan";

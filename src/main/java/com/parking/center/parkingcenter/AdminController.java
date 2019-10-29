@@ -184,6 +184,9 @@ public class AdminController implements Initializable {
     @FXML
     private TextField textField_nomorTelp;
     
+    @FXML
+    private Label label_nama;
+    
     //===========fungsi untuk user management=================
     
         @FXML
@@ -459,18 +462,23 @@ public class AdminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         table_setup_parkir.setEditable(true);
-        totalSlotParkir.setText("0");
+        int hasil=0;
+        try {
+            hasil = JenisKendaraanDAO.getTotalSlot();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        totalSlotParkir.setText(Integer.toString(hasil));
         try {
             this.petugasModel = PetugasDAO.selectPetugas(petugasId);
-        } catch (SQLException ex) {
-            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         jenisKelamin_combo.getItems().removeAll(jenisKelamin_combo.getItems());
         jenisKelamin_combo.getItems().addAll("Laki-Laki", "Perempuan");
         System.out.println("ini init"+petugasModel.getNama_petugas());
+        if(petugasModel.getNama_petugas() != null) label_nama.setText(petugasModel.getNama_petugas());
         namaPetugas_edit.setText(petugasModel.getNama_petugas());
         email_edit.setText(petugasModel.getEmail());
         noKTP_edit.setText(petugasModel.getNo_ktp());
