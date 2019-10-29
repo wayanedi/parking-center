@@ -10,8 +10,13 @@ package com.parking.center.parkingcenter.model;
  * @author asus
  */
 public class UserModel {
+    private int id;
     private String username;
     private String role;
+    private String password;
+    private int status;
+    
+    
     
     public void setUsername(String user){
         this.username = user;
@@ -33,5 +38,47 @@ public class UserModel {
      */
     public void setRole(String role) {
         this.role = role;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the status
+     */
+    public int getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
