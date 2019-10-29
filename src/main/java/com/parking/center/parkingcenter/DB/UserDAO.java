@@ -25,6 +25,19 @@ public class UserDAO {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
+    
+    public static boolean isExis(String username) throws SQLException, ClassNotFoundException{
+        
+        String query = "SELECT * FROM user WHERE username='"+username+"'";
+        ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
+        
+        if(rs.next()){
+            return true;
+        }
+        
+        return false;
+        
+    }
     public static UserModel cekLogin(String username, String pass) throws SQLException, ClassNotFoundException{
         
         String query = "SELECT * FROM user WHERE username='"+username+"' AND password = '"+pass+"'";
