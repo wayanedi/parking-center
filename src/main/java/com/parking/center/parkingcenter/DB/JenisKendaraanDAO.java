@@ -50,6 +50,7 @@ public class JenisKendaraanDAO {
     
     public static void updateData(int id, String namaKendaraan, int hargaPerJam, int hargaPerSet, int hargaPerHari, int slot) throws SQLException, ClassNotFoundException {
         String query = "UPDATE jenis_kendaraan set nama_kendaraan='"+namaKendaraan+"', harga_perjam='"+hargaPerJam+"', harga_set_hari='"+hargaPerSet+"', harga_perhari = '"+hargaPerHari+"', slot = '"+slot+"' where id_jenis_kendaraan = '"+id+"'";
+        System.out.println(query);
         DBUtil.getInstance().dbExecuteUpdate(query);
         System.out.println("terupdate");
     }
