@@ -8,6 +8,10 @@ package com.parking.center.parkingcenter.DB;
 import com.parking.center.parkingcenter.model.PetugasModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
 
 /**
  *
@@ -28,6 +32,41 @@ public class PetugasDAO {
                 + "'"+petugas.getNo_telp()+"', '"+petugas.getJenis_kelamin()+"', '"+petugas.getId_user()+"')";
         
         DBUtil.getInstance().dbExecuteUpdate(query);
+        
+    }
+    
+    public static ObservableList<PetugasModel> getAllData() throws SQLException, ClassNotFoundException{
+        
+        String query = "SELECT * FROM petugas";
+        
+        ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
+        
+        ObservableList<PetugasModel> PetugasModels = getPetugasList(rs);
+            return PetugasModels;
+        
+    }
+    
+    private static ObservableList<PetugasModel> getPetugasList(ResultSet rs) throws SQLException{
+        
+        ObservableList<PetugasModel> petugasList = FXCollections.observableArrayList();
+        
+        PetugasModel petugasModel = null;
+        
+        while(rs.next()){
+            
+            petugasModel = new PetugasModel();
+            petugasModel.setNama_petugas(rs.getString("nama_petugas"));
+            petugasModel.setEmail(rs.getString("email"));
+            petugasModel.setNo_ktp(rs.getString("no_ktp"));
+            petugasModel.setNo_telp(rs.getString("no_tlp"));
+            petugasModel.setJenis_kelamin(rs.getString("jenis_kelamin"));
+//            petugasModel.setDelete(new Button("Hapus"));
+//            petugasModel.setUpdate(new Button("Update"));
+            petugasList.add(petugasModel);
+            
+        }
+        
+        return petugasList;
         
     }
 }
