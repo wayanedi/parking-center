@@ -45,7 +45,7 @@ public class UserDAO {
     }
     
     public static void insertUser(UserModel user) throws SQLException, ClassNotFoundException{
-           System.out.println("masuk ke fungsi insert user");
+        System.out.println("masuk ke fungsi insert user");
         String query = "INSERT INTO user (username, password, role, status) VALUES('"+user.getUsername()+"','"+user.getPassword()+"','"+user.getRole()+"', 0)";
         DBUtil.getInstance().dbExecuteUpdate(query);
         
@@ -66,5 +66,6 @@ public class UserDAO {
         
         return id;
     }
+    
     
 }

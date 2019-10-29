@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.parking.center.parkingcenter.AdminController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.parking.center.parkingcenter.AdminController">
   <center>
     <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
       <children>
@@ -99,9 +99,9 @@
                 </TableView>
               </children>
             </Pane>
-            <Pane fx:id="edit_profile_admin" layoutX="0.0" layoutY="0.0" prefHeight="671.0" prefWidth="811.0" visible="false">
+            <Pane fx:id="edit_profile_admin" layoutX="0.0" layoutY="0.0" prefHeight="671.0" prefWidth="811.0">
               <children>
-                <Button layoutX="507.0" layoutY="519.0" mnemonicParsing="false" prefHeight="33.251953125" prefWidth="188.99997792968497" style="-fx-background-color: #57caff; -fx-text-fill: white; -fx-background-radius: 0; -fx-border-color: #57caff; -fx-border-width: 0 0 0 0; -fx-background-insets: 0;" text="Update" />
+                <Button layoutX="507.0" layoutY="519.0" mnemonicParsing="false" onAction="#update_edit" prefHeight="33.251953125" prefWidth="188.99997792968497" style="-fx-background-color: #57caff; -fx-text-fill: white; -fx-background-radius: 0; -fx-border-color: #57caff; -fx-border-width: 0 0 0 0; -fx-background-insets: 0;" text="Update" />
                 <Label font="$x3" layoutX="262.0" layoutY="18.0" text="Edit Profile Admin" />
                 <Label font="$x2" layoutX="78.0" layoutY="108.0" text="Nama Petugas" />
                 <TextField fx:id="namaPetugas_edit" layoutX="254.0" layoutY="100.0" prefHeight="35.0" prefWidth="400.0" />
@@ -111,7 +111,7 @@
                 <TextField fx:id="noKTP_edit" layoutX="254.0" layoutY="216.0" prefHeight="35.0" prefWidth="400.0" />
                 <Label font="$x2" layoutX="78.0" layoutY="276.0" text="Nomor Telepon" />
                 <TextField fx:id="notelp_edit" layoutX="254.0" layoutY="272.0" prefHeight="35.0" prefWidth="400.0" />
-                <ComboBox layoutX="254.0" layoutY="330.0" prefHeight="30.0" prefWidth="200.0" />
+                <ComboBox fx:id="jenisKelamin_combo" layoutX="254.0" layoutY="330.0" prefHeight="30.0" prefWidth="200.0" promptText="Silahkan pilih" />
                 <Label font="$x2" layoutX="78.0" layoutY="332.0" text="Jenis Kelamin" />
                 <Label font="$x2" layoutX="78.0" layoutY="379.0" text="Password" />
                 <TextField fx:id="password_edit" layoutX="254.0" layoutY="377.0" prefHeight="35.0" prefWidth="400.0" />
