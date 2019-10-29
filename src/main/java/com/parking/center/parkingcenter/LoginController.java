@@ -59,22 +59,33 @@ public class LoginController implements Initializable{
             alert.setContentText("Congratulation !");
             
             alert.showAndWait();
-            Parent root = null;
-            if(hasil.getRole().equals("user")){
-                
-                root = FXMLLoader.load(getClass().getResource("/fxml/User.fxml"));
-
-            }
-            else{
-                
-                root = FXMLLoader.load(getClass().getResource("/fxml/Admin.fxml"));
-            }
             
-            Scene scene = new Scene(root);
-            scene.getStylesheets().add("/styles/Styles.css");
+            if(hasil.getRole().equals("user")){
+                Parent root = null;
+                root = FXMLLoader.load(getClass().getResource("/fxml/User.fxml"));
+Scene scene = new Scene(root);
+                 scene.getStylesheets().add("/styles/Styles.css");
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
             window.setScene(scene);
             window.show();
+            }
+            else{
+                
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Admin.fxml"));
+                Parent root = loader.load();
+                AdminController adminController = loader.getController();
+                adminController.transferMessage(hasil.getId());
+                
+                root = FXMLLoader.load(getClass().getResource("/fxml/Admin.fxml"));
+                 Scene scene = new Scene(root);
+                 scene.getStylesheets().add("/styles/Styles.css");
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            window.setScene(scene);
+            window.show();
+            }
+            
+           
+            
         }
         else{
             System.out.println("gagal");
