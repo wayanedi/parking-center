@@ -18,6 +18,7 @@ import javafx.scene.layout.Pane;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 /**
@@ -211,12 +212,56 @@ public class AdminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
+        jenisKelamin_combo.getItems().removeAll(jenisKelamin_combo.getItems());
+        jenisKelamin_combo.getItems().addAll("Laki-laki", "Perempuan");
+        jenisKelamin_combo.getSelectionModel().select("");
         kosongPane.setVisible(true);
         tambah_Staff.setVisible(false);
         setup_Parkir.setVisible(false);
         edit_profile_admin.setVisible(false);
         daftar_Staff.setVisible(false);
     }    
-
+    
+    @FXML
+    private TextField namaPetugas_edit;
+      
+    @FXML
+    private TextField email_edit;
+       
+    @FXML
+    private TextField noKTP_edit;
+        
+    @FXML
+    private TextField notelp_edit;
+         
+            
+    @FXML
+    private TextField password_edit;
+      
+    @FXML
+    private ComboBox<String> jenisKelamin_combo;
+    
+     @FXML
+    private void update_edit(ActionEvent event) {
+        String nama = namaPetugas_edit.getText();
+        String email = email_edit.getText();
+        String noKTP = noKTP_edit.getText();
+        String notelp= notelp_edit.getText();
+        String password = password_edit.getText();
+        String jenisKelamin = jenisKelamin_combo.getValue();
+        
+        
+        System.out.println(nama);
+        System.out.println(email);
+        System.out.println(noKTP);
+        System.out.println(notelp);
+        System.out.println(password);
+        System.out.println(jenisKelamin);
+        
+        
+        
+    }
+     
+     
+    
 }
