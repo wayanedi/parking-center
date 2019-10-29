@@ -9,6 +9,8 @@ import com.parking.center.parkingcenter.model.JenisKendaraanModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -39,8 +41,35 @@ public class JenisKendaraanDAO {
     }
     
     public static void insertJenisKendaraan(JenisKendaraanModel jenisKendaraanModel) throws SQLException, ClassNotFoundException{
+        System.out.println(jenisKendaraanModel.getHargaPerJam());
         String query = "INSERT INTO jenis_kendaraan (nama_kendaraan, harga_perjam, harga_set_hari, harga_perhari, slot) VALUES('"+jenisKendaraanModel.getNamaKendaraan()+"','"+jenisKendaraanModel.getHargaPerJam()+"','"+jenisKendaraanModel.getHargaPerSetHari()+"','"+jenisKendaraanModel.getHargaPerHari()+"','"+jenisKendaraanModel.getSlot()+"')";
         DBUtil.getInstance().dbExecuteUpdate(query);
+        System.out.println("berhasil");
     }
     
+    public static ObservableList<JenisKendaraanModel> getAlls() throws SQLException, ClassNotFoundException {
+        String selectStmt = "SELECT * FROM jenis_kendaraan";
+        try {
+            ResultSet rsKendaraan = DBUtil.getInstance().dbExecuteQuery(selectStmt);
+            ObservableList<JenisKendaraanModel> jenisKendaraanModels = getKendaraanList(rsKendaraan);
+            return jenisKendaraanModels;
+        } catch (SQLException e) {
+            System.out.println("SQL select operation has been failed: " + e); //Return exception
+            throw e;
+        }
+    }
+    
+        private static ObservableList<JenisKendaraanModel> getKendaraanList(ResultSet rs) throws SQLException, ClassNotFoundException {
+        ObservableList<JenisKendaraanModel> kendaraanList = FXCollections.observableArrayList();
+        while (rs.next()) {
+            JenisKendaraanModel jenisKendaraanModel = new JenisKendaraanModel();
+            jenisKendaraanModel.setNamaKendaraan(rs.getString("nama_kendaraan"));
+            jenisKendaraanModel.setHargaPerJam(rs.getInt("harga_perjam"));
+            jenisKendaraanModel.setHargaPerSetHari(rs.getInt("harga_set_hari"));
+            jenisKendaraanModel.setHargaPerHari(rs.getInt("harga_perhari"));
+            jenisKendaraanModel.setSlot(rs.getInt("slot"));
+            kendaraanList.add(jenisKendaraanModel);
+        }
+        return kendaraanList;
+    }
 }

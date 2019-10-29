@@ -39,15 +39,15 @@
                 <Label font="$x1" layoutX="85.0" layoutY="316.0" text="Slot Parkir" />
                 <TextField id="textField_slotParkir" fx:id="slotParkir" layoutX="264.0" layoutY="310.0" prefHeight="35.0" prefWidth="400.0" />
                 <Button id="button_addSetupParkir" layoutX="526.0" layoutY="359.0" mnemonicParsing="false" onAction="#addSetupParkir" prefHeight="35.0" prefWidth="138.0" style="-fx-background-color:#57caff;&#10;    -fx-text-fill: white;&#10;    -fx-border-color:#57caff;&#10;    -fx-border-width: 0 0 0 0;&#10;    -fx-background-insets: 0;" text="Tambah" />
-                <TableView layoutX="12.0" layoutY="419.0" prefHeight="229.0" prefWidth="777.0">
+                <TableView fx:id="table_setup_parkir" layoutX="12.0" layoutY="419.0" prefHeight="229.0" prefWidth="777.0">
                   <columns>
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="189.0" text="Nama Kendaraan" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="138.0" text="Harga Perjam" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="182.0" text="Harga Setengah hari" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="137.0" text="Harga Perhari" />
-                    <TableColumn maxWidth="5000.0" minWidth="0.0" prefWidth="137.0" text="Slot Parkir" />
-                    <TableColumn prefWidth="94.0" text="Update" />
-                    <TableColumn prefWidth="75.0" text="Hapus" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="189.0" text="Nama Kendaraan" fx:id="col_nama_kendaraan" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="138.0" text="Harga Perjam" fx:id="col_harga_perjam" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="182.0" text="Harga Setengah hari" fx:id="col_harga_setengah" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="137.0" text="Harga Perhari" fx:id="col_harga_perhari" />
+                    <TableColumn maxWidth="5000.0" minWidth="0.0" prefWidth="137.0" text="Slot Parkir" fx:id="col_slot" />
+                    <TableColumn prefWidth="94.0" text="Update" fx:id="col_update" />
+                    <TableColumn prefWidth="75.0" text="Hapus" fx:id="col_hapus" />
                   </columns>
                 </TableView>
               </children>
