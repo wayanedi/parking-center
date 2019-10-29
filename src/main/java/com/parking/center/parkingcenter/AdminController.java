@@ -157,6 +157,7 @@ public class AdminController implements Initializable {
         @FXML
     private void button_addUser(ActionEvent event) throws SQLException, ClassNotFoundException{
         
+        String checkNum = "\\d+";
         int id = UserDAO.getId();
         id +=1;
         System.out.println("masuk");
@@ -174,18 +175,27 @@ public class AdminController implements Initializable {
         petugas.setNo_ktp(textField_noKtp.getText());
         petugas.setNo_telp(textField_nomorTelp.getText());
         
-        if(textField_password.getText().isEmpty() || textField_username.getText().isEmpty()){
+        Alert alert;
+        alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("User Management");
+        
+        if(textField_password.getText().isEmpty() || textField_username.getText().isEmpty() || 
+                textField_email.getText().isEmpty() || textField_namaPetugas.getText().isEmpty() || !textField_noKtp.getText().matches(checkNum)
+                || textField_nomorTelp.getText().matches(checkNum)){
+            
+            alert.setHeaderText(null);
+            alert.setHeaderText("masukan format yang sesuai atau data tidak boleh kosong!");
             
         }
         else{
             UserDAO.insertUser(user);
             PetugasDAO.insertPetugas(petugas);
+            
+            alert.setHeaderText(null);
+            alert.setHeaderText("Data berhasil dimasukan!");
         }
         
-        
-        
-        
-        
+        alert.showAndWait();
     }
     
     
@@ -244,6 +254,8 @@ public class AdminController implements Initializable {
             JenisKendaraanDAO.insertJenisKendaraan(jenisKendaraanModel);
             alert.setHeaderText(null);
             alert.setHeaderText("Data berhasil dimasukan!");
+            data = JenisKendaraanDAO.getAlls();
+            table_setup_parkir.setItems(data);
         }
         alert.showAndWait();
     }
