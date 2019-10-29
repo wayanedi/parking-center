@@ -7,7 +7,11 @@
 package com.parking.center.parkingcenter;
 
 import com.parking.center.parkingcenter.DB.JenisKendaraanDAO;
+import com.parking.center.parkingcenter.DB.PetugasDAO;
+import com.parking.center.parkingcenter.DB.UserDAO;
 import com.parking.center.parkingcenter.model.JenisKendaraanModel;
+import com.parking.center.parkingcenter.model.PetugasModel;
+import com.parking.center.parkingcenter.model.UserModel;
 import java.awt.event.KeyEvent;
 import java.net.URL;
 import java.sql.SQLException;
@@ -22,6 +26,7 @@ import javafx.scene.layout.Pane;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -112,9 +117,74 @@ public class AdminController implements Initializable {
     @FXML
     private TableColumn<JenisKendaraanModel, Button> col_hapus;
     
+    //========== selector input user ====================
+    @FXML
+    private ComboBox comboBox_role;
+    
+    @FXML
+    
+    private ComboBox comboBox_jenisKelamin;
+    
+    @FXML
+    private Button button_addUser;
+    
+    @FXML
+    private TextField textField_namaPetugas;
+    
+    @FXML
+    private TextField textField_noKtp;
+    
+    @FXML
+    private TextField textField_username;
+    
+    @FXML
+    private TextField textField_password;
+    
+    @FXML
+    private TextField textField_email;
+    
+    @FXML
+    private TextField textField_nomorTelp;
+    
+    //===========fungsi untuk user management=================
+    
+        @FXML
+    private void button_addUser(ActionEvent event) throws SQLException, ClassNotFoundException{
+        
+        int id = UserDAO.getId();
+        id +=1;
+        System.out.println("masuk");
+        UserModel user = new UserModel();
+        PetugasModel petugas = new PetugasModel();
+        
+        user.setPassword(textField_password.getText());
+        user.setUsername(textField_username.getText());
+        user.setRole(comboBox_role.getValue().toString());
+        
+        petugas.setEmail(textField_email.getText());
+        petugas.setId_user(id);
+        petugas.setJenis_kelamin(comboBox_jenisKelamin.getValue().toString());
+        petugas.setNama_petugas(textField_namaPetugas.getText());
+        petugas.setNo_ktp(textField_noKtp.getText());
+        petugas.setNo_telp(textField_nomorTelp.getText());
+        
+        if(textField_password.getText().isEmpty() || textField_username.getText().isEmpty()){
+            
+        }
+        else{
+            UserDAO.insertUser(user);
+            PetugasDAO.insertPetugas(petugas);
+        }
+        
+        
+        
+        
+        
+    }
+    
     
     //========== fungsi untuk setup parkir ===================
-    
+ 
     @FXML
     private void addSetupParkir(ActionEvent event) throws ClassNotFoundException, SQLException{
         String nama = namaKendaraan.getText();
@@ -276,6 +346,11 @@ public class AdminController implements Initializable {
         setup_Parkir.setVisible(false);
         edit_profile_admin.setVisible(false);
         daftar_Staff.setVisible(false);
+        
+        comboBox_role.getItems().addAll("admin", "user");
+        comboBox_role.setValue("user");
+        comboBox_jenisKelamin.getItems().addAll("Laki-Laki", "Perempuan");
+        comboBox_jenisKelamin.setValue("Perempuan");
     }    
 
 }
