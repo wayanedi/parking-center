@@ -54,6 +54,12 @@ public class JenisKendaraanDAO {
         System.out.println("terupdate");
     }
     
+    public static void deleteData(int id) throws SQLException, ClassNotFoundException {
+        String query = "DELETE FROM jenis_kendaraan where id_jenis_kendaraan = '"+id+"'";
+        DBUtil.getInstance().dbExecuteUpdate(query);
+        System.out.println("terhapus");
+    }
+    
     public static ObservableList<JenisKendaraanModel> getAlls() throws SQLException, ClassNotFoundException {
         String selectStmt = "SELECT * FROM jenis_kendaraan";
         try {
@@ -77,7 +83,8 @@ public class JenisKendaraanDAO {
             jenisKendaraanModel.setHargaPerSetHari(rs.getInt("harga_set_hari"));
             jenisKendaraanModel.setHargaPerHari(rs.getInt("harga_perhari"));
             jenisKendaraanModel.setSlot(rs.getInt("slot"));
-            jenisKendaraanModel.setUpdate(new Button("update"));
+            jenisKendaraanModel.setUpdate(new Button("Update"));
+            jenisKendaraanModel.setDelete(new Button("Hapus"));
             kendaraanList.add(jenisKendaraanModel);
         }
         return kendaraanList;
