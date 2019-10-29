@@ -35,6 +35,35 @@ public class PetugasDAO {
         
     }
     
+     public static PetugasModel selectPetugas(int id) throws SQLException, ClassNotFoundException{
+        PetugasModel petugasModel = new PetugasModel();
+        String query;
+        
+        query = "SELECT * FROM petugas where id_user='"+id+"'";
+         System.out.println(query);
+         
+        ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
+        if(rs.next()){
+            petugasModel.setId_petugas(rs.getInt("id_petugas"));
+            petugasModel.setNama_petugas(rs.getString("nama_petugas"));
+            petugasModel.setEmail(rs.getString("email"));
+            petugasModel.setNo_ktp(rs.getString("no_ktp"));
+            petugasModel.setNo_telp(rs.getString("no_tlp"));
+            petugasModel.setJenis_kelamin(rs.getString("jenis_kelamin"));
+            System.out.println(rs.getString("nama_petugas"));
+        }
+        
+        return petugasModel;
+    }
+     
+     public static void updateUser(String nama_petugas, String email,  String no_ktp, String no_tlp, String jenis_kelamin, int id_user) throws SQLException, ClassNotFoundException{
+        
+        String query = "UPDATE petugas SET nama_petugas = '"+nama_petugas+"', email='"+email+"',no_ktp = '"+no_ktp+"', no_tlp = '"+no_tlp+"',jenis_kelamin = '"+jenis_kelamin+"' WHERE id_user = '"+id_user+"'";
+        DBUtil.getInstance().dbExecuteUpdate(query);
+        
+        
+    }
+    
     public static ObservableList<PetugasModel> getAllData() throws SQLException, ClassNotFoundException{
         
         String query = "SELECT * FROM petugas";
