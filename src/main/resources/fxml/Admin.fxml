@@ -15,7 +15,7 @@
         <Pane prefHeight="400.0" prefWidth="452.0" visible="true">
           <children>
             <Pane layoutY="-1.0" prefHeight="400.0" prefWidth="452.0" visible="true" />
-            <Pane fx:id="setup_Parkir" layoutX="1.0" layoutY="-1.0" prefHeight="672.0" prefWidth="803.0" visible="true">
+            <Pane fx:id="setup_Parkir" layoutX="1.0" layoutY="-1.0" prefHeight="672.0" prefWidth="803.0" visible="false">
               <children>
                 <Label layoutX="299.0" layoutY="14.0" text="Setup Parkir">
                   <font>
@@ -64,22 +64,22 @@
                     <Font name="System Bold" size="30.0" fx:id="x3" />
                   </font>
                 </Label>
-                <TextField id="TextField_namaPetugas" fx:id="email" layoutX="234.0" layoutY="105.0" prefHeight="30.0" prefWidth="400.0" />
+                <TextField id="TextField_namaPetugas" fx:id="textField_namaPetugas" layoutX="234.0" layoutY="105.0" prefHeight="30.0" prefWidth="400.0" />
                 <Label font="$x1" layoutX="84.0" layoutY="147.0" prefHeight="30.0" text="Nomor KTP" />
-                <TextField id="textField_nomorKtp" fx:id="noKTP" layoutX="234.0" layoutY="147.0" prefHeight="30.0" prefWidth="400.0" />
+                <TextField id="textField_nomorKtp" fx:id="textField_noKtp" layoutX="234.0" layoutY="147.0" prefHeight="30.0" prefWidth="400.0" />
                 <Label font="$x1" layoutX="82.0" layoutY="425.0" text="Nomor Telepon" />
-                <TextField id="textField_username" fx:id="notelp" layoutX="234.0" layoutY="189.0" prefHeight="30.0" prefWidth="400.0" />
+                <TextField id="textField_username" fx:id="textField_username" layoutX="234.0" layoutY="189.0" prefHeight="30.0" prefWidth="400.0" />
                 <Label font="$x1" layoutX="82.0" layoutY="378.0" text="Jenis Kelamin" />
                 <Label font="$x1" layoutX="84.0" layoutY="192.0" text="Username" />
-                <TextField id="textField_password" fx:id="username" layoutX="234.0" layoutY="231.0" prefHeight="30.0" prefWidth="400.0" />
+                <TextField id="textField_password" fx:id="textField_password" layoutX="234.0" layoutY="231.0" prefHeight="30.0" prefWidth="400.0" />
                 <Label font="$x1" layoutX="84.0" layoutY="234.0" text="Password" />
                 <TextField fx:id="textField_email" layoutX="234.0" layoutY="329.0" prefHeight="30.0" prefWidth="400.0" />
                 <Label font="$x1" layoutX="84.0" layoutY="281.0" text="Role" />
                 <ComboBox fx:id="comboBox_jenisKelamin" layoutX="234.0" layoutY="379.0" prefWidth="200.0001220703125" visibleRowCount="2" />
-                <Button id="button_addUser" layoutX="500.0" layoutY="523.0" mnemonicParsing="false" prefHeight="33.251953125" prefWidth="200.00009999999747" style="-fx-text-fill: white; -fx-border-width: 0 0 0 0; -fx-background-insets: 0; -fx-border-color: #57caff; -fx-background-radius: 0; -fx-background-color: #57caff;" text="Tambah" />
+                <Button id="button_addUser" fx:id="button_addUser" layoutX="500.0" layoutY="523.0" mnemonicParsing="false" onAction="#button_addUser" prefHeight="33.251953125" prefWidth="200.00009999999747" style="-fx-text-fill: white; -fx-border-width: 0 0 0 0; -fx-background-insets: 0; -fx-border-color: #57caff; -fx-background-radius: 0; -fx-background-color: #57caff;" text="Tambah" />
               </children>
             </Pane>
-            <Pane fx:id="daftar_Staff" cache="false" layoutX="0.0" layoutY="0.0" mouseTransparent="true" opacity="1.0" pickOnBounds="true" prefHeight="671.0" prefWidth="811.0" visible="false">
+            <Pane fx:id="daftar_Staff" cache="false" layoutX="0.0" layoutY="0.0" mouseTransparent="true" opacity="1.0" pickOnBounds="true" prefHeight="671.0" prefWidth="811.0">
               <children>
                 <Label layoutX="351.0" layoutY="14.0" text="Daftar Staff">
                   <font>
@@ -97,7 +97,7 @@
                 </TableView>
               </children>
             </Pane>
-            <Pane fx:id="edit_profile_admin" layoutX="0.0" layoutY="0.0" prefHeight="671.0" prefWidth="811.0" visible="true">
+            <Pane fx:id="edit_profile_admin" layoutX="0.0" layoutY="0.0" prefHeight="671.0" prefWidth="811.0" visible="false">
               <children>
                 <Button layoutX="507.0" layoutY="519.0" mnemonicParsing="false" onAction="#update_edit" prefHeight="33.251953125" prefWidth="188.99997792968497" style="-fx-background-color: #57caff; -fx-text-fill: white; -fx-background-radius: 0; -fx-border-color: #57caff; -fx-border-width: 0 0 0 0; -fx-background-insets: 0;" text="Update" />
                 <Label font="$x3" layoutX="262.0" layoutY="18.0" text="Edit Profile Admin" />

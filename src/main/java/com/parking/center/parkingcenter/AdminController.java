@@ -50,6 +50,7 @@ public class AdminController implements Initializable {
     /**
      * Initializes the controller class.
      */
+
     @FXML
     private Button addBtn;
     
@@ -189,7 +190,8 @@ public class AdminController implements Initializable {
     
     //===========fungsi untuk user management=================
     
-        @FXML
+    
+    @FXML
     private void button_addUser(ActionEvent event) throws SQLException, ClassNotFoundException{
         
         String checkNum = "\\d+";
@@ -210,19 +212,30 @@ public class AdminController implements Initializable {
         petugas.setNo_ktp(textField_noKtp.getText());
         petugas.setNo_telp(textField_nomorTelp.getText());
         
+        
+        
         Alert alert;
         alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("User Management");
         
         if(textField_password.getText().isEmpty() || textField_username.getText().isEmpty() || 
                 textField_email.getText().isEmpty() || textField_namaPetugas.getText().isEmpty() || !textField_noKtp.getText().matches(checkNum)
-                || textField_nomorTelp.getText().matches(checkNum)){
+                || !textField_nomorTelp.getText().matches(checkNum)){
             
             alert.setHeaderText(null);
             alert.setHeaderText("masukan format yang sesuai atau data tidak boleh kosong!");
             
         }
         else{
+            
+            if(UserDAO.isExis(user.getUsername())){
+                
+                alert.setHeaderText(null);
+                alert.setHeaderText("usernane telah di gunakan, silahkan Gunakan username yang lain!");
+                alert.showAndWait();
+                return;
+            }
+            
             UserDAO.insertUser(user);
             PetugasDAO.insertPetugas(petugas);
             
@@ -521,9 +534,6 @@ public class AdminController implements Initializable {
     @FXML
     private TextField notelp_edit;
          
-            
-    @FXML
-    private TextField password_edit;
       
     @FXML
     private ComboBox<String> jenisKelamin_combo;
@@ -534,7 +544,6 @@ public class AdminController implements Initializable {
         String email = email_edit.getText();
         String noKTP = noKTP_edit.getText();
         String notelp= notelp_edit.getText();
-        String password = password_edit.getText();
         String jenisKelamin = jenisKelamin_combo.getValue();
         
         PetugasDAO.updateUser(nama,email,noKTP,notelp,jenisKelamin,petugasId);
@@ -543,7 +552,6 @@ public class AdminController implements Initializable {
         System.out.println(email);
         System.out.println(noKTP);
         System.out.println(notelp);
-        System.out.println(password);
         System.out.println(jenisKelamin);
         
     }
