@@ -44,6 +44,8 @@ import javafx.util.converter.IntegerStringConverter;
         
 public class AdminController implements Initializable {
    
+    private static int petugasId;
+    
     /**
      * Initializes the controller class.
      */
@@ -76,8 +78,6 @@ public class AdminController implements Initializable {
     
     @FXML
     private Pane kosongPane;
-    
-    
     
     //========= Selector bagian setup parkir ================
     @FXML
@@ -127,8 +127,9 @@ public class AdminController implements Initializable {
     private ComboBox comboBox_role;
     public static ObservableList<JenisKendaraanModel> data;
     
-    @FXML
+    PetugasModel petugasModel = new PetugasModel();
     
+    @FXML
     private ComboBox comboBox_jenisKelamin;
     
     @FXML
@@ -157,6 +158,7 @@ public class AdminController implements Initializable {
         @FXML
     private void button_addUser(ActionEvent event) throws SQLException, ClassNotFoundException{
         
+        String checkNum = "\\d+";
         int id = UserDAO.getId();
         id +=1;
         System.out.println("masuk");
@@ -174,18 +176,27 @@ public class AdminController implements Initializable {
         petugas.setNo_ktp(textField_noKtp.getText());
         petugas.setNo_telp(textField_nomorTelp.getText());
         
-        if(textField_password.getText().isEmpty() || textField_username.getText().isEmpty()){
+        Alert alert;
+        alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("User Management");
+        
+        if(textField_password.getText().isEmpty() || textField_username.getText().isEmpty() || 
+                textField_email.getText().isEmpty() || textField_namaPetugas.getText().isEmpty() || !textField_noKtp.getText().matches(checkNum)
+                || textField_nomorTelp.getText().matches(checkNum)){
+            
+            alert.setHeaderText(null);
+            alert.setHeaderText("masukan format yang sesuai atau data tidak boleh kosong!");
             
         }
         else{
             UserDAO.insertUser(user);
             PetugasDAO.insertPetugas(petugas);
+            
+            alert.setHeaderText(null);
+            alert.setHeaderText("Data berhasil dimasukan!");
         }
         
-        
-        
-        
-        
+        alert.showAndWait();
     }
     
     
@@ -383,14 +394,29 @@ public class AdminController implements Initializable {
         editBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
     }
     
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        table_setup_parkir2 = table_setup_parkir;
-//        table_setup_parkir2.setEditable(true);
         table_setup_parkir.setEditable(true);
-
+        
+        try {
+            this.petugasModel = PetugasDAO.selectPetugas(petugasId);
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        jenisKelamin_combo.getItems().removeAll(jenisKelamin_combo.getItems());
+        jenisKelamin_combo.getItems().addAll("Laki-Laki", "Perempuan");
+        System.out.println("ini init"+petugasModel.getNama_petugas());
+        namaPetugas_edit.setText(petugasModel.getNama_petugas());
+        email_edit.setText(petugasModel.getEmail());
+        noKTP_edit.setText(petugasModel.getNo_ktp());
+        notelp_edit.setText(petugasModel.getNo_telp());
+        jenisKelamin_combo.getSelectionModel().select(petugasModel.getJenis_kelamin());
         initTable();
+        
+        // TODO
         
         kosongPane.setVisible(true);
         tambah_Staff.setVisible(false);
@@ -402,6 +428,51 @@ public class AdminController implements Initializable {
         comboBox_role.setValue("user");
         comboBox_jenisKelamin.getItems().addAll("Laki-Laki", "Perempuan");
         comboBox_jenisKelamin.setValue("Perempuan");
+        
+        
     }    
-
+    
+    @FXML
+    private TextField namaPetugas_edit;
+      
+    @FXML
+    private TextField email_edit;
+       
+    @FXML
+    private TextField noKTP_edit;
+        
+    @FXML
+    private TextField notelp_edit;
+         
+            
+    @FXML
+    private TextField password_edit;
+      
+    @FXML
+    private ComboBox<String> jenisKelamin_combo;
+    
+     @FXML
+    private void update_edit(ActionEvent event) throws SQLException, ClassNotFoundException {
+        String nama = namaPetugas_edit.getText();
+        String email = email_edit.getText();
+        String noKTP = noKTP_edit.getText();
+        String notelp= notelp_edit.getText();
+        String password = password_edit.getText();
+        String jenisKelamin = jenisKelamin_combo.getValue();
+        
+        PetugasDAO.updateUser(nama,email,noKTP,notelp,jenisKelamin,petugasId);
+        
+        System.out.println(nama);
+        System.out.println(email);
+        System.out.println(noKTP);
+        System.out.println(notelp);
+        System.out.println(password);
+        System.out.println(jenisKelamin);
+        
+    }
+    public void transferMessage(int id) {
+        //Display the message
+        this.petugasId=id;
+    }
+    
 }
