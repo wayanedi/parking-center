@@ -6,13 +6,19 @@
 
 package com.parking.center.parkingcenter;
 
+import com.parking.center.parkingcenter.DB.JenisKendaraanDAO;
+import com.parking.center.parkingcenter.model.JenisKendaraanModel;
+import java.awt.event.KeyEvent;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -54,6 +60,87 @@ public class AdminController implements Initializable {
     @FXML
     private Pane daftar_Staff;
     
+    @FXML
+    private Pane kosongPane;
+    
+    
+    //========= Selector bagian setup parkir ================
+    @FXML
+    private TextField namaKendaraan;
+    
+    @FXML
+    private TextField hargaPerjam;
+    
+    @FXML
+    private TextField hargaSetengah;
+    
+    @FXML
+    private TextField hargaPerhari;
+    
+    @FXML
+    private TextField slotParkir;
+    
+    
+    //========== fungsi untuk setup parkir ===================
+    
+    @FXML
+    private void addSetupParkir(ActionEvent event) throws ClassNotFoundException, SQLException{
+        String nama = namaKendaraan.getText();
+        String txtPerJam = hargaPerjam.getText();
+        String txtSetengah = hargaSetengah.getText();
+        String txtPerHari = hargaPerhari.getText();
+        String txtSlot = slotParkir.getText();
+        
+        boolean perJam=true;
+        boolean perSetengah=true;
+        boolean perHari=true;
+        boolean slot=true;
+        
+        Alert alert;
+        alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Setup Information");
+            
+        System.out.println(nama);
+        System.out.println(txtPerJam);
+        System.out.println(txtSetengah);
+        System.out.println(txtPerHari);
+        System.out.println(txtSlot);
+        String checkNum = "\\d+";
+        
+        if(!txtPerJam.matches(checkNum)){
+            perJam=false;
+            System.out.println("format1 salah");
+        }
+        
+        if(!txtSetengah.matches(checkNum)){
+            perSetengah=false;
+            System.out.println("format2 salah");
+        }
+        
+        if(!txtPerHari.matches(checkNum)){
+            perHari=false;
+            System.out.println("format3 salah");
+        }
+        
+        if(!txtSlot.matches(checkNum)){
+            slot=false;
+            System.out.println("format4 salah");
+        }
+        
+        if(!perJam && !perSetengah && !perHari && !slot){
+            alert.setHeaderText(null);
+            alert.setContentText("Format harga atau slot parkir harus berupa angka dan tidak boleh kosong!");
+        }else{
+            JenisKendaraanModel jenisKendaraanModel = new JenisKendaraanModel(nama, Integer.parseInt(txtPerJam), Integer.parseInt(txtSetengah), Integer.parseInt(txtPerHari), Integer.parseInt(txtSlot));
+            JenisKendaraanDAO.insertJenisKendaraan(jenisKendaraanModel);
+            alert.setHeaderText(null);
+            alert.setHeaderText("Data berhasil dimasukan!");
+        }
+        alert.showAndWait();
+    }
+    
+    
+    //============== batas untuk fungsi bagian setup parkir ================
     
     @FXML
     private void addStaff(ActionEvent event) {
@@ -125,6 +212,11 @@ public class AdminController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         
+        kosongPane.setVisible(true);
+        tambah_Staff.setVisible(false);
+        setup_Parkir.setVisible(false);
+        edit_profile_admin.setVisible(false);
+        daftar_Staff.setVisible(false);
     }    
 
 }

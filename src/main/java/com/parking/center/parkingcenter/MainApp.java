@@ -14,6 +14,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
+        root.setFocusTraversable(true);
         Scene scene = new Scene(root);
         stage.setTitle("Parking Center");
         stage.setScene(scene);
