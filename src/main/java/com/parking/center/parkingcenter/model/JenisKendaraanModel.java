@@ -27,6 +27,7 @@ public class JenisKendaraanModel {
     
     public JenisKendaraanModel(String namaKendaraan, int hargaPerJam, int hargaPerSetHari, int hargaPerHari, int slot){
         this.namaKendaraan = namaKendaraan;
+        this.hargaPerJam = hargaPerJam;
         this.hargaPerSetHari = hargaPerSetHari;
         this.hargaPerHari = hargaPerHari;
         this.slot = slot;
