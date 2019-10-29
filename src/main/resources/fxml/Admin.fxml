@@ -14,8 +14,8 @@
       <children>
         <Pane prefHeight="400.0" prefWidth="452.0">
           <children>
-            <Pane layoutY="-1.0" prefHeight="400.0" prefWidth="452.0" />
-            <Pane fx:id="setup_Parkir" layoutX="1.0" layoutY="-1.0" prefHeight="672.0" prefWidth="803.0" visible="true">
+            <Pane layoutY="-1.0" prefHeight="400.0" prefWidth="452.0" visible="true" />
+            <Pane fx:id="setup_Parkir" layoutX="1.0" layoutY="-1.0" prefHeight="672.0" prefWidth="803.0" visible="false">
               <children>
                 <Label layoutX="299.0" layoutY="14.0" text="Setup Parkir">
                   <font>
@@ -39,18 +39,17 @@
                 <Label font="$x1" layoutX="85.0" layoutY="316.0" text="Slot Parkir" />
                 <TextField id="textField_slotParkir" fx:id="slotParkir" layoutX="264.0" layoutY="310.0" prefHeight="35.0" prefWidth="400.0" />
                 <Button id="button_addSetupParkir" layoutX="526.0" layoutY="359.0" mnemonicParsing="false" onAction="#addSetupParkir" prefHeight="35.0" prefWidth="138.0" style="-fx-background-color:#57caff;&#10;    -fx-text-fill: white;&#10;    -fx-border-color:#57caff;&#10;    -fx-border-width: 0 0 0 0;&#10;    -fx-background-insets: 0;" text="Tambah" />
-                <TableView fx:id="table_setup_parkir" editable="true" focusTraversable="true" layoutX="12.0" layoutY="419.0" prefHeight="229.0" prefWidth="777.0" tableMenuButtonVisible="false">
+                <TableView fx:id="table_setup_parkir" layoutX="12.0" layoutY="419.0" prefHeight="229.0" prefWidth="777.0">
                   <columns>
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" onEditCommit="#namaKendaraanOnEdit" prefWidth="189.0" text="Nama Kendaraan" fx:id="col_nama_kendaraan" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" onEditCommit="#hargaPerJamOnEdit" prefWidth="138.0" text="Harga Perjam" fx:id="col_harga_perjam" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" onEditCommit="#hargaSetengahOnEdit" prefWidth="182.0" text="Harga Setengah hari" fx:id="col_harga_setengah" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" onEditCommit="#hargaPerHariOnEdit" prefWidth="137.0" text="Harga Perhari" fx:id="col_harga_perhari" />
-                    <TableColumn maxWidth="5000.0" minWidth="0.0" onEditCommit="#slotOnEdit" prefWidth="137.0" text="Slot Parkir" fx:id="col_slot" />
-                    <TableColumn prefWidth="94.0" text="Update" fx:id="col_update" />
-                    <TableColumn prefWidth="75.0" text="Hapus" fx:id="col_hapus" />
+                    <TableColumn fx:id="col_nama_kendaraan" maxWidth="5000.0" minWidth="10.0" prefWidth="189.0" text="Nama Kendaraan" />
+                    <TableColumn fx:id="col_harga_perjam" maxWidth="5000.0" minWidth="10.0" prefWidth="138.0" text="Harga Perjam" />
+                    <TableColumn fx:id="col_harga_setengah" maxWidth="5000.0" minWidth="10.0" prefWidth="182.0" text="Harga Setengah hari" />
+                    <TableColumn fx:id="col_harga_perhari" maxWidth="5000.0" minWidth="10.0" prefWidth="137.0" text="Harga Perhari" />
+                    <TableColumn fx:id="col_slot" maxWidth="5000.0" minWidth="0.0" prefWidth="137.0" text="Slot Parkir" />
+                    <TableColumn fx:id="col_update" prefWidth="94.0" text="Update" />
+                    <TableColumn fx:id="col_hapus" prefWidth="75.0" text="Hapus" />
                   </columns>
                 </TableView>
-                <Button layoutX="12.0" layoutY="381.0" mnemonicParsing="false" onAction="#refresh_data_setup_parkir" prefWidth="81.0" text="Refresh" />
               </children>
             </Pane>
             <Pane fx:id="tambah_Staff" layoutX="0.0" layoutY="-4.0" prefHeight="671.0" prefWidth="811.0" visible="false">
@@ -64,37 +63,35 @@
                     <Font name="System Bold" size="30.0" fx:id="x3" />
                   </font>
                 </Label>
-                <TextField id="TextField_namaPetugas" fx:id="textField_namaPetugas" layoutX="234.0" layoutY="105.0" prefHeight="30.0" prefWidth="400.0" />
+                <TextField id="TextField_namaPetugas" fx:id="email" layoutX="234.0" layoutY="105.0" prefHeight="30.0" prefWidth="400.0" />
                 <Label font="$x1" layoutX="84.0" layoutY="147.0" prefHeight="30.0" text="Nomor KTP" />
-                <TextField id="textField_nomorKtp" fx:id="textField_noKtp" layoutX="234.0" layoutY="147.0" prefHeight="30.0" prefWidth="400.0" />
+                <TextField id="textField_nomorKtp" fx:id="noKTP" layoutX="234.0" layoutY="147.0" prefHeight="30.0" prefWidth="400.0" />
                 <Label font="$x1" layoutX="82.0" layoutY="425.0" text="Nomor Telepon" />
-                <TextField fx:id="textField_username" layoutX="234.0" layoutY="189.0" prefHeight="30.0" prefWidth="400.0" />
+                <TextField id="textField_username" fx:id="notelp" layoutX="234.0" layoutY="189.0" prefHeight="30.0" prefWidth="400.0" />
                 <Label font="$x1" layoutX="82.0" layoutY="378.0" text="Jenis Kelamin" />
                 <Label font="$x1" layoutX="84.0" layoutY="192.0" text="Username" />
-                <TextField fx:id="textField_password" layoutX="234.0" layoutY="231.0" prefHeight="30.0" prefWidth="400.0" />
+                <TextField id="textField_password" fx:id="username" layoutX="234.0" layoutY="231.0" prefHeight="30.0" prefWidth="400.0" />
                 <Label font="$x1" layoutX="84.0" layoutY="234.0" text="Password" />
                 <TextField fx:id="textField_email" layoutX="234.0" layoutY="329.0" prefHeight="30.0" prefWidth="400.0" />
                 <Label font="$x1" layoutX="84.0" layoutY="281.0" text="Role" />
                 <ComboBox fx:id="comboBox_jenisKelamin" layoutX="234.0" layoutY="379.0" prefWidth="200.0001220703125" visibleRowCount="2" />
-                <Button fx:id="button_addUser" layoutX="500.0" layoutY="523.0" mnemonicParsing="false" onAction="#button_addUser" prefHeight="33.251953125" prefWidth="200.00009999999747" style="-fx-text-fill: white; -fx-border-width: 0 0 0 0; -fx-background-insets: 0; -fx-border-color: #57caff; -fx-background-radius: 0; -fx-background-color: #57caff;" text="Tambah" />
+                <Button id="button_addUser" layoutX="500.0" layoutY="523.0" mnemonicParsing="false" prefHeight="33.251953125" prefWidth="200.00009999999747" style="-fx-text-fill: white; -fx-border-width: 0 0 0 0; -fx-background-insets: 0; -fx-border-color: #57caff; -fx-background-radius: 0; -fx-background-color: #57caff;" text="Tambah" />
               </children>
             </Pane>
-            <Pane fx:id="daftar_Staff" cache="false" layoutX="0.0" layoutY="0.0" mouseTransparent="true" opacity="1.0" pickOnBounds="true" prefHeight="671.0" prefWidth="811.0" visible="false">
+            <Pane fx:id="daftar_Staff" cache="false" layoutX="0.0" layoutY="0.0" mouseTransparent="true" opacity="1.0" pickOnBounds="true" prefHeight="671.0" prefWidth="811.0">
               <children>
                 <Label layoutX="351.0" layoutY="14.0" text="Daftar Staff">
                   <font>
                     <Font size="20.0" fx:id="x2" />
                   </font>
                 </Label>
-                <TableView layoutX="0.0" layoutY="82.0" prefHeight="589.0" prefWidth="801.0">
+                <TableView fx:id="table_daftar_staff" editable="true" layoutY="82.0" prefHeight="589.0" prefWidth="801.0">
                   <columns>
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="171.0" resizable="false" text="Nama Petugas" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="208.0" resizable="false" text="Email" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="138.0" resizable="false" text="Nomor KTP" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="179.0" resizable="false" text="Nomor telpon" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="110.0" resizable="false" text="Jenis Kelamin" />
-                    <TableColumn prefWidth="75.0" resizable="false" text="Update" />
-                    <TableColumn prefWidth="75.0" resizable="false" text="Hapus" />
+                    <TableColumn fx:id="col_nama_pengguna" maxWidth="5000.0" minWidth="10.0" onEditCommit="#namaPenggunaOnEdit" prefWidth="97.0" resizable="false" text="Nama Petugas" />
+                    <TableColumn fx:id="col_email" maxWidth="5000.0" minWidth="10.0" prefWidth="117.0" resizable="false" text="Email" />
+                    <TableColumn fx:id="col_nomor_ktp" maxWidth="5000.0" minWidth="10.0" prefWidth="129.0" resizable="false" text="Nomor KTP" />
+                    <TableColumn fx:id="col_nomor_telp" maxWidth="5000.0" minWidth="10.0" resizable="false" text="Nomor telpon" />
+                    <TableColumn fx:id="col_jenis_kelamin" maxWidth="5000.0" minWidth="10.0" prefWidth="120.0" resizable="false" text="Jenis Kelamin" />
                   </columns>
                 </TableView>
               </children>
@@ -117,7 +114,7 @@
                 <TextField fx:id="password_edit" layoutX="254.0" layoutY="377.0" prefHeight="35.0" prefWidth="400.0" />
               </children>
             </Pane>
-            <Pane fx:id="kosongPane" prefHeight="200.0" prefWidth="200.0" />
+            <Pane fx:id="kosongPane" prefHeight="200.0" prefWidth="200.0" visible="false" />
           </children>
         </Pane>
       </children>

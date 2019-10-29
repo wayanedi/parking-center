@@ -5,6 +5,8 @@
  */
 package com.parking.center.parkingcenter.model;
 
+import javafx.scene.control.Button;
+
 /**
  *
  * @author yanedi
@@ -18,6 +20,9 @@ public class PetugasModel {
     private String no_telp;
     private String jenis_kelamin;
     private int id_user;
+    
+    private Button update;
+    private Button delete;
 
     /**
      * @return the id_petugas
@@ -115,6 +120,34 @@ public class PetugasModel {
      */
     public void setId_user(int id_user) {
         this.id_user = id_user;
+    }
+
+    /**
+     * @return the update
+     */
+    public Button getUpdate() {
+        return update;
+    }
+
+    /**
+     * @param update the update to set
+     */
+    public void setUpdate(Button update) {
+        this.update = update;
+    }
+
+    /**
+     * @return the delete
+     */
+    public Button getDelete() {
+        return delete;
+    }
+
+    /**
+     * @param delete the delete to set
+     */
+    public void setDelete(Button delete) {
+        this.delete = delete;
     }
     
     

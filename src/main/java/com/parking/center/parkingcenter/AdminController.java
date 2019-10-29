@@ -98,6 +98,29 @@ public class AdminController implements Initializable {
     @FXML
     public TableView<JenisKendaraanModel> table_setup_parkir;
     
+    @FXML
+    public TableView<PetugasModel> table_daftar_staff;
+    
+    @FXML
+    private TableColumn<PetugasModel, String> col_nama_pengguna;
+    
+    @FXML
+    private TableColumn<PetugasModel, String> col_email;
+    
+    @FXML
+    private TableColumn<PetugasModel, String> col_nomor_ktp;
+    
+    @FXML
+    private TableColumn<PetugasModel, String> col_nomor_telp;
+    
+    @FXML
+    private TableColumn<PetugasModel, String> col_jenis_kelamin;
+    
+    @FXML
+    private TableColumn<PetugasModel, Button> col_updateStaff;
+    
+    @FXML
+    private TableColumn<PetugasModel, Button> col_hapusStaff;
 //    @FXML
 //    public static TableView<JenisKendaraanModel> table_setup_parkir2;
 
@@ -126,6 +149,7 @@ public class AdminController implements Initializable {
     @FXML
     private ComboBox comboBox_role;
     public static ObservableList<JenisKendaraanModel> data;
+    public static ObservableList<PetugasModel> petugas;
     
     PetugasModel petugasModel = new PetugasModel();
     
@@ -268,6 +292,35 @@ public class AdminController implements Initializable {
     
     private void initTable(){
         initCols();
+    }
+    private void initColsStaff() throws SQLException, ClassNotFoundException{
+        
+        col_nama_pengguna.setCellValueFactory(new PropertyValueFactory("nama_petugas"));
+        col_email.setCellValueFactory(new PropertyValueFactory("email"));
+        col_nomor_ktp.setCellValueFactory(new PropertyValueFactory("no_ktp"));
+        col_nomor_telp.setCellValueFactory(new PropertyValueFactory("no_telp"));
+        col_jenis_kelamin.setCellValueFactory(new PropertyValueFactory("jenis_kelamin"));
+//        col_updateStaff.setCellValueFactory(new PropertyValueFactory("update"));
+//        col_hapusStaff.setCellValueFactory(new PropertyValueFactory("delete"));
+        
+        
+//        col_nama_pengguna.setCellFactory(TextFieldTableCell.forTableColumn());
+//        col_email.setCellFactory(TextFieldTableCell.forTableColumn());
+//        col_nomor_ktp.setCellFactory(TextFieldTableCell.forTableColumn());
+//        col_nomor_telp.setCellFactory(TextFieldTableCell.forTableColumn());
+//        col_jenis_kelamin.setCellFactory(TextFieldTableCell.forTableColumn());
+        
+        petugas = PetugasDAO.getAllData();
+        table_daftar_staff.setItems(petugas);
+        
+    }
+    
+    @FXML
+    private void namaPenggunaOnEdit(TableColumn.CellEditEvent<PetugasModel, String> cell){
+        PetugasModel petugasmodel= table_daftar_staff.getSelectionModel().getSelectedItem();
+        petugasmodel.setNama_petugas(cell.getNewValue());
+
+        System.out.println("edited");
     }
     
     private void initCols(){
@@ -414,7 +467,14 @@ public class AdminController implements Initializable {
         noKTP_edit.setText(petugasModel.getNo_ktp());
         notelp_edit.setText(petugasModel.getNo_telp());
         jenisKelamin_combo.getSelectionModel().select(petugasModel.getJenis_kelamin());
+        table_daftar_staff.setEditable(true);
+
         initTable();
+        try {
+            initColsStaff();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         // TODO
         
