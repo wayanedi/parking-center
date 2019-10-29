@@ -29,6 +29,7 @@ public class JenisKendaraanModel {
     private int hargaPerHari;
     private int slot;
     private Button update;
+    private Button delete;
     
     
     
@@ -48,13 +49,14 @@ public class JenisKendaraanModel {
         this.slot = slot;
     }
     
-    public JenisKendaraanModel(String namaKendaraan, int hargaPerJam, int hargaPerSetHari, int hargaPerHari, int slot, Button update){
+    public JenisKendaraanModel(String namaKendaraan, int hargaPerJam, int hargaPerSetHari, int hargaPerHari, int slot, Button update, Button delete){
         this.namaKendaraan = namaKendaraan;
         this.hargaPerJam = hargaPerJam;
         this.hargaPerSetHari = hargaPerSetHari;
         this.hargaPerHari = hargaPerHari;
         this.slot = slot;
         this.update = update;
+        this.delete = delete;
     }
     
     public JenisKendaraanModel(){
@@ -163,6 +165,30 @@ public class JenisKendaraanModel {
             public void handle(ActionEvent event) {
                 try {
                     JenisKendaraanDAO.updateData(idJenisKendaraan,namaKendaraan, hargaPerJam, hargaPerSetHari, hargaPerHari, slot);
+                } catch (SQLException ex) {
+                    Logger.getLogger(JenisKendaraanModel.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(JenisKendaraanModel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+    }
+    public Button getDelete() {
+        return delete;
+    }
+
+    /**
+     * @param update the update to set
+     */
+    public void setDelete(Button delete) {
+        this.delete = delete;
+         delete.setOnAction(new EventHandler<ActionEvent>() {
+    
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    JenisKendaraanDAO.deleteData(idJenisKendaraan);
+                    
                 } catch (SQLException ex) {
                     Logger.getLogger(JenisKendaraanModel.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ClassNotFoundException ex) {

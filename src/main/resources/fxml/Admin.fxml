@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.parking.center.parkingcenter.AdminController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.parking.center.parkingcenter.AdminController">
   <center>
     <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
       <children>
         <Pane prefHeight="400.0" prefWidth="452.0">
           <children>
             <Pane layoutY="-1.0" prefHeight="400.0" prefWidth="452.0" />
-            <Pane fx:id="setup_Parkir" layoutX="1.0" layoutY="-1.0" prefHeight="672.0" prefWidth="803.0" visible="false">
+            <Pane fx:id="setup_Parkir" layoutX="1.0" layoutY="-1.0" prefHeight="672.0" prefWidth="803.0" visible="true">
               <children>
                 <Label layoutX="299.0" layoutY="14.0" text="Setup Parkir">
                   <font>
@@ -50,9 +50,10 @@
                     <TableColumn prefWidth="75.0" text="Hapus" fx:id="col_hapus" />
                   </columns>
                 </TableView>
+                <Button layoutX="12.0" layoutY="381.0" mnemonicParsing="false" onAction="#refresh_data_setup_parkir" prefWidth="81.0" text="Refresh" />
               </children>
             </Pane>
-            <Pane fx:id="tambah_Staff" layoutX="0.0" layoutY="-4.0" prefHeight="671.0" prefWidth="811.0">
+            <Pane fx:id="tambah_Staff" layoutX="0.0" layoutY="-4.0" prefHeight="671.0" prefWidth="811.0" visible="false">
               <children>
                 <Label font="$x1" layoutX="84.0" layoutY="332.0" text="Email" />
                 <Label font="$x1" layoutX="82.0" layoutY="108.0" text="Nama Petugas" />
@@ -67,15 +68,15 @@
                 <Label font="$x1" layoutX="84.0" layoutY="147.0" prefHeight="30.0" text="Nomor KTP" />
                 <TextField id="textField_nomorKtp" fx:id="textField_noKtp" layoutX="234.0" layoutY="147.0" prefHeight="30.0" prefWidth="400.0" />
                 <Label font="$x1" layoutX="82.0" layoutY="425.0" text="Nomor Telepon" />
-                <TextField id="textField_username" fx:id="textField_username" layoutX="234.0" layoutY="189.0" prefHeight="30.0" prefWidth="400.0" />
+                <TextField fx:id="textField_username" layoutX="234.0" layoutY="189.0" prefHeight="30.0" prefWidth="400.0" />
                 <Label font="$x1" layoutX="82.0" layoutY="378.0" text="Jenis Kelamin" />
                 <Label font="$x1" layoutX="84.0" layoutY="192.0" text="Username" />
-                <TextField id="textField_password" fx:id="textField_password" layoutX="234.0" layoutY="231.0" prefHeight="30.0" prefWidth="400.0" />
+                <TextField fx:id="textField_password" layoutX="234.0" layoutY="231.0" prefHeight="30.0" prefWidth="400.0" />
                 <Label font="$x1" layoutX="84.0" layoutY="234.0" text="Password" />
                 <TextField fx:id="textField_email" layoutX="234.0" layoutY="329.0" prefHeight="30.0" prefWidth="400.0" />
                 <Label font="$x1" layoutX="84.0" layoutY="281.0" text="Role" />
                 <ComboBox fx:id="comboBox_jenisKelamin" layoutX="234.0" layoutY="379.0" prefWidth="200.0001220703125" visibleRowCount="2" />
-                <Button id="button_addUser" fx:id="button_addUser" layoutX="500.0" layoutY="523.0" mnemonicParsing="false" onAction="#button_addUser" prefHeight="33.251953125" prefWidth="200.00009999999747" style="-fx-text-fill: white; -fx-border-width: 0 0 0 0; -fx-background-insets: 0; -fx-border-color: #57caff; -fx-background-radius: 0; -fx-background-color: #57caff;" text="Tambah" />
+                <Button fx:id="button_addUser" layoutX="500.0" layoutY="523.0" mnemonicParsing="false" onAction="#button_addUser" prefHeight="33.251953125" prefWidth="200.00009999999747" style="-fx-text-fill: white; -fx-border-width: 0 0 0 0; -fx-background-insets: 0; -fx-border-color: #57caff; -fx-background-radius: 0; -fx-background-color: #57caff;" text="Tambah" />
               </children>
             </Pane>
             <Pane fx:id="daftar_Staff" cache="false" layoutX="0.0" layoutY="0.0" mouseTransparent="true" opacity="1.0" pickOnBounds="true" prefHeight="671.0" prefWidth="811.0" visible="false">

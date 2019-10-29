@@ -190,6 +190,11 @@ public class AdminController implements Initializable {
     
     
     //========== fungsi untuk setup parkir ===================
+       @FXML
+    private void refresh_data_setup_parkir(ActionEvent event) throws SQLException, ClassNotFoundException{
+        data = JenisKendaraanDAO.getAlls();
+        table_setup_parkir.setItems(data);
+    }
  
     @FXML
     private void addSetupParkir(ActionEvent event) throws ClassNotFoundException, SQLException{
@@ -244,6 +249,8 @@ public class AdminController implements Initializable {
             JenisKendaraanDAO.insertJenisKendaraan(jenisKendaraanModel);
             alert.setHeaderText(null);
             alert.setHeaderText("Data berhasil dimasukan!");
+            data = JenisKendaraanDAO.getAlls();
+            table_setup_parkir.setItems(data);
         }
         alert.showAndWait();
     }
@@ -259,6 +266,7 @@ public class AdminController implements Initializable {
         col_harga_perhari.setCellValueFactory(new PropertyValueFactory("hargaPerHari"));
         col_slot.setCellValueFactory(new PropertyValueFactory("slot"));
         col_update.setCellValueFactory(new PropertyValueFactory("update"));
+        col_hapus.setCellValueFactory(new PropertyValueFactory("delete"));
         
         col_nama_kendaraan.setCellFactory(TextFieldTableCell.forTableColumn());
         col_harga_perjam.setCellFactory(TextFieldTableCell.<JenisKendaraanModel, Integer>forTableColumn(new IntegerStringConverter()));
