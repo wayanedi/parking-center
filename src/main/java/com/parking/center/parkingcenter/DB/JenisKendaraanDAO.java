@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
 
 /**
  *
@@ -47,6 +48,12 @@ public class JenisKendaraanDAO {
         System.out.println("berhasil");
     }
     
+    public static void updateData(int id, String namaKendaraan, int hargaPerJam, int hargaPerSet, int hargaPerHari, int slot) throws SQLException, ClassNotFoundException {
+        String query = "UPDATE jenis_kendaraan set nama_kendaraan='"+namaKendaraan+"', harga_perjam='"+hargaPerJam+"', harga_set_hari='"+hargaPerSet+"', harga_perhari = '"+hargaPerHari+"', slot = '"+slot+"' where id_jenis_kendaraan = '"+id+"'";
+        DBUtil.getInstance().dbExecuteUpdate(query);
+        System.out.println("terupdate");
+    }
+    
     public static ObservableList<JenisKendaraanModel> getAlls() throws SQLException, ClassNotFoundException {
         String selectStmt = "SELECT * FROM jenis_kendaraan";
         try {
@@ -59,15 +66,18 @@ public class JenisKendaraanDAO {
         }
     }
     
-        private static ObservableList<JenisKendaraanModel> getKendaraanList(ResultSet rs) throws SQLException, ClassNotFoundException {
+    private static ObservableList<JenisKendaraanModel> getKendaraanList(ResultSet rs) throws SQLException, ClassNotFoundException {
         ObservableList<JenisKendaraanModel> kendaraanList = FXCollections.observableArrayList();
         while (rs.next()) {
+            
             JenisKendaraanModel jenisKendaraanModel = new JenisKendaraanModel();
+            jenisKendaraanModel.setIdJenisKendaraan(rs.getInt("id_jenis_kendaraan"));
             jenisKendaraanModel.setNamaKendaraan(rs.getString("nama_kendaraan"));
             jenisKendaraanModel.setHargaPerJam(rs.getInt("harga_perjam"));
             jenisKendaraanModel.setHargaPerSetHari(rs.getInt("harga_set_hari"));
             jenisKendaraanModel.setHargaPerHari(rs.getInt("harga_perhari"));
             jenisKendaraanModel.setSlot(rs.getInt("slot"));
+            jenisKendaraanModel.setUpdate(new Button("update"));
             kendaraanList.add(jenisKendaraanModel);
         }
         return kendaraanList;

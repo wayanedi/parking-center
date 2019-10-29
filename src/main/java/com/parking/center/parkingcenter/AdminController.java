@@ -31,6 +31,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.converter.IntegerStringConverter;
 
 /**
  * FXML Controller class
@@ -94,7 +96,10 @@ public class AdminController implements Initializable {
     private TextField slotParkir;
     
     @FXML
-    private TableView<JenisKendaraanModel> table_setup_parkir;
+    public TableView<JenisKendaraanModel> table_setup_parkir;
+    
+//    @FXML
+//    public static TableView<JenisKendaraanModel> table_setup_parkir2;
 
     @FXML
     private TableColumn<JenisKendaraanModel, Integer> col_harga_perhari;
@@ -120,6 +125,7 @@ public class AdminController implements Initializable {
     //========== selector input user ====================
     @FXML
     private ComboBox comboBox_role;
+    public static ObservableList<JenisKendaraanModel> data;
     
     @FXML
     
@@ -252,10 +258,16 @@ public class AdminController implements Initializable {
         col_harga_setengah.setCellValueFactory(new PropertyValueFactory("hargaPerSetHari"));
         col_harga_perhari.setCellValueFactory(new PropertyValueFactory("hargaPerHari"));
         col_slot.setCellValueFactory(new PropertyValueFactory("slot"));
-//        col_nama_kendaraan.setCellValueFactory(new PropertyValueFactory("namaKendaraan"));
+        col_update.setCellValueFactory(new PropertyValueFactory("update"));
+        
+        col_nama_kendaraan.setCellFactory(TextFieldTableCell.forTableColumn());
+        col_harga_perjam.setCellFactory(TextFieldTableCell.<JenisKendaraanModel, Integer>forTableColumn(new IntegerStringConverter()));
+        col_harga_setengah.setCellFactory(TextFieldTableCell.<JenisKendaraanModel, Integer>forTableColumn(new IntegerStringConverter()));
+        col_harga_perhari.setCellFactory(TextFieldTableCell.<JenisKendaraanModel, Integer>forTableColumn(new IntegerStringConverter()));
+        col_slot.setCellFactory(TextFieldTableCell.<JenisKendaraanModel, Integer>forTableColumn(new IntegerStringConverter()));
 //        col_nama_kendaraan.setCellValueFactory(new PropertyValueFactory("namaKendaraan"));
         
-        ObservableList<JenisKendaraanModel> data;
+        
         try {
             data = JenisKendaraanDAO.getAlls();
             table_setup_parkir.setItems(data);
@@ -263,10 +275,36 @@ public class AdminController implements Initializable {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-//    
-//    private void editTableCols(){
-//        
-//    }
+    
+    @FXML
+    private void namaKendaraanOnEdit(TableColumn.CellEditEvent<JenisKendaraanModel, String> cell){
+        JenisKendaraanModel jenisKendaraanModel= table_setup_parkir.getSelectionModel().getSelectedItem();
+        jenisKendaraanModel.setNamaKendaraan(cell.getNewValue());
+    }
+    
+    @FXML
+    private void hargaPerJamOnEdit(TableColumn.CellEditEvent<JenisKendaraanModel, Integer> cell){
+        JenisKendaraanModel jenisKendaraanModel= table_setup_parkir.getSelectionModel().getSelectedItem();
+        jenisKendaraanModel.setHargaPerJam(cell.getNewValue());
+    }
+    
+    @FXML
+    private void hargaPerHariOnEdit(TableColumn.CellEditEvent<JenisKendaraanModel, Integer> cell){
+        JenisKendaraanModel jenisKendaraanModel= table_setup_parkir.getSelectionModel().getSelectedItem();
+        jenisKendaraanModel.setHargaPerHari(cell.getNewValue());
+    }
+    
+    @FXML
+    private void slotOnEdit(TableColumn.CellEditEvent<JenisKendaraanModel, Integer> cell){
+        JenisKendaraanModel jenisKendaraanModel= table_setup_parkir.getSelectionModel().getSelectedItem();
+        jenisKendaraanModel.setSlot(cell.getNewValue());
+    }
+    
+    @FXML
+    private void hargaSetengahOnEdit(TableColumn.CellEditEvent<JenisKendaraanModel, Integer> cell){
+        JenisKendaraanModel jenisKendaraanModel= table_setup_parkir.getSelectionModel().getSelectedItem();
+        jenisKendaraanModel.setHargaPerSetHari(cell.getNewValue());
+    }
     
     
     //============== batas untuk fungsi bagian setup parkir ================
@@ -283,6 +321,7 @@ public class AdminController implements Initializable {
         laporanBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
         daftarBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
     }
+    
     
     @FXML
     private void setupStaff(ActionEvent event) {
@@ -339,7 +378,11 @@ public class AdminController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         initTable();
+//        table_setup_parkir2 = table_setup_parkir;
+//        table_setup_parkir2.setEditable(true);
+        table_setup_parkir.setEditable(true);
+
+        initTable();
         
         kosongPane.setVisible(true);
         tambah_Staff.setVisible(false);
