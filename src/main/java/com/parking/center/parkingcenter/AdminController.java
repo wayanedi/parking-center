@@ -27,6 +27,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -114,6 +115,9 @@ public class AdminController implements Initializable {
     private TableColumn<PetugasModel, String> col_nomor_telp;
     
     @FXML
+    private Label label_name;
+    
+    @FXML
     private TableColumn<PetugasModel, String> col_jenis_kelamin;
     
     @FXML
@@ -136,6 +140,9 @@ public class AdminController implements Initializable {
     @FXML
     private TableColumn<JenisKendaraanModel, String> col_nama_kendaraan;
 
+    @FXML
+    private Label totalSlotParkir;
+    
     @FXML
     private TableColumn<JenisKendaraanModel, Integer> col_slot;
 
@@ -225,8 +232,10 @@ public class AdminController implements Initializable {
     
     
     //========== fungsi untuk setup parkir ===================
-       @FXML
-    private void refresh_data_setup_parkir(ActionEvent event) throws SQLException, ClassNotFoundException{
+  
+    
+    @FXML
+    private void refresh_data_setup(ActionEvent event) throws ClassNotFoundException, SQLException{
         data = JenisKendaraanDAO.getAlls();
         table_setup_parkir.setItems(data);
     }
@@ -450,7 +459,7 @@ public class AdminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         table_setup_parkir.setEditable(true);
-        
+        totalSlotParkir.setText("0");
         try {
             this.petugasModel = PetugasDAO.selectPetugas(petugasId);
         } catch (SQLException ex) {
