@@ -21,10 +21,10 @@
             <Font size="18.0" fx:id="x1" />
           </font>
         </Label>
-        <TextField id="platnomor" layoutX="296.0" layoutY="269.0" prefHeight="30.0" prefWidth="399.9999000000025" />
+        <TextField id="platnomor" fx:id="txt_plat" layoutX="296.0" layoutY="269.0" prefHeight="30.0" prefWidth="399.9999000000025" promptText="Z 1234 XYZ" />
         <Label font="$x1" layoutX="98.0" layoutY="320.0" text="Jenis Kendaraan" />
-        <ComboBox layoutX="296.0" layoutY="320.0" prefWidth="200.99997792968497" />
-        <Button layoutX="523.0" layoutY="502.0" minHeight="24.9998779296875" mnemonicParsing="false" prefHeight="39.90234375" prefWidth="176.0" style="-fx-text-fill: white; -fx-border-width: 0 0 0 0; -fx-background-insets: 0; -fx-border-color: #57caff; -fx-background-radius: 0; -fx-background-color: #57caff;" text="Catat Masuk" />
+        <ComboBox fx:id="cmb_jenisKendaraan" layoutX="296.0" layoutY="320.0" prefWidth="200.99997792968497" promptText="Pilih jenis kendaraan" />
+        <Button fx:id="catatBtn" layoutX="523.0" layoutY="502.0" minHeight="24.9998779296875" mnemonicParsing="false" onAction="#addBtn" prefHeight="39.90234375" prefWidth="176.0" style="-fx-text-fill: white; -fx-border-width: 0 0 0 0; -fx-background-insets: 0; -fx-border-color: #57caff; -fx-background-radius: 0; -fx-background-color: #57caff;" text="Catat Masuk" />
       </children>
     </Pane>
   </children>
