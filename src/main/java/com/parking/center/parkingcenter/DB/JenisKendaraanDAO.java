@@ -32,7 +32,7 @@ public class JenisKendaraanDAO {
         return hasil;
     }
     
-    public static ArrayList<JenisKendaraanModel> getAllData() throws SQLException, ClassNotFoundException{
+        public static ArrayList<JenisKendaraanModel> getAllData() throws SQLException, ClassNotFoundException{
         
         String query = "SELECT * FROM jenis_kendaraan";
         

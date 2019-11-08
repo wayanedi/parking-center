@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane id="" fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.parking.center.parkingcenter.UserController">
+<BorderPane id="" fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.parking.center.parkingcenter.UserController">
   <left>
     <Pane prefHeight="671.0" prefWidth="201.0" style="-fx-background-color: #57caff;" BorderPane.alignment="CENTER">
       <children>
@@ -29,6 +29,11 @@
             <Image url="@../bg/PARKING_CENTER.png" />
           </image>
         </ImageView>
+            <Button id="catatMasuk" fx:id="infoSlotBtn" alignment="CENTER_LEFT" layoutY="284.0" minHeight="32.0" mnemonicParsing="false" onAction="#getInfo" prefHeight="53.951171875" prefWidth="201.0" style="-fx-background-color: #57caff;&#10;-fx-text-fill: #fff;" text="Informasi Slot">
+               <font>
+                  <Font size="20.0" fx:id="x31" />
+               </font>
+            </Button>
       </children>
     </Pane>
   </left>

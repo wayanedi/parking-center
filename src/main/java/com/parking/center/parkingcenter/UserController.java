@@ -37,6 +37,9 @@ public class UserController implements Initializable {
     private Button editProfileBtn;
     
     @FXML
+    private Button infoSlotBtn;
+    
+    @FXML
     private BorderPane borderPane;
     
     @FXML
@@ -49,6 +52,7 @@ public class UserController implements Initializable {
         catatBtn.setStyle("-fx-background-color: #4bb0de;-fx-text-fill: #fff; -fx-font-weight: bold;");
         catatKeluarBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
         editProfileBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
+        infoSlotBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
     }
     
     @FXML
@@ -57,6 +61,8 @@ public class UserController implements Initializable {
         catatKeluarBtn.setStyle("-fx-background-color: #4bb0de;-fx-text-fill: #fff; -fx-font-weight: bold;");
         catatBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
         editProfileBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
+        infoSlotBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
+        
     }
     
      @FXML
@@ -65,8 +71,17 @@ public class UserController implements Initializable {
         editProfileBtn.setStyle("-fx-background-color: #4bb0de;-fx-text-fill: #fff; -fx-font-weight: bold;");
         catatBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
         catatKeluarBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
+        infoSlotBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
     }
     
+    @FXML
+    private void getInfo(ActionEvent event){
+        loadUI("Informasi");
+        infoSlotBtn.setStyle("-fx-background-color:#4bb0de;-fx-text-fill: #fff; -fx-font-weight:bold;");
+        catatBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
+        catatKeluarBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
+        editProfileBtn.setStyle ("-fx-background-color: #57caff;-fx-text-fill: #fff;");
+    }
     private void loadUI(String ui){
         Parent root = null;
         try {    

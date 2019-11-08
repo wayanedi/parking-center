@@ -15,7 +15,7 @@ public class LaporanModel {
     
     private String platNomor;
     private String jenisKendaraan;
-    private Date waktuMasuk;
+    private String waktuMasuk;
     private int totalHarga;
     private int statusKendaraan;
     
@@ -50,14 +50,14 @@ public class LaporanModel {
     /**
      * @return the waktuMasuk
      */
-    public Date getWaktuMasuk() {
+    public String getWaktuMasuk() {
         return waktuMasuk;
     }
 
     /**
      * @param waktuMasuk the waktuMasuk to set
      */
-    public void setWaktuMasuk(Date waktuMasuk) {
+    public void setWaktuMasuk(String waktuMasuk) {
         this.waktuMasuk = waktuMasuk;
     }
 
