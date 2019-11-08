@@ -6,16 +6,20 @@
 package com.parking.center.parkingcenter;
 
 import com.parking.center.parkingcenter.DB.JenisKendaraanDAO;
+import com.parking.center.parkingcenter.DB.LaporanDAO;
 import com.parking.center.parkingcenter.model.JenisKendaraanModel;
+import com.parking.center.parkingcenter.model.SisaSlotModel;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -28,7 +32,7 @@ import javafx.scene.text.Font;
  */
 public class CatatMasukController implements Initializable {
 
-    private ArrayList<JenisKendaraanModel> jenisKendaraanList = new ArrayList<JenisKendaraanModel>(); 
+    private ObservableList<SisaSlotModel> jenisKendaraanList;
             
     @FXML
     private ComboBox<String> cmb_jenisKendaraan;
@@ -46,9 +50,10 @@ public class CatatMasukController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            jenisKendaraanList = JenisKendaraanDAO.getAllData();
+            jenisKendaraanList = LaporanDAO.getSisaSlot();
             for(int i=0;i<jenisKendaraanList.size();i++)
-            cmb_jenisKendaraan.getItems().add(jenisKendaraanList.get(i).getNamaKendaraan());
+//                System.out.println(jenisKendaraanList.get(i).getNamaKendaraan());
+                cmb_jenisKendaraan.getItems().add(jenisKendaraanList.get(i).getNamaKendaraan() + " - sisa"  +jenisKendaraanList.get(i).getSlot());
         } catch (SQLException ex) {
             Logger.getLogger(CatatMasukController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -59,8 +64,17 @@ public class CatatMasukController implements Initializable {
 
     @FXML
     private void addBtn(ActionEvent event) {
-        if(txt_plat.getText().matches(checkSymbol))System.out.println("ada symbol");
-        else System.out.println("tidak ada symbol");
+        Alert alert;
+        alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Catat Masuk");
+        if(txt_plat.getText().matches(checkSymbol)){
+            alert.setHeaderText(null);
+            alert.setContentText("Tidak boleh ada symbol!");
+            alert.showAndWait();
+        }
+        else{
+//            txt_plat.getText()
+        }
     }
     
 }

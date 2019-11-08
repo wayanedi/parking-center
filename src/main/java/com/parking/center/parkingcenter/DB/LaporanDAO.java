@@ -32,8 +32,8 @@ public class LaporanDAO {
         
         String query;
         
-        query = "﻿SELECT nama_kendaraan, jenis_kendaraan.slot -count(laporan.jenis_kendaraan) as 'sisa' from laporan inner join jenis_kendaraan on laporan.jenis_kendaraan = jenis_kendaraan.id_jenis_kendaraan where status_kendaraan = \"0\" GROUP by nama_kendaraan";
-         System.out.println(query);
+        query = "SELECT nama_kendaraan, slot-count(laporan.jenis_kendaraan) as 'sisa' from laporan inner join jenis_kendaraan on laporan.jenis_kendaraan = jenis_kendaraan.id_jenis_kendaraan where status_kendaraan = '0' GROUP by nama_kendaraan";
+        System.out.println(query);
          
         ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
         
@@ -51,7 +51,7 @@ public class LaporanDAO {
         
         while(rs.next()){
             
-            sisaSlot = new SisaSlotModel(rs.getString("nama_kendaraan"), rs.getInt("slot"));
+            sisaSlot = new SisaSlotModel(rs.getString("nama_kendaraan"), rs.getInt("sisa"));
             sisa.add(sisaSlot);
         }
         
