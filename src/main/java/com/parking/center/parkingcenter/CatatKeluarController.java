@@ -7,6 +7,8 @@ package com.parking.center.parkingcenter;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 /**
@@ -15,6 +17,12 @@ import javafx.fxml.Initializable;
  * @author asus
  */
 public class CatatKeluarController implements Initializable {
+    
+    
+    @FXML
+    private void btnCari(ActionEvent event){
+        System.out.println("click");
+    }
 
     /**
      * Initializes the controller class.

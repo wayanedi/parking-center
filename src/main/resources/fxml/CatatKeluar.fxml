@@ -40,8 +40,12 @@
         </Label>
         <Label font="$x2" layoutX="365.0" layoutY="458.0" prefHeight="73.951171875" prefWidth="365.0" text="40000" />
         <Label font="$x2" layoutX="287.0" layoutY="468.0" text="Rp." />
-            <ComboBox layoutX="343.0" layoutY="147.0" prefHeight="27.0" prefWidth="400.0" />
-            <Button layoutX="344.0" layoutY="251.0" mnemonicParsing="false" prefHeight="39.90234375" prefWidth="142.0" style="-fx-text-fill: white; -fx-border-width: 0 0 0 0; -fx-background-insets: 0; -fx-border-color: #32CD32; -fx-background-radius: 0; -fx-background-color: #32CD32#08000;" text="Cari" />
+            <Button layoutX="344.0" layoutY="251.0" mnemonicParsing="false" onAction="#btnCari" prefHeight="39.90234375" prefWidth="142.0" style="-fx-text-fill: white; -fx-border-width: 0 0 0 0; -fx-background-insets: 0; -fx-border-color: #32CD32; -fx-background-radius: 0; -fx-background-color: #32CD32#08000;" text="Cari" />
+            <Label fx:id="jenisKendaraan" layoutX="344.0" layoutY="148.0" text="-">
+               <font>
+                  <Font size="18.0" fx:id="x11" />
+               </font>
+            </Label>
       </children>
     </Pane>
   </children>
