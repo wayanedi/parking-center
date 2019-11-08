@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="671.0" prefWidth="799.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.parking.center.parkingcenter.CatatKeluarController">
+  <children>
+    <Pane id="cetakKeluar" layoutX="0.0" layoutY="4.0" prefHeight="663.0" prefWidth="799.0" visible="true">
+      <children>
+        <Label layoutX="255.0" layoutY="28.0" text="Catat Keluar">
+          <font>
+            <Font name="System Bold" size="50.0" />
+          </font>
+        </Label>
+        <Label layoutX="58.0" layoutY="148.0" text="Jenis Kendaraan">
+          <font>
+            <Font size="18.0" fx:id="x1" />
+          </font>
+        </Label>
+        <TextField layoutX="344.0" layoutY="145.0" prefHeight="30.0" prefWidth="400.0" />
+        <Label font="$x1" layoutX="58.0" layoutY="211.0" text="Plat nomor" />
+        <TextField layoutX="344.0" layoutY="205.0" prefHeight="30.0" prefWidth="400.0" />
+        <Label layoutX="58.0" layoutY="401.0" text="Total Harga">
+          <font>
+            <Font size="40.0" fx:id="x2" />
+          </font>
+        </Label>
+        <Button layoutX="602.0" layoutY="537.0" mnemonicParsing="false" prefHeight="39.90234375" prefWidth="142.0" style="-fx-text-fill: white; -fx-border-width: 0 0 0 0; -fx-background-insets: 0; -fx-border-color: #57caff; -fx-background-radius: 0; -fx-background-color: #57caff;&#10;" text="Catat Keluar" />
+        <Label font="$x2" layoutX="365.0" layoutY="394.0" prefHeight="73.951171875" prefWidth="365.0" text="40000" />
+        <Label font="$x2" layoutX="287.0" layoutY="404.0" text="Rp." />
+        <Label font="$x1" layoutX="58.0" layoutY="370.0" text="Bayar" />
+        <TextField layoutX="348.0" layoutY="359.0" prefHeight="30.0" prefWidth="400.0" />
+        <Label layoutX="60.0" layoutY="471.0" text="Kembalian">
+          <font>
+            <Font size="30.0" />
+          </font>
+        </Label>
+        <Label font="$x2" layoutX="365.0" layoutY="458.0" prefHeight="73.951171875" prefWidth="365.0" text="40000" />
+        <Label font="$x2" layoutX="287.0" layoutY="468.0" text="Rp." />
+      </children>
+    </Pane>
+  </children>
+</AnchorPane>

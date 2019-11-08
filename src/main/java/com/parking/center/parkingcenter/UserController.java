@@ -6,13 +6,20 @@ package com.parking.center.parkingcenter;
  * and open the template in the editor.
  */
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 
 /**
  * FXML Controller class
@@ -30,19 +37,14 @@ public class UserController implements Initializable {
     private Button editProfileBtn;
     
     @FXML
-    private Pane cetakKeluar;
+    private BorderPane borderPane;
     
     @FXML
-    private Pane cetakMasuk;
-    
-    @FXML
-    private Pane editProfile;
+    private Font x3;
     
     @FXML
     private void getCatat(ActionEvent event) {
-        cetakMasuk.setVisible(true);
-        cetakKeluar.setVisible(false);
-        editProfile.setVisible(false);
+       loadUI("CatatMasuk");
         
         catatBtn.setStyle("-fx-background-color: #4bb0de;-fx-text-fill: #fff; -fx-font-weight: bold;");
         catatKeluarBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
@@ -51,9 +53,7 @@ public class UserController implements Initializable {
     
     @FXML
     private void getCatatKeluar(ActionEvent event) {
-        cetakMasuk.setVisible(false);
-        cetakKeluar.setVisible(true);
-        editProfile.setVisible(false);
+        loadUI("CatatKeluar");
         catatKeluarBtn.setStyle("-fx-background-color: #4bb0de;-fx-text-fill: #fff; -fx-font-weight: bold;");
         catatBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
         editProfileBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
@@ -61,12 +61,20 @@ public class UserController implements Initializable {
     
      @FXML
     private void getEdit(ActionEvent event) {
-        cetakMasuk.setVisible(false);
-        cetakKeluar.setVisible(false);
-        editProfile.setVisible(true);
+        loadUI("EditProfile");
         editProfileBtn.setStyle("-fx-background-color: #4bb0de;-fx-text-fill: #fff; -fx-font-weight: bold;");
         catatBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
         catatKeluarBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
+    }
+    
+    private void loadUI(String ui){
+        Parent root = null;
+        try {    
+            root=FXMLLoader.load(getClass().getResource("/fxml/"+ui+".fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        borderPane.setCenter(root);
     }
     
     /**

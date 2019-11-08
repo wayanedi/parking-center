@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="671.0" prefWidth="799.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.parking.center.parkingcenter.CatatMasukController">
+  <children>
+    <Pane id="cetakMasuk" layoutX="0.0" layoutY="0.0" prefHeight="671.0" prefWidth="798.9998779296875" visible="true">
+      <children>
+        <Label layoutX="253.0" layoutY="29.0" text="Catat Masuk">
+          <font>
+            <Font name="System Bold" size="50.0" />
+          </font>
+        </Label>
+        <Label layoutX="98.0" layoutY="271.0" text="Plat Nomor">
+          <font>
+            <Font size="18.0" fx:id="x1" />
+          </font>
+        </Label>
+        <TextField id="platnomor" layoutX="296.0" layoutY="269.0" prefHeight="30.0" prefWidth="399.9999000000025" />
+        <Label font="$x1" layoutX="98.0" layoutY="320.0" text="Jenis Kendaraan" />
+        <ComboBox layoutX="296.0" layoutY="320.0" prefWidth="200.99997792968497" />
+        <Button layoutX="523.0" layoutY="502.0" minHeight="24.9998779296875" mnemonicParsing="false" prefHeight="39.90234375" prefWidth="176.0" style="-fx-text-fill: white; -fx-border-width: 0 0 0 0; -fx-background-insets: 0; -fx-border-color: #57caff; -fx-background-radius: 0; -fx-background-color: #57caff;" text="Catat Masuk" />
+      </children>
+    </Pane>
+  </children>
+</AnchorPane>
