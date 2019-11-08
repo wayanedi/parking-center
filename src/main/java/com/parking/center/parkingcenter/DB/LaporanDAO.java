@@ -51,7 +51,7 @@ public class LaporanDAO {
         
         while(rs.next()){
             
-            sisaSlot = new SisaSlotModel(rs.getString("nama_kendaraan"), rs.getInt("sisa"),rs.getInt("id"));
+            sisaSlot = new SisaSlotModel(rs.getString("nama_kendaraan"), rs.getInt("sisa"),rs.getInt("id_jenis_kendaraan"));
             sisa.add(sisaSlot);
         }
         
