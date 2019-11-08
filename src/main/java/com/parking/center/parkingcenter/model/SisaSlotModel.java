@@ -13,10 +13,12 @@ public class SisaSlotModel {
     
     private String namaKendaraan;
     private int slot;
+    private int id;
     
-    public SisaSlotModel(String namaKendaraan, int slot){
+    public SisaSlotModel(String namaKendaraan, int slot, int id){
         this.namaKendaraan = namaKendaraan;
         this.slot = slot;
+        this.id = id;
     }
 
     /**
@@ -45,6 +47,20 @@ public class SisaSlotModel {
      */
     public void setSlot(int slot) {
         this.slot = slot;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
     
     
