@@ -8,6 +8,7 @@ package com.parking.center.parkingcenter;
 import com.parking.center.parkingcenter.DB.JenisKendaraanDAO;
 import com.parking.center.parkingcenter.DB.LaporanDAO;
 import com.parking.center.parkingcenter.model.JenisKendaraanModel;
+import com.parking.center.parkingcenter.model.LaporanModel;
 import com.parking.center.parkingcenter.model.SisaSlotModel;
 import java.net.URL;
 import java.sql.SQLException;
@@ -53,7 +54,7 @@ public class CatatMasukController implements Initializable {
             jenisKendaraanList = LaporanDAO.getSisaSlot();
             for(int i=0;i<jenisKendaraanList.size();i++)
 //                System.out.println(jenisKendaraanList.get(i).getNamaKendaraan());
-                cmb_jenisKendaraan.getItems().add(jenisKendaraanList.get(i).getNamaKendaraan() + " - sisa"  +jenisKendaraanList.get(i).getSlot());
+                cmb_jenisKendaraan.getItems().add(jenisKendaraanList.get(i).getNamaKendaraan() + " - sisa "  +jenisKendaraanList.get(i).getSlot());
         } catch (SQLException ex) {
             Logger.getLogger(CatatMasukController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -73,6 +74,9 @@ public class CatatMasukController implements Initializable {
             alert.showAndWait();
         }
         else{
+            LaporanModel laporanModel = new LaporanModel();
+//            laporanModel.setJenisKendaraan();
+            laporanModel.setPlatNomor(txt_plat.getText());
 //            txt_plat.getText()
         }
     }
