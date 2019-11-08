@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="671.0" prefWidth="799.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.parking.center.parkingcenter.CatatKeluarController">
+<AnchorPane id="AnchorPane" prefHeight="671.0" prefWidth="799.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.parking.center.parkingcenter.CatatKeluarController">
   <children>
     <Pane id="cetakKeluar" layoutX="0.0" layoutY="4.0" prefHeight="663.0" prefWidth="799.0" visible="true">
       <children>
@@ -21,7 +21,6 @@
             <Font size="18.0" fx:id="x1" />
           </font>
         </Label>
-        <TextField layoutX="344.0" layoutY="145.0" prefHeight="30.0" prefWidth="400.0" />
         <Label font="$x1" layoutX="58.0" layoutY="211.0" text="Plat nomor" />
         <TextField layoutX="344.0" layoutY="205.0" prefHeight="30.0" prefWidth="400.0" />
         <Label layoutX="58.0" layoutY="401.0" text="Total Harga">
@@ -41,6 +40,8 @@
         </Label>
         <Label font="$x2" layoutX="365.0" layoutY="458.0" prefHeight="73.951171875" prefWidth="365.0" text="40000" />
         <Label font="$x2" layoutX="287.0" layoutY="468.0" text="Rp." />
+            <ComboBox layoutX="343.0" layoutY="147.0" prefHeight="27.0" prefWidth="400.0" />
+            <Button layoutX="344.0" layoutY="251.0" mnemonicParsing="false" prefHeight="39.90234375" prefWidth="142.0" style="-fx-text-fill: white; -fx-border-width: 0 0 0 0; -fx-background-insets: 0; -fx-border-color: #32CD32; -fx-background-radius: 0; -fx-background-color: #32CD32#08000;" text="Cari" />
       </children>
     </Pane>
   </children>
