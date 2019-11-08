@@ -12,7 +12,10 @@ import com.parking.center.parkingcenter.model.LaporanModel;
 import com.parking.center.parkingcenter.model.SisaSlotModel;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,7 +39,7 @@ public class CatatMasukController implements Initializable {
     private ObservableList<SisaSlotModel> jenisKendaraanList;
             
     @FXML
-    private ComboBox<String> cmb_jenisKendaraan;
+    private ComboBox cmb_jenisKendaraan;
 
     @FXML
     private TextField txt_plat;
@@ -46,15 +49,23 @@ public class CatatMasukController implements Initializable {
     private Button catatBtn;
     
     private String checkSymbol = "\\W+";
+    @FXML
+    private ComboBox id_jenis;
     
+    private static final DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        id_jenis.setVisible(false);
         try {
             jenisKendaraanList = LaporanDAO.getSisaSlot();
-            for(int i=0;i<jenisKendaraanList.size();i++)
-//                System.out.println(jenisKendaraanList.get(i).getNamaKendaraan());
+            System.out.println(jenisKendaraanList.size());
+            for(int i=0;i<jenisKendaraanList.size();i++){
                 cmb_jenisKendaraan.getItems().add(jenisKendaraanList.get(i).getNamaKendaraan() + " - sisa "  +jenisKendaraanList.get(i).getSlot());
+                System.out.println(jenisKendaraanList.get(i).getNamaKendaraan());
+                id_jenis.getItems().add(jenisKendaraanList.get(i).getId());
+            }
+                
         } catch (SQLException ex) {
             Logger.getLogger(CatatMasukController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -64,7 +75,7 @@ public class CatatMasukController implements Initializable {
     }    
 
     @FXML
-    private void addBtn(ActionEvent event) {
+    private void addBtn(ActionEvent event) throws SQLException, ClassNotFoundException {
         Alert alert;
         alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Catat Masuk");
@@ -75,10 +86,20 @@ public class CatatMasukController implements Initializable {
         }
         else{
             LaporanModel laporanModel = new LaporanModel();
-//            laporanModel.setJenisKendaraan();
+            laporanModel.setJenisKendaraan(id_jenis.getSelectionModel().getSelectedItem().toString());
             laporanModel.setPlatNomor(txt_plat.getText());
+            Date date = new Date();
+            System.out.println(sdf.format(date));
+            laporanModel.setWaktuMasuk(sdf.format(date));
+            LaporanDAO.insertLaporan(laporanModel, 3);
 //            txt_plat.getText()
         }
+    }
+
+    @FXML
+    private void selected(ActionEvent event) {
+        int idx= cmb_jenisKendaraan.getSelectionModel().getSelectedIndex();
+        id_jenis.getSelectionModel().select(idx);
     }
     
 }

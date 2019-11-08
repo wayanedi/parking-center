@@ -21,6 +21,11 @@ public class SisaSlotModel {
         this.id = id;
     }
 
+    @Override
+    public String toString(){
+        return this.getNamaKendaraan();
+    }
+    
     /**
      * @return the namaKendaraan
      */
