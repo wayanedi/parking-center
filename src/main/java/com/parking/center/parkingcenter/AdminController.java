@@ -199,18 +199,18 @@ public class AdminController implements Initializable {
         id +=1;
         System.out.println("masuk");
         UserModel user = new UserModel();
-        PetugasModel petugas = new PetugasModel();
+        PetugasModel petugasModel = new PetugasModel();
         
         user.setPassword(textField_password.getText());
         user.setUsername(textField_username.getText());
         user.setRole(comboBox_role.getValue().toString());
         
-        petugas.setEmail(textField_email.getText());
-        petugas.setId_user(id);
-        petugas.setJenis_kelamin(comboBox_jenisKelamin.getValue().toString());
-        petugas.setNama_petugas(textField_namaPetugas.getText());
-        petugas.setNo_ktp(textField_noKtp.getText());
-        petugas.setNo_telp(textField_nomorTelp.getText());
+        petugasModel.setEmail(textField_email.getText());
+        petugasModel.setId_user(id);
+        petugasModel.setJenis_kelamin(comboBox_jenisKelamin.getValue().toString());
+        petugasModel.setNama_petugas(textField_namaPetugas.getText());
+        petugasModel.setNo_ktp(textField_noKtp.getText());
+        petugasModel.setNo_telp(textField_nomorTelp.getText());
         
         
         
@@ -237,10 +237,13 @@ public class AdminController implements Initializable {
             }
             
             UserDAO.insertUser(user);
-            PetugasDAO.insertPetugas(petugas);
+            PetugasDAO.insertPetugas(petugasModel);
             
             alert.setHeaderText(null);
             alert.setHeaderText("Data berhasil dimasukan!");
+            petugas = PetugasDAO.getAllData();
+            table_daftar_staff.setItems(petugas);
+
         }
         
         alert.showAndWait();
@@ -254,6 +257,14 @@ public class AdminController implements Initializable {
     private void refresh_data_setup(ActionEvent event) throws ClassNotFoundException, SQLException{
         data = JenisKendaraanDAO.getAlls();
         table_setup_parkir.setItems(data);
+        
+        int hasil=0;
+        try {
+            hasil = JenisKendaraanDAO.getTotalSlot();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        totalSlotParkir.setText(Integer.toString(hasil));
     }
  
     @FXML
@@ -311,6 +322,14 @@ public class AdminController implements Initializable {
             alert.setHeaderText("Data berhasil dimasukan!");
             data = JenisKendaraanDAO.getAlls();
             table_setup_parkir.setItems(data);
+            
+            int hasil=0;
+            try {
+                hasil = JenisKendaraanDAO.getTotalSlot();
+            } catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            totalSlotParkir.setText(Integer.toString(hasil));
         }
         alert.showAndWait();
     }
@@ -329,11 +348,11 @@ public class AdminController implements Initializable {
 //        col_hapusStaff.setCellValueFactory(new PropertyValueFactory("delete"));
         
         
-//        col_nama_pengguna.setCellFactory(TextFieldTableCell.forTableColumn());
-//        col_email.setCellFactory(TextFieldTableCell.forTableColumn());
-//        col_nomor_ktp.setCellFactory(TextFieldTableCell.forTableColumn());
-//        col_nomor_telp.setCellFactory(TextFieldTableCell.forTableColumn());
-//        col_jenis_kelamin.setCellFactory(TextFieldTableCell.forTableColumn());
+        col_nama_pengguna.setCellFactory(TextFieldTableCell.forTableColumn());
+        col_email.setCellFactory(TextFieldTableCell.forTableColumn());
+        col_nomor_ktp.setCellFactory(TextFieldTableCell.forTableColumn());
+        col_nomor_telp.setCellFactory(TextFieldTableCell.forTableColumn());
+        col_jenis_kelamin.setCellFactory(TextFieldTableCell.forTableColumn());
         
         petugas = PetugasDAO.getAllData();
         table_daftar_staff.setItems(petugas);

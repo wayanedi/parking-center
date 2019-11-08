@@ -14,7 +14,6 @@
       <children>
         <Pane prefHeight="400.0" prefWidth="452.0" visible="true">
           <children>
-            <Pane layoutY="-1.0" prefHeight="400.0" prefWidth="452.0" visible="true" />
             <Pane fx:id="setup_Parkir" layoutX="1.0" layoutY="-1.0" prefHeight="672.0" prefWidth="803.0" visible="false">
               <children>
                 <Label layoutX="299.0" layoutY="14.0" text="Setup Parkir">
@@ -86,13 +85,13 @@
                     <Font size="20.0" fx:id="x2" />
                   </font>
                 </Label>
-                <TableView fx:id="table_daftar_staff" editable="true" layoutY="82.0" prefHeight="589.0" prefWidth="801.0">
+                <TableView fx:id="table_daftar_staff" editable="true" layoutX="32.0" layoutY="94.0" prefHeight="559.0" prefWidth="754.0">
                   <columns>
-                    <TableColumn fx:id="col_nama_pengguna" maxWidth="5000.0" minWidth="10.0" onEditCommit="#namaPenggunaOnEdit" prefWidth="97.0" resizable="false" text="Nama Petugas" />
-                    <TableColumn fx:id="col_email" maxWidth="5000.0" minWidth="10.0" prefWidth="117.0" resizable="false" text="Email" />
-                    <TableColumn fx:id="col_nomor_ktp" maxWidth="5000.0" minWidth="10.0" prefWidth="129.0" resizable="false" text="Nomor KTP" />
-                    <TableColumn fx:id="col_nomor_telp" maxWidth="5000.0" minWidth="10.0" resizable="false" text="Nomor telpon" />
-                    <TableColumn fx:id="col_jenis_kelamin" maxWidth="5000.0" minWidth="10.0" prefWidth="120.0" resizable="false" text="Jenis Kelamin" />
+                    <TableColumn fx:id="col_nama_pengguna" maxWidth="5000.0" minWidth="10.0" onEditCommit="#namaPenggunaOnEdit" prefWidth="136.0" resizable="false" text="Nama Petugas" />
+                    <TableColumn fx:id="col_email" maxWidth="5000.0" minWidth="10.0" prefWidth="183.0" resizable="false" text="Email" />
+                    <TableColumn fx:id="col_nomor_ktp" maxWidth="5000.0" minWidth="10.0" prefWidth="138.0" resizable="false" text="Nomor KTP" />
+                    <TableColumn fx:id="col_nomor_telp" maxWidth="5000.0" minWidth="10.0" prefWidth="155.0" resizable="false" text="Nomor telpon" />
+                    <TableColumn fx:id="col_jenis_kelamin" maxWidth="5000.0" minWidth="10.0" prefWidth="135.0" resizable="false" text="Jenis Kelamin" />
                   </columns>
                 </TableView>
               </children>
