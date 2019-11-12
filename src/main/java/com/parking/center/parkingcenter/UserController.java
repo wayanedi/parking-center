@@ -6,8 +6,11 @@ package com.parking.center.parkingcenter;
  * and open the template in the editor.
  */
 
+import com.parking.center.parkingcenter.DB.PetugasDAO;
+import com.parking.center.parkingcenter.model.PetugasModel;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,6 +30,9 @@ import javafx.scene.text.Font;
  * @author rut febrianty
  */
 public class UserController implements Initializable {
+    
+    public static int petugasId;
+    
     @FXML
     private Button catatBtn;
     
@@ -44,6 +50,7 @@ public class UserController implements Initializable {
     
     @FXML
     private Font x3;
+    private PetugasModel petugasModel;
     
     @FXML
     private void getCatat(ActionEvent event) {
@@ -98,6 +105,15 @@ public class UserController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        try {
+            this.petugasModel = PetugasDAO.selectPetugas(petugasId);
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("ini init"+petugasModel.getNama_petugas());
+        System.out.println(petugasId);
     }    
-    
+    public void getData(int id){
+        this.petugasId=id;
+    }
 }

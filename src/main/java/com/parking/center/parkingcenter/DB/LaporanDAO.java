@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 
 /**
  *
@@ -21,10 +22,26 @@ public class LaporanDAO {
     public static void insertLaporan(LaporanModel laporan, int id) throws SQLException, ClassNotFoundException{
         
         String query;
+        try {
         query = "INSERT INTO laporan (plat_nomor, id_petugas, jenis_kendaraan, waktu_masuk, status_kendaraan)"
                 + "VALUES('"+laporan.getPlatNomor()+"', '"+id+"', '"+laporan.getJenisKendaraan()+"', '"+laporan.getWaktuMasuk()+"', '"+0+"')";
                System.out.println(query);
-        DBUtil.getInstance().dbExecuteUpdate(query);
+        DBUtil.getInstance().dbExecuteUpdate(query);  
+            Alert alert;
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Catat Masuk");   
+            alert.setHeaderText(null);
+            alert.setContentText("Data berhasil di masukkan!");
+            alert.showAndWait();
+        } catch (Exception e) {
+            Alert alert;
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Catat Masuk");
+            alert.setHeaderText(null);
+            alert.setContentText("Data tidak berhasil di masukkan!");
+            alert.showAndWait();
+        }
+        
     }
     
     public static ObservableList<SisaSlotModel> getSisaSlot() throws SQLException, ClassNotFoundException{

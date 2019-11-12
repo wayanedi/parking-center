@@ -56,32 +56,32 @@ public class LoginController implements Initializable{
             alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Login Information");
             alert.setHeaderText(null);
-            alert.setContentText("Congratulation !");
-            
+            alert.setContentText("Login Success !");
             alert.showAndWait();
             
             if(hasil.getRole().equals("user")){
-                Parent root = null;
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/User.fxml"));
+                Parent root = loader.load();
+                UserController userController= loader.getController();
+                userController.getData(hasil.getId());
                 root = FXMLLoader.load(getClass().getResource("/fxml/User.fxml"));
-Scene scene = new Scene(root);
-                 scene.getStylesheets().add("/styles/Styles.css");
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-            window.setScene(scene);
-            window.show();
+                Scene scene = new Scene(root);
+                scene.getStylesheets().add("/styles/Styles.css");
+                Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+                window.setScene(scene);
+                window.show();
             }
             else{
-                
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Admin.fxml"));
                 Parent root = loader.load();
                 AdminController adminController = loader.getController();
                 adminController.transferMessage(hasil.getId());
-                
                 root = FXMLLoader.load(getClass().getResource("/fxml/Admin.fxml"));
-                 Scene scene = new Scene(root);
-                 scene.getStylesheets().add("/styles/Styles.css");
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-            window.setScene(scene);
-            window.show();
+                Scene scene = new Scene(root);
+                scene.getStylesheets().add("/styles/Styles.css");
+                Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+                window.setScene(scene);
+                window.show();
             }
             
            
