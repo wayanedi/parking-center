@@ -85,7 +85,7 @@ public class CatatKeluarController implements Initializable {
     @FXML
     private void btnCari(ActionEvent event) throws SQLException, ClassNotFoundException, ParseException{
         
-        catat = LaporanDAO.getLaporanKendaraan(textFieldPlatNomor.getText().trim());
+        catat = LaporanDAO.getLaporanKendaraan(textFieldPlatNomor.getText().trim().toUpperCase());
         
         if(catat == null){
             Alert alert;
@@ -111,14 +111,14 @@ public class CatatKeluarController implements Initializable {
         int selisihMenit = Integer.parseInt(menit.format(now))-Integer.parseInt(menit.format(date))+ selisihJam*60;
         
         
-        System.out.println(selisihHari);
-        System.out.println(selisihJam);
-        System.out.println(selisihMenit);
+        System.out.println("seliih hari " + selisihHari);
+        System.out.println("seliih jam " +selisihJam);
+        System.out.println("seliih menit " +selisihMenit);
         
         double ceil = Math.ceil((double)selisihMenit/60);
         
         selisihJam = (int)ceil;
-        
+        if(selisihJam ==0) selisihJam=1;
         System.out.println(selisihJam);
         
         int harga = 0;
