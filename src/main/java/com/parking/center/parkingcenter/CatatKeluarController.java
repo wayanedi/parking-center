@@ -21,6 +21,7 @@ public class CatatKeluarController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         // TODO
     }    
     

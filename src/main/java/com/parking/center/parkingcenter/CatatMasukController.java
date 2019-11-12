@@ -49,7 +49,7 @@ public class CatatMasukController implements Initializable {
     @FXML
     private Button catatBtn;
     
-    private String checkSymbol = "\\W+";
+    private String checkSymbol = "[a-zA-Z0-9]+";
     @FXML
     private ComboBox id_jenis;
     
@@ -70,16 +70,23 @@ public class CatatMasukController implements Initializable {
         Alert alert;
         alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Catat Masuk");
+        
+        Pattern plat = Pattern.compile(checkSymbol);
         if(txt_plat.getText().isEmpty() || cmb_jenisKendaraan.getSelectionModel().isEmpty()){
             alert.setHeaderText(null);
             alert.setContentText("Plat nomor atau jenis kendaraan tidak boleh kosong!");
             alert.showAndWait();
         }
-        else if(Pattern.matches(checkSymbol, txt_plat.getText().toString())|| txt_plat.getText().isEmpty()){
+        else if(!plat.matcher(txt_plat.getText()).matches()){
             alert.setHeaderText(null);
-            alert.setContentText("Plat nomor tidak boleh kosong atau ada symbol!");
+            alert.setContentText("Plat nomor tidak boleh ada symbol atau spasi!");
             alert.showAndWait();
-        }else if(Integer.parseInt(slotParkir.getSelectionModel().getSelectedItem().toString()) <1){
+        }else if(txt_plat.getText().isEmpty()){
+            alert.setHeaderText(null);
+            alert.setContentText("Plat nomor tidak boleh kosong!");
+            alert.showAndWait();
+        }
+        else if(Integer.parseInt(slotParkir.getSelectionModel().getSelectedItem().toString()) <1){
             alert.setHeaderText(null);
             alert.setContentText("Slot tidak tersedia");
             alert.showAndWait();

@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -81,32 +82,43 @@ public class EditProfileController implements Initializable {
         String noKTP = noktp_edit.getText();
         String notelp= notelp_edit.getText();
         String jeniskelamin = jeniskelamin_combo.getValue().toString();
-        
-        try {
-            PetugasDAO.updateUser(nama,email,noKTP,notelp,jeniskelamin,UserController.petugasId);
-            Alert alert;
-            alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Update Information");
-            alert.setHeaderText(null);
-            alert.setContentText("Update Success !");
-            alert.showAndWait();
-        } catch (SQLException ex) {
-            Logger.getLogger(EditProfileController.class.getName()).log(Level.SEVERE, null, ex);
-            Alert alert;
-            alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Update Information");
-            alert.setHeaderText(null);
-            alert.setContentText("Update failed !");
-            alert.showAndWait();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(EditProfileController.class.getName()).log(Level.SEVERE, null, ex);
-            Alert alert;
-            alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Update Information");
-            alert.setHeaderText(null);
-            alert.setContentText("Update failed !");
-            alert.showAndWait();
+        String emailRegex = "^\\w+([.-]?\\w+)*@\\w+([.-]?\\w+)*(\\.\\w{2,3})+$";
+        String number = "[0-9]+";
+        Pattern patEmail = Pattern.compile(emailRegex);
+        Pattern patNumber = Pattern.compile(number);
+        if (!patEmail.matcher(email).matches()) {
+            String msg = "Format Email salah!";
+            showAlert(msg);
+        }else if(!patNumber.matcher(noKTP).matches()){
+            String msg = "Format No KTP salah!";
+            showAlert(msg);
+        }else if(!patNumber.matcher(notelp).matches()){
+            String msg = "Format no telepon salah!";
+            showAlert(msg);
+        }else{        
+            try {
+                PetugasDAO.updateUser(nama,email,noKTP,notelp,jeniskelamin,UserController.petugasId);
+                String msg = "Update success!";
+                showAlert(msg);
+            } catch (SQLException ex) {
+                Logger.getLogger(EditProfileController.class.getName()).log(Level.SEVERE, null, ex);
+                String msg = "Update failed !";
+                showAlert(msg);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(EditProfileController.class.getName()).log(Level.SEVERE, null, ex);
+                String msg = "Update failed !";
+                showAlert(msg);
+            }
         }
+    }
+    
+    private void showAlert(String msg){
+        Alert alert;
+        alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Update Information");
+        alert.setHeaderText(null);
+        alert.setContentText(msg);
+        alert.showAndWait();
     }
     
 }
