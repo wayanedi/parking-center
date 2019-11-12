@@ -164,6 +164,17 @@ public class CatatKeluarController implements Initializable {
                 fieldbayar.setText(s);
             }
             else{
+                if(labelTotalHarga.getText().toString().equals("-")){
+                    
+                    Alert alert;
+                    alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("catat keluar");
+                    alert.setHeaderText(null);
+                    alert.setContentText("silahkan masukan plat nomor yang benar");
+                    alert.showAndWait();
+                    return;
+            
+                }
                 int bayar = Integer.parseInt(fieldbayar.getText().toString());
                 int harga = Integer.parseInt(labelTotalHarga.getText().toString());
                 int kembalian = bayar - harga;

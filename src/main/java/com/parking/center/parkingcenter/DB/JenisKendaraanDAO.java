@@ -6,6 +6,7 @@
 package com.parking.center.parkingcenter.DB;
 
 import com.parking.center.parkingcenter.model.JenisKendaraanModel;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -21,7 +22,11 @@ public class JenisKendaraanDAO {
     
     public static int getTotalSlot() throws SQLException, ClassNotFoundException{
         String query = "SELECT sum(slot) as 'total' FROM jenis_kendaraan";
-        ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
+        DBUtil db = DBUtil.getInstance();
+        db.dbConnect();
+        PreparedStatement preparedStatement;
+        preparedStatement = db.conn.prepareStatement(query);
+        ResultSet rs = db.dbExecuteQuery(preparedStatement);
         
         int hasil = 0;
         
@@ -35,8 +40,11 @@ public class JenisKendaraanDAO {
         public static ArrayList<JenisKendaraanModel> getAllData() throws SQLException, ClassNotFoundException{
         
         String query = "SELECT * FROM jenis_kendaraan";
-        
-        ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
+        DBUtil db = DBUtil.getInstance();
+        db.dbConnect();
+        PreparedStatement preparedStatement;
+        preparedStatement = db.conn.prepareStatement(query);
+        ResultSet rs = db.dbExecuteQuery(preparedStatement);
         
         ArrayList<JenisKendaraanModel> jenisKendaraanModel = new ArrayList<JenisKendaraanModel>();
         JenisKendaraanModel jenisKendaraanModel1 = null;
@@ -56,34 +64,62 @@ public class JenisKendaraanDAO {
     
     public static void insertJenisKendaraan(JenisKendaraanModel jenisKendaraanModel) throws SQLException, ClassNotFoundException{
         System.out.println(jenisKendaraanModel.getHargaPerJam());
-        String query = "INSERT INTO jenis_kendaraan (nama_kendaraan, harga_perjam, harga_set_hari, harga_perhari, slot) VALUES('"+jenisKendaraanModel.getNamaKendaraan()+"','"+jenisKendaraanModel.getHargaPerJam()+"','"+jenisKendaraanModel.getHargaPerSetHari()+"','"+jenisKendaraanModel.getHargaPerHari()+"','"+jenisKendaraanModel.getSlot()+"')";
-        DBUtil.getInstance().dbExecuteUpdate(query);
+        String query = "INSERT INTO jenis_kendaraan (nama_kendaraan, harga_perjam, harga_set_hari, harga_perhari, slot) VALUES(?,?,?,?,?)";
+        DBUtil db = DBUtil.getInstance();
+        db.dbConnect();
+        PreparedStatement preparedStatement;
+        preparedStatement = db.conn.prepareStatement(query);
+        preparedStatement.setString(1, jenisKendaraanModel.getNamaKendaraan());
+        preparedStatement.setInt(2, jenisKendaraanModel.getHargaPerJam());
+        preparedStatement.setInt(3, jenisKendaraanModel.getHargaPerSetHari());
+        preparedStatement.setInt(4, jenisKendaraanModel.getHargaPerHari());
+        preparedStatement.setInt(5, jenisKendaraanModel.getSlot());
+        db.dbExecuteUpdate(preparedStatement);
         System.out.println("berhasil");
     }
     
     public static void updateData(int id, String namaKendaraan, int hargaPerJam, int hargaPerSet, int hargaPerHari, int slot) throws SQLException, ClassNotFoundException {
-        String query = "UPDATE jenis_kendaraan set nama_kendaraan='"+namaKendaraan+"', harga_perjam='"+hargaPerJam+"', harga_set_hari='"+hargaPerSet+"', harga_perhari = '"+hargaPerHari+"', slot = '"+slot+"' where id_jenis_kendaraan = '"+id+"'";
+        String query = "UPDATE jenis_kendaraan set nama_kendaraan=?, harga_perjam=?, harga_set_hari=?, harga_perhari = ?, slot = ? where id_jenis_kendaraan = '"+id+"'";
         System.out.println(query);
-        DBUtil.getInstance().dbExecuteUpdate(query);
+        DBUtil db = DBUtil.getInstance();
+        db.dbConnect();
+        PreparedStatement preparedStatement;
+        preparedStatement = db.conn.prepareStatement(query);
+        preparedStatement.setString(1, namaKendaraan);
+        preparedStatement.setInt(2, hargaPerJam);
+        preparedStatement.setInt(3, hargaPerSet);
+        preparedStatement.setInt(4, hargaPerHari);
+        preparedStatement.setInt(5, slot);
+        db.dbExecuteUpdate(preparedStatement);
         System.out.println("terupdate");
     }
     
     public static void deleteData(int id) throws SQLException, ClassNotFoundException {
-        String query = "DELETE FROM jenis_kendaraan where id_jenis_kendaraan = '"+id+"'";
-        DBUtil.getInstance().dbExecuteUpdate(query);
+        String query = "DELETE FROM jenis_kendaraan where id_jenis_kendaraan = ?";
+        DBUtil db = DBUtil.getInstance();
+        db.dbConnect();
+        PreparedStatement preparedStatement;
+        preparedStatement = db.conn.prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        db.dbExecuteUpdate(preparedStatement);
         System.out.println("terhapus");
     }
     
     public static ObservableList<JenisKendaraanModel> getAlls() throws SQLException, ClassNotFoundException {
         String selectStmt = "SELECT * FROM jenis_kendaraan";
         try {
-            ResultSet rsKendaraan = DBUtil.getInstance().dbExecuteQuery(selectStmt);
-            ObservableList<JenisKendaraanModel> jenisKendaraanModels = getKendaraanList(rsKendaraan);
+            DBUtil db = DBUtil.getInstance();
+            db.dbConnect();
+            PreparedStatement preparedStatement;
+            preparedStatement = db.conn.prepareStatement(selectStmt);
+            ResultSet rs = db.dbExecuteQuery(preparedStatement);
+            ObservableList<JenisKendaraanModel> jenisKendaraanModels = getKendaraanList(rs);
             return jenisKendaraanModels;
         } catch (SQLException e) {
             System.out.println("SQL select operation has been failed: " + e); //Return exception
             throw e;
         }
+        
     }
     
     private static ObservableList<JenisKendaraanModel> getKendaraanList(ResultSet rs) throws SQLException, ClassNotFoundException {
