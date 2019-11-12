@@ -74,7 +74,7 @@ public class JenisKendaraanDAO {
         preparedStatement.setInt(3, jenisKendaraanModel.getHargaPerSetHari());
         preparedStatement.setInt(4, jenisKendaraanModel.getHargaPerHari());
         preparedStatement.setInt(5, jenisKendaraanModel.getSlot());
-        ResultSet rs = db.dbExecuteQuery(preparedStatement);
+        db.dbExecuteUpdate(preparedStatement);
         System.out.println("berhasil");
     }
     
@@ -90,7 +90,7 @@ public class JenisKendaraanDAO {
         preparedStatement.setInt(3, hargaPerSet);
         preparedStatement.setInt(4, hargaPerHari);
         preparedStatement.setInt(5, slot);
-        ResultSet rs = db.dbExecuteQuery(preparedStatement);
+        db.dbExecuteUpdate(preparedStatement);
         System.out.println("terupdate");
     }
     
@@ -101,7 +101,7 @@ public class JenisKendaraanDAO {
         PreparedStatement preparedStatement;
         preparedStatement = db.conn.prepareStatement(query);
         preparedStatement.setInt(1, id);
-        ResultSet rs = db.dbExecuteQuery(preparedStatement);
+        db.dbExecuteUpdate(preparedStatement);
         System.out.println("terhapus");
     }
     

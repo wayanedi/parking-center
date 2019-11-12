@@ -53,7 +53,7 @@ public class LaporanDAO {
         preparedStatement = db.conn.prepareStatement(query);
         preparedStatement.setInt(1, catat.getTotalHarga());
         preparedStatement.setString(2, catat.getWaktuKeluar());
-        ResultSet rs = db.dbExecuteQuery(preparedStatement);
+        db.dbExecuteUpdate(preparedStatement);
         
     }
     
@@ -73,7 +73,7 @@ public class LaporanDAO {
             preparedStatement.setString(3, laporan.getJenisKendaraan());
             preparedStatement.setString(4, laporan.getWaktuMasuk());
             
-            ResultSet rs = db.dbExecuteQuery(preparedStatement);  
+            db.dbExecuteUpdate(preparedStatement);  
             Alert alert;
             alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Catat Masuk");   
