@@ -145,13 +145,14 @@ public class LaporanDAO {
     }
     
     public static boolean checkPlat(String plat) throws SQLException, ClassNotFoundException{
-        String query = "SELECT * from laporan where plat_nomor='"+plat+"' AND status_kendaraan='0'";
+        String query = "SELECT * from laporan where plat_nomor=? AND status_kendaraan=?";
          
         DBUtil db = DBUtil.getInstance();
         db.dbConnect();
         PreparedStatement preparedStatement;
         preparedStatement = db.conn.prepareStatement(query);
         preparedStatement.setString(1, plat);
+        preparedStatement.setString(2, "0");
         ResultSet rs = db.dbExecuteQuery(preparedStatement);
         
         if(rs.next()){
