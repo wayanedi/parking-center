@@ -7,6 +7,8 @@ package com.parking.center.parkingcenter.DB;
 
 import com.parking.center.parkingcenter.model.PetugasModel;
 import com.parking.center.parkingcenter.model.UserModel;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -80,5 +82,24 @@ public class UserDAO {
         return id;
     }
     
+    public static void changePassword(int id, String newPass) throws SQLException, ClassNotFoundException{
+        String query = "UPDATE user SET password  = '"+newPass+"' WHERE id_user = '"+id+"'";
+//        DBUtil.getInstance().dbConnect();
+//        PreparedStatement p = DBUtil.conn.prepareStatement(query);
+//        p.setString(1,newPass);
+        DBUtil.getInstance().dbExecuteUpdate(query);
+    }
     
+    public static boolean cekPassword(int id, String oldPass) throws SQLException, ClassNotFoundException{
+        
+        String query = "SELECT * FROM user WHERE password = '"+oldPass+"' AND id_user = '"+id+"'";
+        
+        ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
+        
+        if(rs.next()){
+            return true;
+        }
+        
+        return false;
+    }
 }

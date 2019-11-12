@@ -114,4 +114,16 @@ public class LaporanDAO {
         return sisa;
         
     }
+    
+    public static boolean checkPlat(String plat) throws SQLException, ClassNotFoundException{
+        String query = "SELECT * from laporan where plat_nomor='"+plat+"' AND status_kendaraan='0'";
+         
+        ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
+        
+        if(rs.next()){
+           return true;  
+        }
+        
+        return false;
+    }
 }

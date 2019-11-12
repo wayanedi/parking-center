@@ -51,6 +51,8 @@ public class UserController implements Initializable {
     @FXML
     private Font x3;
     private PetugasModel petugasModel;
+    @FXML
+    private Button editPassword;
     
     @FXML
     private void getCatat(ActionEvent event) {
@@ -60,6 +62,7 @@ public class UserController implements Initializable {
         catatKeluarBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
         editProfileBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
         infoSlotBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
+        editPassword.setStyle ("-fx-background-color: #57caff;-fx-text-fill: #fff;");
     }
     
     @FXML
@@ -69,6 +72,7 @@ public class UserController implements Initializable {
         catatBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
         editProfileBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
         infoSlotBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
+        editPassword.setStyle ("-fx-background-color: #57caff;-fx-text-fill: #fff;");
         
     }
     
@@ -79,6 +83,7 @@ public class UserController implements Initializable {
         catatBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
         catatKeluarBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
         infoSlotBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
+        editPassword.setStyle ("-fx-background-color: #57caff;-fx-text-fill: #fff;");
     }
     
     @FXML
@@ -88,6 +93,7 @@ public class UserController implements Initializable {
         catatBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
         catatKeluarBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
         editProfileBtn.setStyle ("-fx-background-color: #57caff;-fx-text-fill: #fff;");
+        editPassword.setStyle ("-fx-background-color: #57caff;-fx-text-fill: #fff;");
     }
     private void loadUI(String ui){
         Parent root = null;
@@ -97,6 +103,16 @@ public class UserController implements Initializable {
             Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
         }
         borderPane.setCenter(root);
+    }
+    
+    @FXML
+    private void getEditPassword(ActionEvent event) {
+        loadUI("ChangePassword");
+        infoSlotBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
+        catatBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
+        catatKeluarBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
+        editProfileBtn.setStyle ("-fx-background-color: #57caff;-fx-text-fill: #fff;");
+        editPassword.setStyle("-fx-background-color:#4bb0de;-fx-text-fill: #fff; -fx-font-weight:bold;");
     }
     
     /**
@@ -110,10 +126,12 @@ public class UserController implements Initializable {
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("ini init"+petugasModel.getNama_petugas());
+        System.out.println("ini init"+petugasModel.getNama_petugas());  
         System.out.println(petugasId);
     }    
     public void getData(int id){
         this.petugasId=id;
     }
+
+   
 }
