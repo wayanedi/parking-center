@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="671.0" prefWidth="799.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.parking.center.parkingcenter.InformasiSlotController">
+   <children>
+      <TableView fx:id="tabel_info" layoutX="-1.0" layoutY="181.0" prefHeight="180.0" prefWidth="801.0">
+         <columns>
+            <TableColumn fx:id="jenis_info" prefWidth="338.66668701171875" text="Jenis Kendaraan" />
+            <TableColumn fx:id="sisa_slot" prefWidth="457.33331298828125" text="Sisa Slot " />
+         </columns>
+      </TableView>
+      <Label layoutX="260.0" layoutY="30.0" text="Informasi Slot">
+         <font>
+            <Font name="System Bold" size="50.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
