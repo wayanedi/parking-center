@@ -42,16 +42,16 @@ public class PetugasDAO {
         query = "SELECT * FROM petugas where id_user='"+id+"'";
          System.out.println(query);
          
-        ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
-        if(rs.next()){
-            petugasModel.setId_petugas(rs.getInt("id_petugas"));
-            petugasModel.setNama_petugas(rs.getString("nama_petugas"));
-            petugasModel.setEmail(rs.getString("email"));
-            petugasModel.setNo_ktp(rs.getString("no_ktp"));
-            petugasModel.setNo_telp(rs.getString("no_tlp"));
-            petugasModel.setJenis_kelamin(rs.getString("jenis_kelamin"));
-            System.out.println(rs.getString("nama_petugas"));
-        }
+//        ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
+//        if(rs.next()){
+//            petugasModel.setId_petugas(rs.getInt("id_petugas"));
+//            petugasModel.setNama_petugas(rs.getString("nama_petugas"));
+//            petugasModel.setEmail(rs.getString("email"));
+//            petugasModel.setNo_ktp(rs.getString("no_ktp"));
+//            petugasModel.setNo_telp(rs.getString("no_tlp"));
+//            petugasModel.setJenis_kelamin(rs.getString("jenis_kelamin"));
+//            System.out.println(rs.getString("nama_petugas"));
+//        }
         
         return petugasModel;
     }
@@ -66,12 +66,14 @@ public class PetugasDAO {
     
     public static ObservableList<PetugasModel> getAllData() throws SQLException, ClassNotFoundException{
         
-        String query = "SELECT * FROM petugas";
-        
-        ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
-        
-        ObservableList<PetugasModel> PetugasModels = getPetugasList(rs);
-            return PetugasModels;
+//        String query = "SELECT * FROM petugas";
+//        
+//        ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
+//        
+//        ObservableList<PetugasModel> PetugasModels = getPetugasList(rs);
+//            return PetugasModels;
+
+return null;
         
     }
     

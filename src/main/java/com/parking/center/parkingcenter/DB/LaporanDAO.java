@@ -24,16 +24,16 @@ public class LaporanDAO {
         
         String query;
         CatatKeluarModel catat = null;
-        query = "SELECT laporan.waktu_masuk, jenis_kendaraan.nama_kendaraan, jenis_kendaraan.harga_perhari, jenis_kendaraan.harga_perjam, jenis_kendaraan.harga_set_hari from laporan INNER JOIN jenis_kendaraan on laporan.jenis_kendaraan = jenis_kendaraan.id_jenis_kendaraan where plat_nomor='"+plat+"' AND status_kendaraan='0'";
-        System.out.println(query);
-         
-        ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
-        System.out.println("2");
-        if(rs.next()){
-            System.out.println("ada datanya");
-            catat = new CatatKeluarModel(rs.getString("waktu_masuk"), rs.getInt("harga_perjam"), rs.getInt("harga_set_hari"), rs.getInt("harga_perhari"), rs.getString("nama_kendaraan"));
-            
-        }
+//        query = "SELECT laporan.waktu_masuk, jenis_kendaraan.nama_kendaraan, jenis_kendaraan.harga_perhari, jenis_kendaraan.harga_perjam, jenis_kendaraan.harga_set_hari from laporan INNER JOIN jenis_kendaraan on laporan.jenis_kendaraan = jenis_kendaraan.id_jenis_kendaraan where plat_nomor='"+plat+"' AND status_kendaraan='0'";
+//        System.out.println(query);
+//         
+//        ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
+//        System.out.println("2");
+//        if(rs.next()){
+//            System.out.println("ada datanya");
+//            catat = new CatatKeluarModel(rs.getString("waktu_masuk"), rs.getInt("harga_perjam"), rs.getInt("harga_set_hari"), rs.getInt("harga_perhari"), rs.getString("nama_kendaraan"));
+//            
+//        }
 
         return catat;
         
@@ -79,11 +79,12 @@ public class LaporanDAO {
         query = "SELECT nama_kendaraan, id_jenis_kendaraan, slot from jenis_kendaraan";
         System.out.println(query);
          
-        ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
-        
-        ObservableList<SisaSlotModel> sisa = getListSlot(rs);
-        
-        return sisa;
+//        ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
+//        
+//        ObservableList<SisaSlotModel> sisa = getListSlot(rs);
+//        
+//        return sisa;
+return  null;
         
     }
     
@@ -104,12 +105,12 @@ public class LaporanDAO {
         query2 = "SELECT count(jenis_kendaraan) as slot from laporan where status_kendaraan='0' group by jenis_kendaraan";
         System.out.println(query2);
         int count =0;
-        ResultSet rs2 = DBUtil.getInstance().dbExecuteQuery(query2);
-        while(rs2.next()){
-            System.out.println("");
-            sisa.get(count).setSlot(sisa.get(count).getSlot()-rs2.getInt("slot"));
-            count++;
-        }
+//        ResultSet rs2 = DBUtil.getInstance().dbExecuteQuery(query2);
+//        while(rs2.next()){
+//            System.out.println("");
+//            sisa.get(count).setSlot(sisa.get(count).getSlot()-rs2.getInt("slot"));
+//            count++;
+//        }
         
         return sisa;
         
@@ -118,11 +119,11 @@ public class LaporanDAO {
     public static boolean checkPlat(String plat) throws SQLException, ClassNotFoundException{
         String query = "SELECT * from laporan where plat_nomor='"+plat+"' AND status_kendaraan='0'";
          
-        ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
-        
-        if(rs.next()){
-           return true;  
-        }
+//        ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
+//        
+//        if(rs.next()){
+//           return true;  
+//        }
         
         return false;
     }

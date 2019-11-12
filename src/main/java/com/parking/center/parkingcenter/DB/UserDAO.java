@@ -30,21 +30,26 @@ public class UserDAO {
     
     public static boolean isExis(String username) throws SQLException, ClassNotFoundException{
         
-        String query = "SELECT * FROM user WHERE username='"+username+"'";
-        ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
-        
-        if(rs.next()){
-            return true;
-        }
+//        String query = "SELECT * FROM user WHERE username='"+username+"'";
+//        ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
+//        
+//        if(rs.next()){
+//            return true;
+//        }
         
         return false;
         
     }
     public static UserModel cekLogin(String username, String pass) throws SQLException, ClassNotFoundException{
         
-        String query = "SELECT * FROM user WHERE username='"+username+"' AND password = '"+pass+"'";
-        
-        ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
+        String query = "SELECT * FROM user WHERE username=? AND password =?";
+        DBUtil db = DBUtil.getInstance();
+        db.dbConnect();
+        PreparedStatement preparedStatement;
+        preparedStatement = db.conn.prepareStatement(query);
+        preparedStatement.setString(1, username);
+        preparedStatement.setString(2, pass);
+        ResultSet rs = db.dbExecuteQuery(preparedStatement);
         
         UserModel userModel = null;
         
@@ -71,13 +76,13 @@ public class UserDAO {
     
     public static int getId() throws SQLException, ClassNotFoundException{
         String query = "SELECT max(id_user) as 'id' FROM user";
-        ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
+       // ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
         
         int id = 0;
         
-        if(rs.next()){
-            id = rs.getInt("id");
-        }
+//        if(rs.next()){
+//            id = rs.getInt("id");
+//        }
         
         return id;
     }
@@ -94,11 +99,11 @@ public class UserDAO {
         
         String query = "SELECT * FROM user WHERE password = '"+oldPass+"' AND id_user = '"+id+"'";
         
-        ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
-        
-        if(rs.next()){
-            return true;
-        }
+//        ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
+//        
+//        if(rs.next()){
+//            return true;
+//        }
         
         return false;
     }

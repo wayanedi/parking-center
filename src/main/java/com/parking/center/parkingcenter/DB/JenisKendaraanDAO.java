@@ -21,13 +21,13 @@ public class JenisKendaraanDAO {
     
     public static int getTotalSlot() throws SQLException, ClassNotFoundException{
         String query = "SELECT sum(slot) as 'total' FROM jenis_kendaraan";
-        ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
+        //ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
         
         int hasil = 0;
         
-        if(rs.next()){
-            hasil = rs.getInt("total");
-        }
+//        if(rs.next()){
+//            hasil = rs.getInt("total");
+//        }
         
         return hasil;
     }
@@ -36,21 +36,21 @@ public class JenisKendaraanDAO {
         
         String query = "SELECT * FROM jenis_kendaraan";
         
-        ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
+        //ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
         
         ArrayList<JenisKendaraanModel> jenisKendaraanModel = new ArrayList<JenisKendaraanModel>();
         JenisKendaraanModel jenisKendaraanModel1 = null;
         
-        if(rs.next()){
-            jenisKendaraanModel1 = new JenisKendaraanModel();
-            jenisKendaraanModel1.setIdJenisKendaraan(rs.getInt("id_jenis_kendaraan"));
-            jenisKendaraanModel1.setNamaKendaraan(rs.getString("nama_kendaraan"));
-            jenisKendaraanModel1.setHargaPerJam(rs.getInt("harga_perjam"));
-            jenisKendaraanModel1.setHargaPerSetHari(rs.getInt("harga_set_hari"));
-            jenisKendaraanModel1.setHargaPerHari(rs.getInt("harga_perhari"));
-            jenisKendaraanModel1.setSlot(rs.getInt("slot"));
-            jenisKendaraanModel.add(jenisKendaraanModel1);
-        }
+//        if(rs.next()){
+//            jenisKendaraanModel1 = new JenisKendaraanModel();
+//            jenisKendaraanModel1.setIdJenisKendaraan(rs.getInt("id_jenis_kendaraan"));
+//            jenisKendaraanModel1.setNamaKendaraan(rs.getString("nama_kendaraan"));
+//            jenisKendaraanModel1.setHargaPerJam(rs.getInt("harga_perjam"));
+//            jenisKendaraanModel1.setHargaPerSetHari(rs.getInt("harga_set_hari"));
+//            jenisKendaraanModel1.setHargaPerHari(rs.getInt("harga_perhari"));
+//            jenisKendaraanModel1.setSlot(rs.getInt("slot"));
+//            jenisKendaraanModel.add(jenisKendaraanModel1);
+//        }
         return jenisKendaraanModel;
     }
     
@@ -76,14 +76,16 @@ public class JenisKendaraanDAO {
     
     public static ObservableList<JenisKendaraanModel> getAlls() throws SQLException, ClassNotFoundException {
         String selectStmt = "SELECT * FROM jenis_kendaraan";
-        try {
-            ResultSet rsKendaraan = DBUtil.getInstance().dbExecuteQuery(selectStmt);
-            ObservableList<JenisKendaraanModel> jenisKendaraanModels = getKendaraanList(rsKendaraan);
-            return jenisKendaraanModels;
-        } catch (SQLException e) {
-            System.out.println("SQL select operation has been failed: " + e); //Return exception
-            throw e;
-        }
+//        try {
+//            ResultSet rsKendaraan = DBUtil.getInstance().dbExecuteQuery(selectStmt);
+//            ObservableList<JenisKendaraanModel> jenisKendaraanModels = getKendaraanList(rsKendaraan);
+//            return jenisKendaraanModels;
+//        } catch (SQLException e) {
+//            System.out.println("SQL select operation has been failed: " + e); //Return exception
+//            throw e;
+//        }
+
+return null;
     }
     
     private static ObservableList<JenisKendaraanModel> getKendaraanList(ResultSet rs) throws SQLException, ClassNotFoundException {

@@ -3,6 +3,7 @@ package com.parking.center.parkingcenter.DB;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -71,16 +72,15 @@ public class DBUtil {
         }
     }
 
-    public ResultSet dbExecuteQuery(String queryStmt) throws SQLException,
+    public ResultSet dbExecuteQuery(PreparedStatement preparedStatement) throws SQLException,
             ClassNotFoundException {
         Statement stmt = null;
         ResultSet resultSet = null;
         CachedRowSet crs = null;
 
         try {
-            dbConnect();
-            stmt = conn.createStatement();
-            resultSet = stmt.executeQuery(queryStmt);
+            //dbConnect();
+            resultSet = preparedStatement.executeQuery();
             RowSetFactory factory = RowSetProvider.newFactory();
             crs = factory.createCachedRowSet();
             crs.populate(resultSet);
@@ -102,17 +102,17 @@ public class DBUtil {
         return crs;
     }
 
-    public void dbExecuteUpdate(String sqlStmt) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
+    public void dbExecuteUpdate(PreparedStatement preparedStatement) throws SQLException, ClassNotFoundException {
+        PreparedStatement prepare = null;
         try {
-            dbConnect();
-            stmt = conn.createStatement();
-            stmt.executeUpdate(sqlStmt);
+            //dbConnect();
+            prepare = preparedStatement;
+            prepare.executeUpdate();
         } catch (SQLException e) {
             throw e;
         } finally {
-            if (stmt != null) {
-                stmt.close();
+            if (prepare != null) {
+                prepare.close();
             }
             dbDisconnect();
         }
