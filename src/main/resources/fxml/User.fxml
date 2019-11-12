@@ -31,6 +31,11 @@
         </ImageView>
         <Button id="catatMasuk" fx:id="infoSlotBtn" alignment="CENTER_LEFT" font="$x3" layoutY="284.0" minHeight="32.0" mnemonicParsing="false" onAction="#getInfo" prefHeight="53.951171875" prefWidth="201.0" style="-fx-background-color: #57caff;&#10;-fx-text-fill: #fff;" text="Informasi Slot" />
         <Button id="catatMasuk" fx:id="editPassword" alignment="CENTER_LEFT" font="$x3" layoutX="0.0" layoutY="338.0" minHeight="32.0" mnemonicParsing="false" onAction="#getEditPassword" prefHeight="53.951171875" prefWidth="201.0" style="-fx-background-color: #57caff;&#10;-fx-text-fill: #fff;" text="Edit Password" />
+        <Label fx:id="greetingTxt" alignment="CENTER" layoutX="0.0" layoutY="40.0" prefHeight="60.951171875" prefWidth="200.99990000000253" style="-fx-text-fill: #fff;" text="Hai, ">
+          <font>
+            <Font size="16.0" />
+          </font>
+        </Label>
       </children>
     </Pane>
   </left>
