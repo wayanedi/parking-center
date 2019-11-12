@@ -90,7 +90,7 @@ public class CatatMasukController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Slot tidak tersedia");
             alert.showAndWait();
-        }else if(LaporanDAO.checkPlat(txt_plat.getText())){
+        }else if(LaporanDAO.checkPlat(txt_plat.getText().toString().toUpperCase())){
             alert.setHeaderText(null);
             alert.setContentText("Plat sudah terdaftar!");
             alert.showAndWait();
