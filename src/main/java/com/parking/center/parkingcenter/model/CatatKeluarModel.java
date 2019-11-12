@@ -16,6 +16,7 @@ public class CatatKeluarModel {
     private int hargaPerhari;
     private String waktuMasuk;
     private String waktuKeluar;
+    private String jenisKendaraan;
     private int totalHarga;
     
     /**
@@ -25,15 +26,16 @@ public class CatatKeluarModel {
      * @param hargaSetHari
      * @param hargaPerhari
      */
-    public CatatKeluarModel(String waktuMasuk, int hargaperjam, int hargaSetHari, int hargaPerhari){
+    public CatatKeluarModel(String waktuMasuk, int hargaperjam, int hargaSetHari, int hargaPerhari, String jenisKendaraan){
         
         this.waktuMasuk = waktuMasuk;
         this.hargaperjam = hargaperjam;
         this.hargaSetHari = hargaSetHari;
         this.hargaPerhari = hargaPerhari;
-        
+        this.jenisKendaraan = jenisKendaraan;
         
     }
+    
     
     public CatatKeluarModel(String waktuKeluar, int totalHarga){
         
@@ -123,6 +125,20 @@ public class CatatKeluarModel {
      */
     public void setWaktuKeluar(String waktuKeluar) {
         this.waktuKeluar = waktuKeluar;
+    }
+
+    /**
+     * @return the jenisKendaraan
+     */
+    public String getJenisKendaraan() {
+        return jenisKendaraan;
+    }
+
+    /**
+     * @param jenisKendaraan the jenisKendaraan to set
+     */
+    public void setJenisKendaraan(String jenisKendaraan) {
+        this.jenisKendaraan = jenisKendaraan;
     }
     
     

@@ -24,14 +24,14 @@ public class LaporanDAO {
         
         String query;
         CatatKeluarModel catat = null;
-        query = "SELECT laporan.waktu_masuk, jenis_kendaraan.harga_perhari, jenis_kendaraan.harga_perjam, jenis_kendaraan.harga_set_hari from laporan INNER JOIN jenis_kendaraan on laporan.jenis_kendaraan = jenis_kendaraan.id_jenis_kendaraan where plat_nomor='abc'";
+        query = "SELECT laporan.waktu_masuk, jenis_kendaraan.nama_kendaraan, jenis_kendaraan.harga_perhari, jenis_kendaraan.harga_perjam, jenis_kendaraan.harga_set_hari from laporan INNER JOIN jenis_kendaraan on laporan.jenis_kendaraan = jenis_kendaraan.id_jenis_kendaraan where plat_nomor='"+plat+"' AND status_kendaraan='0'";
         System.out.println(query);
          
         ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
         System.out.println("2");
         if(rs.next()){
             System.out.println("ada datanya");
-            catat = new CatatKeluarModel(rs.getString("waktu_masuk"), rs.getInt("harga_perjam"), rs.getInt("harga_set_hari"), rs.getInt("harga_perhari"));
+            catat = new CatatKeluarModel(rs.getString("waktu_masuk"), rs.getInt("harga_perjam"), rs.getInt("harga_set_hari"), rs.getInt("harga_perhari"), rs.getString("nama_kendaraan"));
             
         }
 

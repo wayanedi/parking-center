@@ -14,9 +14,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.InputMethodEvent;
 
 /**
  * FXML Controller class
@@ -32,12 +40,64 @@ public class CatatKeluarController implements Initializable {
     private static final DateFormat hh = new SimpleDateFormat("HH");
     private static final DateFormat menit = new SimpleDateFormat("mm");
     
+    private CatatKeluarModel catat;
     
+    @FXML
+    private Label jenisKendaraan;
+    
+    @FXML
+    private TextField textFieldPlatNomor;
+    
+    @FXML
+    private Label labelTotalHarga;
+    
+    @FXML
+    private TextField textFieldBayar;
+    
+     @FXML
+    private TextField fieldbayar;
+     
+     @FXML
+     private Label textFieldkembalian;
+     
+     @FXML
+    void btnCatatKeluar(ActionEvent event) throws SQLException, ClassNotFoundException {
+        
+        Alert alert;
+        alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("catat keluar");
+        alert.setHeaderText(null);
+            
+        if(Integer.parseInt(textFieldkembalian.getText().toString())>=0){
+            
+            LaporanDAO.updateLaporan(catat);
+            alert.setContentText("berhasil");
+        }
+        else{
+
+            alert.setContentText("uang tidak cukup");
+
+        }
+        
+        alert.showAndWait();
+    }
+     
     @FXML
     private void btnCari(ActionEvent event) throws SQLException, ClassNotFoundException, ParseException{
         
-        CatatKeluarModel catat = LaporanDAO.getLaporanKendaraan("abc");
+        catat = LaporanDAO.getLaporanKendaraan(textFieldPlatNomor.getText().trim());
+        
+        if(catat == null){
+            Alert alert;
+            alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("search Information");
+            alert.setHeaderText(null);
+            alert.setContentText("plat nomor tidak ditemukan");
+            alert.showAndWait();
+            return;
+        }
         System.out.println(catat.getWaktuMasuk());
+        jenisKendaraan.setText(catat.getJenisKendaraan());
         
         Date date = sdf.parse(catat.getWaktuMasuk());
         
@@ -77,16 +137,33 @@ public class CatatKeluarController implements Initializable {
             harga = selisihJam * catat.getHargaperjam();
         }
         
-        CatatKeluarModel keluar = new CatatKeluarModel(sdf.format(now), harga);
-        LaporanDAO.updateLaporan(keluar);
         
+        System.out.println("harga: " + harga);
+        labelTotalHarga.setText(Integer.toString(harga));
+        catat = new CatatKeluarModel(sdf.format(now), harga);
+
     }
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        fieldbayar.textProperty().addListener((ObservableValue<? extends String> observableValue, String s, String s2) -> {
+            if (!s2.matches("\\d{0,7}([\\.]\\d{0,4})?")) {
+                fieldbayar.setText(s);
+            }
+            else{
+                int bayar = Integer.parseInt(fieldbayar.getText().toString());
+                int harga = Integer.parseInt(labelTotalHarga.getText().toString());
+                int kembalian = bayar - harga;
+                
+                textFieldkembalian.setText(Integer.toString(kembalian));
+            }
+        });
         // TODO
     }    
     
