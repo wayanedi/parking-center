@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="671.0" prefWidth="799.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.parking.center.parkingcenter.EditProfileController">
+<AnchorPane id="AnchorPane" prefHeight="671.0" prefWidth="799.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.parking.center.parkingcenter.EditProfileController">
   <children>
-    <Pane id="editProfile" layoutX="0.0" layoutY="0.0" prefHeight="671.0" prefWidth="799.0" visible="true">
+    <Pane id="editProfile" layoutX="-3.0" layoutY="-9.0" prefHeight="671.0" prefWidth="799.0" visible="true">
       <children>
         <Label layoutX="321.0" layoutY="23.0" text="Edit Profile">
           <font>
@@ -21,20 +21,16 @@
             <Font size="18.0" fx:id="x1" />
           </font>
         </Label>
-        <TextField id="namaPetugas_user" layoutX="336.0" layoutY="152.0" prefHeight="30.0" prefWidth="400.0" />
-        <Label font="$x1" layoutX="94.0" layoutY="200.0" text="Username" />
-        <TextField id="username_user" editable="false" layoutX="337.0" layoutY="197.0" prefHeight="30.0" prefWidth="400.0" />
-        <Label font="$x1" layoutX="95.0" layoutY="242.0" text="Password" />
-        <TextField id="password_user" editable="false" layoutX="336.0" layoutY="239.0" prefHeight="30.0" prefWidth="400.0" />
-        <Label font="$x1" layoutX="96.0" layoutY="280.0" text="Email" />
-        <TextField id="email_user" editable="false" layoutX="337.0" layoutY="278.0" prefHeight="30.0" prefWidth="400.0" />
-        <Label font="$x1" layoutX="94.0" layoutY="324.0" text="Nomor KTP" />
-        <TextField id="noKTP_user" editable="false" layoutX="336.0" layoutY="321.0" prefHeight="30.0" prefWidth="400.0" />
-        <Label font="$x1" layoutX="96.0" layoutY="364.0" text="Nomor Telepon" />
-        <TextField id="notelp_user" editable="false" layoutX="337.0" layoutY="364.0" prefHeight="30.0" prefWidth="400.0" />
-        <Label font="$x1" layoutX="95.0" layoutY="414.0" text="Jenis Kelamin" />
-        <TextField id="jenisKel_user" editable="false" layoutX="337.0" layoutY="408.0" prefHeight="30.0" prefWidth="400.0" />
-        <Button layoutX="614.0" layoutY="553.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="126.0" style="-fx-text-fill: white; -fx-border-width: 0 0 0 0; -fx-background-insets: 0; -fx-border-color: #57caff; -fx-background-radius: 0; -fx-background-color: #57caff;&#10;" text="Simpan" />
+        <TextField id="namaPetugas_user" fx:id="nama_edit" layoutX="338.0" layoutY="152.0" prefHeight="30.0" prefWidth="400.0" />
+        <Label font="$x1" layoutX="93.0" layoutY="206.0" text="Email" />
+        <TextField id="email_user" fx:id="email_edit" layoutX="339.0" layoutY="205.0" prefHeight="30.0" prefWidth="400.0" />
+        <Label font="$x1" layoutX="93.0" layoutY="253.0" text="Nomor KTP" />
+        <TextField id="noKTP_user" fx:id="noktp_edit" layoutX="339.0" layoutY="252.0" prefHeight="30.0" prefWidth="400.0" />
+        <Label font="$x1" layoutX="93.0" layoutY="306.0" text="Nomor Telepon" />
+        <TextField id="notelp_user" fx:id="notelp_edit" layoutX="340.0" layoutY="303.0" prefHeight="30.0" prefWidth="400.0" />
+        <Label font="$x1" layoutX="94.0" layoutY="363.0" text="Jenis Kelamin" />
+        <Button fx:id="btn_simpan" layoutX="614.0" layoutY="553.0" mnemonicParsing="false" onAction="#onUpdate" prefHeight="30.0" prefWidth="126.0" style="-fx-text-fill: white; -fx-border-width: 0 0 0 0; -fx-background-insets: 0; -fx-border-color: #57caff; -fx-background-radius: 0; -fx-background-color: #57caff;&#10;" text="Simpan" />
+            <ComboBox fx:id="jeniskelamin_combo" layoutX="343.0" layoutY="357.0" prefHeight="34.0" prefWidth="268.0" promptText="Silahkan pilih" />
       </children>
     </Pane>
   </children>

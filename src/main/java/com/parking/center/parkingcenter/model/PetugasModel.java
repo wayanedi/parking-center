@@ -149,6 +149,10 @@ public class PetugasModel {
     public void setDelete(Button delete) {
         this.delete = delete;
     }
+
+    public String getNama_edit() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
     
