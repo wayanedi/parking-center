@@ -113,8 +113,8 @@ public class UserDAO {
         db.dbConnect();
         PreparedStatement preparedStatement;
         preparedStatement = db.conn.prepareStatement(query);
-        preparedStatement.setInt(1, id);
-        preparedStatement.setString(2, newPass);
+        preparedStatement.setString(1, newPass);
+        preparedStatement.setInt(2, id);
         db.dbExecuteUpdate(preparedStatement);
 
     }
