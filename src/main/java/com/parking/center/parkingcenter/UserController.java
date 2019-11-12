@@ -20,6 +20,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
@@ -53,6 +54,8 @@ public class UserController implements Initializable {
     private PetugasModel petugasModel;
     @FXML
     private Button editPassword;
+    @FXML
+    private Label greetingTxt;
     
     @FXML
     private void getCatat(ActionEvent event) {
@@ -121,6 +124,7 @@ public class UserController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
         try {
             this.petugasModel = PetugasDAO.selectPetugas(petugasId);
         } catch (SQLException | ClassNotFoundException ex) {
@@ -128,6 +132,7 @@ public class UserController implements Initializable {
         }
         System.out.println("ini init"+petugasModel.getNama_petugas());  
         System.out.println(petugasId);
+        greetingTxt.setText(greetingTxt.getText() + petugasModel.getNama_petugas());
     }    
     public void getData(int id){
         this.petugasId=id;
