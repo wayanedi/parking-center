@@ -30,12 +30,17 @@ public class UserDAO {
     
     public static boolean isExis(String username) throws SQLException, ClassNotFoundException{
         
-//        String query = "SELECT * FROM user WHERE username='"+username+"'";
-//        ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
-//        
-//        if(rs.next()){
-//            return true;
-//        }
+        String query = "SELECT * FROM user WHERE username=?";
+        DBUtil db = DBUtil.getInstance();
+        db.dbConnect();
+        PreparedStatement preparedStatement;
+        preparedStatement = db.conn.prepareStatement(query);
+        preparedStatement.setString(1, username);
+        ResultSet rs = db.dbExecuteQuery(preparedStatement);
+        
+       if(rs.next()){
+            return true;
+       }
         
         return false;
         
@@ -66,8 +71,18 @@ public class UserDAO {
     
     public static void insertUser(UserModel user) throws SQLException, ClassNotFoundException{
         System.out.println("masuk ke fungsi insert user");
-        String query = "INSERT INTO user (username, password, role, status) VALUES('"+user.getUsername()+"','"+user.getPassword()+"','"+user.getRole()+"', 0)";
-        DBUtil.getInstance().dbExecuteUpdate(query);
+        String query = "INSERT INTO user (username, password, role, status) VALUES(?,?,?,?)";
+        
+        DBUtil db = DBUtil.getInstance();
+        db.dbConnect();
+        PreparedStatement preparedStatement;
+        preparedStatement = db.conn.prepareStatement(query);
+        preparedStatement.setString(1, user.getUsername());
+        preparedStatement.setString(2, user.getPassword());
+        preparedStatement.setString(3, user.getRole());
+        preparedStatement.setString(4,"0");
+        db.dbExecuteUpdate(preparedStatement);
+        
         
         System.out.println(query);
         
@@ -76,34 +91,49 @@ public class UserDAO {
     
     public static int getId() throws SQLException, ClassNotFoundException{
         String query = "SELECT max(id_user) as 'id' FROM user";
-       // ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
+        
+        DBUtil db = DBUtil.getInstance();
+        db.dbConnect();
+        PreparedStatement preparedStatement;
+        preparedStatement = db.conn.prepareStatement(query);
+        ResultSet rs = db.dbExecuteQuery(preparedStatement);
         
         int id = 0;
         
-//        if(rs.next()){
-//            id = rs.getInt("id");
-//        }
+        if(rs.next()){
+            id = rs.getInt("id");
+        }
         
         return id;
     }
     
     public static void changePassword(int id, String newPass) throws SQLException, ClassNotFoundException{
-        String query = "UPDATE user SET password  = '"+newPass+"' WHERE id_user = '"+id+"'";
-//        DBUtil.getInstance().dbConnect();
-//        PreparedStatement p = DBUtil.conn.prepareStatement(query);
-//        p.setString(1,newPass);
-        DBUtil.getInstance().dbExecuteUpdate(query);
+        String query = "UPDATE user SET password  =? WHERE id_user =?";
+        DBUtil db = DBUtil.getInstance();
+        db.dbConnect();
+        PreparedStatement preparedStatement;
+        preparedStatement = db.conn.prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        preparedStatement.setString(2, newPass);
+        db.dbExecuteUpdate(preparedStatement);
+
     }
     
     public static boolean cekPassword(int id, String oldPass) throws SQLException, ClassNotFoundException{
         
-        String query = "SELECT * FROM user WHERE password = '"+oldPass+"' AND id_user = '"+id+"'";
+        String query = "SELECT * FROM user WHERE password =? AND id_user =?";
         
-//        ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
-//        
-//        if(rs.next()){
-//            return true;
-//        }
+        DBUtil db = DBUtil.getInstance();
+        db.dbConnect();
+        PreparedStatement preparedStatement;
+        preparedStatement = db.conn.prepareStatement(query);
+        preparedStatement.setString(1, oldPass);
+        preparedStatement.setInt(2, id);
+        ResultSet rs = db.dbExecuteQuery(preparedStatement);
+        
+        if(rs.next()){
+            return true;
+        }
         
         return false;
     }

@@ -6,6 +6,7 @@
 package com.parking.center.parkingcenter.DB;
 
 import com.parking.center.parkingcenter.model.PetugasModel;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -28,10 +29,20 @@ public class PetugasDAO {
         
         String query;
         query = "INSERT INTO petugas(nama_petugas, email, no_ktp, no_tlp, jenis_kelamin, id_user) "
-                + "VALUES('"+petugas.getNama_petugas()+"', '"+petugas.getEmail()+"', '"+petugas.getNo_ktp()+"', "
-                + "'"+petugas.getNo_telp()+"', '"+petugas.getJenis_kelamin()+"', '"+petugas.getId_user()+"')";
+                + "VALUES(?,?,?,?,?,?)";
         
-        DBUtil.getInstance().dbExecuteUpdate(query);
+        DBUtil db = DBUtil.getInstance();
+        db.dbConnect();
+        PreparedStatement preparedStatement;
+        preparedStatement = db.conn.prepareStatement(query);
+        preparedStatement.setString(1, petugas.getNama_petugas());
+        preparedStatement.setString(2, petugas.getEmail());
+        preparedStatement.setString(3, petugas.getNo_ktp());
+        preparedStatement.setString(4, petugas.getNo_telp());
+        preparedStatement.setString(5, petugas.getJenis_kelamin());
+        preparedStatement.setInt(6, petugas.getId_user());
+        db.dbExecuteUpdate(preparedStatement);
+
         
     }
     
@@ -39,19 +50,25 @@ public class PetugasDAO {
         PetugasModel petugasModel = new PetugasModel();
         String query;
         
-        query = "SELECT * FROM petugas where id_user='"+id+"'";
+        query = "SELECT * FROM petugas where id_user=?";
          System.out.println(query);
          
-//        ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
-//        if(rs.next()){
-//            petugasModel.setId_petugas(rs.getInt("id_petugas"));
-//            petugasModel.setNama_petugas(rs.getString("nama_petugas"));
-//            petugasModel.setEmail(rs.getString("email"));
-//            petugasModel.setNo_ktp(rs.getString("no_ktp"));
-//            petugasModel.setNo_telp(rs.getString("no_tlp"));
-//            petugasModel.setJenis_kelamin(rs.getString("jenis_kelamin"));
-//            System.out.println(rs.getString("nama_petugas"));
-//        }
+        DBUtil db = DBUtil.getInstance();
+        db.dbConnect();
+        PreparedStatement preparedStatement;
+        preparedStatement = db.conn.prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        ResultSet rs = db.dbExecuteQuery(preparedStatement);
+        
+        if(rs.next()){
+            petugasModel.setId_petugas(rs.getInt("id_petugas"));
+            petugasModel.setNama_petugas(rs.getString("nama_petugas"));
+            petugasModel.setEmail(rs.getString("email"));
+            petugasModel.setNo_ktp(rs.getString("no_ktp"));
+            petugasModel.setNo_telp(rs.getString("no_tlp"));
+            petugasModel.setJenis_kelamin(rs.getString("jenis_kelamin"));
+            System.out.println(rs.getString("nama_petugas"));
+        }
         
         return petugasModel;
     }
@@ -59,21 +76,35 @@ public class PetugasDAO {
      public static void updateUser(String nama_petugas, String email,  String no_ktp, String no_tlp, String jenis_kelamin, int id_user) throws SQLException, ClassNotFoundException{
         
         String query = "UPDATE petugas SET nama_petugas = '"+nama_petugas+"', email='"+email+"',no_ktp = '"+no_ktp+"', no_tlp = '"+no_tlp+"',jenis_kelamin = '"+jenis_kelamin+"' WHERE id_user = '"+id_user+"'";
-        DBUtil.getInstance().dbExecuteUpdate(query);
+        DBUtil db = DBUtil.getInstance();
+        db.dbConnect();
+        PreparedStatement preparedStatement;
+        preparedStatement = db.conn.prepareStatement(query);
+        preparedStatement.setString(1, nama_petugas);
+        preparedStatement.setString(2, email);
+        preparedStatement.setString(3, no_ktp);
+        preparedStatement.setString(4, no_tlp);
+        preparedStatement.setString(5, jenis_kelamin);
+        preparedStatement.setInt(6, id_user);
+        db.dbExecuteUpdate(preparedStatement);
         
         
     }
     
     public static ObservableList<PetugasModel> getAllData() throws SQLException, ClassNotFoundException{
         
-//        String query = "SELECT * FROM petugas";
-//        
-//        ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
-//        
-//        ObservableList<PetugasModel> PetugasModels = getPetugasList(rs);
-//            return PetugasModels;
+        String query = "SELECT * FROM petugas";
+        
+        DBUtil db = DBUtil.getInstance();
+        db.dbConnect();
+        PreparedStatement preparedStatement;
+        preparedStatement = db.conn.prepareStatement(query);
+        ResultSet rs = db.dbExecuteQuery(preparedStatement);
 
-return null;
+        
+        ObservableList<PetugasModel> PetugasModels = getPetugasList(rs);
+            return PetugasModels;
+
         
     }
     
