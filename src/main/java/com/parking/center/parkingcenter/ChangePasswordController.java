@@ -61,6 +61,9 @@ public class ChangePasswordController implements Initializable {
             try {
             if(UserDAO.cekPassword(UserController.petugasId, lastPassword.getText().toString())){
                 UserDAO.changePassword(UserController.petugasId, newPassword.getText().toString());
+                lastPassword.setText("");
+                newPassword.setText("");
+                reNewPassword.setText("");
                 String msg = "Update Password Success!";
                 showAlert(msg);
             }else{

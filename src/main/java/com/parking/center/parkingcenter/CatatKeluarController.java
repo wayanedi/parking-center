@@ -67,10 +67,17 @@ public class CatatKeluarController implements Initializable {
         alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("catat keluar");
         alert.setHeaderText(null);
-            
-        if(Integer.parseInt(textFieldkembalian.getText().toString())>=0){
+        if(textFieldkembalian.getText().toString().equals("-")){
+            alert.setContentText("silahkan input nominal uang pembayaran");
+        }
+        else if(Integer.parseInt(textFieldkembalian.getText().toString())>=0){
             
             LaporanDAO.updateLaporan(catat);
+            jenisKendaraan.setText("-");
+            textFieldPlatNomor.setText("");
+            fieldbayar.setText("");
+            labelTotalHarga.setText("-");
+            textFieldkembalian.setText("-");
             alert.setContentText("berhasil");
         }
         else{
