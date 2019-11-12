@@ -90,15 +90,20 @@ public class CatatMasukController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Slot tidak tersedia");
             alert.showAndWait();
+        }else if(LaporanDAO.checkPlat(txt_plat.getText())){
+            alert.setHeaderText(null);
+            alert.setContentText("Plat sudah terdaftar!");
+            alert.showAndWait();
         }
         else{
             LaporanModel laporanModel = new LaporanModel();
             laporanModel.setJenisKendaraan(id_jenis.getSelectionModel().getSelectedItem().toString());
-            laporanModel.setPlatNomor(txt_plat.getText());
+            laporanModel.setPlatNomor(txt_plat.getText().toString().toUpperCase());
             Date date = new Date();
             System.out.println(sdf.format(date));
             laporanModel.setWaktuMasuk(sdf.format(date));
             LaporanDAO.insertLaporan(laporanModel, UserController.petugasId);
+            txt_plat.setText("");
             clearComboItem();
             isiComboItem();
 
