@@ -75,7 +75,7 @@ public class PetugasDAO {
      
      public static void updateUser(String nama_petugas, String email,  String no_ktp, String no_tlp, String jenis_kelamin, int id_user) throws SQLException, ClassNotFoundException{
         
-        String query = "UPDATE petugas SET nama_petugas = '"+nama_petugas+"', email='"+email+"',no_ktp = '"+no_ktp+"', no_tlp = '"+no_tlp+"',jenis_kelamin = '"+jenis_kelamin+"' WHERE id_user = '"+id_user+"'";
+        String query = "UPDATE petugas SET nama_petugas = ?, email=?,no_ktp = ?, no_tlp = ?,jenis_kelamin = ? WHERE id_user = ?";
         DBUtil db = DBUtil.getInstance();
         db.dbConnect();
         PreparedStatement preparedStatement;
