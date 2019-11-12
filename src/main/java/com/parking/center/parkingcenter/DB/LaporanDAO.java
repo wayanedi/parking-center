@@ -5,6 +5,7 @@
  */
 package com.parking.center.parkingcenter.DB;
 
+import com.parking.center.parkingcenter.model.CatatKeluarModel;
 import com.parking.center.parkingcenter.model.LaporanModel;
 import com.parking.center.parkingcenter.model.SisaSlotModel;
 import java.sql.ResultSet;
@@ -17,6 +18,32 @@ import javafx.collections.ObservableList;
  * @author yanedi
  */
 public class LaporanDAO {
+    
+    public static CatatKeluarModel getLaporanKendaraan(String plat) throws SQLException, ClassNotFoundException{
+        
+        String query;
+        CatatKeluarModel catat = null;
+        query = "SELECT laporan.waktu_masuk, jenis_kendaraan.harga_perhari, jenis_kendaraan.harga_perjam, jenis_kendaraan.harga_set_hari from laporan INNER JOIN jenis_kendaraan on laporan.jenis_kendaraan = jenis_kendaraan.id_jenis_kendaraan where plat_nomor='abc'";
+        System.out.println(query);
+         
+        ResultSet rs = DBUtil.getInstance().dbExecuteQuery(query);
+        System.out.println("2");
+        if(rs.next()){
+            System.out.println("ada datanya");
+            catat = new CatatKeluarModel(rs.getString("waktu_masuk"), rs.getInt("harga_perjam"), rs.getInt("harga_set_hari"), rs.getInt("harga_perhari"));
+            
+        }
+
+        return catat;
+        
+    }
+    
+    public static void updateLaporan(CatatKeluarModel catat) throws SQLException, ClassNotFoundException{
+        
+        String query = "UPDATE laporan SET total_harga='"+catat.getTotalHarga()+"', waktu_keluar='"+catat.getWaktuKeluar()+"', status_kendaraan='"+1+"'";
+        DBUtil.getInstance().dbExecuteUpdate(query);
+        
+    }
     
     public static void insertLaporan(LaporanModel laporan, int id) throws SQLException, ClassNotFoundException{
         
