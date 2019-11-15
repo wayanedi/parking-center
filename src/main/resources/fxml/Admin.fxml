@@ -135,7 +135,7 @@
                               <TableColumn fx:id="col_lap_total_harga" prefWidth="110.0" text="Total Harga" />
                            </columns>
                         </TableView>
-                        <ComboBox fx:id="combokategori" layoutX="637.0" layoutY="170.0" prefHeight="43.0" prefWidth="150.0" promptText="Pilih kategori" />
+                        <ComboBox fx:id="combokategori" layoutX="637.0" layoutY="170.0" onAction="#kategoriOnChangeLaporan" prefHeight="43.0" prefWidth="150.0" promptText="Pilih kategori" />
                         <Label layoutX="638.0" layoutY="124.0" prefHeight="46.0" prefWidth="89.0" text="Kategori ">
                            <font>
                               <Font size="18.0" />
@@ -151,7 +151,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="362.0" text="Laporan">
+                        <Label layoutX="304.0" layoutY="43.0" text="Laporan">
                            <font>
                               <Font name="System Bold" size="50.0" />
                            </font>
@@ -168,6 +168,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
+                        <ComboBox fx:id="id_laporan_cmb_kategori" layoutX="637.0" layoutY="218.0" prefWidth="150.0" />
                      </children></Pane>
           </children>
         </Pane>

@@ -19,6 +19,8 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -33,6 +35,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -41,6 +44,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
+import javafx.util.StringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
 /**
@@ -498,8 +502,80 @@ public class AdminController implements Initializable {
         editBtn.setStyle("-fx-background-color: #57caff;-fx-text-fill: #fff;");
     }
     
+    @FXML
+    public ComboBox combokategori;
+    
+    @FXML
+    public DatePicker dateFrom;
+            
+    @FXML
+    public DatePicker dateTo;
+    
+    @FXML
+    public ComboBox id_laporan_cmb_kategori;
+    
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        dateFrom.setConverter(new StringConverter<LocalDate>()
+            {
+                private DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+                @Override
+                public String toString(LocalDate localDate)
+                {
+                    if(localDate==null)
+                        return "";
+                    return dateTimeFormatter.format(localDate);
+                }
+
+                @Override
+                public LocalDate fromString(String dateString)
+                {
+                    if(dateString==null || dateString.trim().isEmpty())
+                    {
+                        return null;
+                    }
+                    return LocalDate.parse(dateString,dateTimeFormatter);
+                }
+            });
+        
+        dateTo.setConverter(new StringConverter<LocalDate>()
+            {
+                private DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+                @Override
+                public String toString(LocalDate localDate)
+                {
+                    if(localDate==null)
+                        return "";
+                    return dateTimeFormatter.format(localDate);
+                }
+
+                @Override
+                public LocalDate fromString(String dateString)
+                {
+                    if(dateString==null || dateString.trim().isEmpty())
+                    {
+                        return null;
+                    }
+                    return LocalDate.parse(dateString,dateTimeFormatter);
+                }
+            });
+        
+        try {
+            ObservableList<KategoriModel> kategoriModel = LaporanAdminDAO.getKategori();
+            for(int i=0;i<kategoriModel.size();i++){
+                combokategori.getItems().add(kategoriModel.get(i).getNamaKendaraan());
+                id_laporan_cmb_kategori.getItems().add(kategoriModel.get(i).getId());
+            }
+            id_laporan_cmb_kategori.setVisible(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         table_setup_parkir.setEditable(true);
         int hasil=0;
@@ -586,6 +662,7 @@ public class AdminController implements Initializable {
     }
     
     //===============================================================================================
+    
     @FXML
     public TableView<LaporanModel> tableLaporan;
     
@@ -610,24 +687,40 @@ public class AdminController implements Initializable {
     @FXML
     private TableColumn<LaporanModel, Integer> col_lap_total_harga;
     
-    public void getDataLaporan(ActionEvent event){
-        
+    public void kategoriOnChangeLaporan(ActionEvent event){
+        int idx= combokategori.getSelectionModel().getSelectedIndex();
+        id_laporan_cmb_kategori.getSelectionModel().select(idx);
     }
     
-    private void initTable() throws SQLException, ClassNotFoundException{
-        initColsInfo();
+    public void getDataLaporan(ActionEvent event){
+        try {
+            initTableLaporan();
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void initTableLaporan() throws SQLException, ClassNotFoundException{
+        initColsInfoLaporan();
     }
         
-    private void initColsInfo() throws SQLException,ClassNotFoundException{
-            jenis_info.setCellValueFactory(new PropertyValueFactory("namaKendaraan"));
-            sisa_slot.setCellValueFactory(new PropertyValueFactory("slot"));
-            jenis_info.setCellFactory(TextFieldTableCell.forTableColumn());    
-        try {
-            sisaSlotModel = LaporanDAO.getSisaSlot();
-            System.out.println(sisaSlotModel.size());;
-            tabel_info.setItems(sisaSlotModel);
-        } catch (SQLException | ClassNotFoundException ex) {
+    private void initColsInfoLaporan() throws SQLException,ClassNotFoundException{
+            col_lap_nama_kendaraan.setCellValueFactory(new PropertyValueFactory("namaKendaraan"));
+            col_lap_nama_petugas.setCellValueFactory(new PropertyValueFactory("namaPetugas"));
+            col_lap_plat.setCellValueFactory(new PropertyValueFactory("platNomor"));
+            col_lap_jenis_kendaraan.setCellValueFactory(new PropertyValueFactory("jenisKendaraan"));
+            col_lap_waktu_keluar.setCellValueFactory(new PropertyValueFactory("waktuKeluar"));
+            col_lap_waktu_masuk.setCellValueFactory(new PropertyValueFactory("waktuMasuk"));
+            col_lap_total_harga.setCellValueFactory(new PropertyValueFactory("totalHarga"));
+        
+//        try {
+//            sisaSlotModel = LaporanDAO.getSisaSlot();
+//            System.out.println(sisaSlotModel.size());;
+//            tabel_info.setItems(sisaSlotModel);
+//        } catch (SQLException | ClassNotFoundException ex) {
            // Logger.getLogger(InformasiSlotController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        }
      }
 }
