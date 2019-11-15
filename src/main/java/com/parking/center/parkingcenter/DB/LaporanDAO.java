@@ -123,11 +123,9 @@ public class LaporanDAO {
             sisa.add(sisaSlot);
         }
         
-        
         String query2;
-        query2 = "SELECT count(jenis_kendaraan) as slot from laporan where status_kendaraan='0' group by jenis_kendaraan";
+        query2 = "SELECT jenis_kendaraan, count(jenis_kendaraan) as slot from laporan where status_kendaraan='0' group by jenis_kendaraan";
         System.out.println(query2);
-        int count =0;
         DBUtil db = DBUtil.getInstance();
             db.dbConnect();
         PreparedStatement preparedStatement;
@@ -135,9 +133,11 @@ public class LaporanDAO {
 
         ResultSet rs2 = db.dbExecuteQuery(preparedStatement);
         while(rs2.next()){
-            System.out.println("");
-            sisa.get(count).setSlot(sisa.get(count).getSlot()-rs2.getInt("slot"));
-            count++;
+            for(int i=0;i<sisa.size();i++){
+                if(sisa.get(i).getId()==rs2.getInt("jenis_kendaraan")){
+                    sisa.get(i).setSlot(sisa.get(i).getSlot()-rs2.getInt("slot"));
+                }
+            }
         }
         
         return sisa;

@@ -121,7 +121,7 @@ public class CatatMasukController implements Initializable {
                 System.out.println(jenisKendaraanList.get(i).getNamaKendaraan());
                 id_jenis.getItems().add(jenisKendaraanList.get(i).getId());
                 slotParkir.getItems().add(jenisKendaraanList.get(i).getSlot());
-                System.out.println(jenisKendaraanList.get(i).getSlot() + " " + jenisKendaraanList.get(i).getId());
+//                System.out.println(jenisKendaraanList.get(i).getSlot() + " " + jenisKendaraanList.get(i).getId());
             }
                 
         } catch (SQLException ex) {
