@@ -126,13 +126,13 @@
                         </Label>
                         <TableView fx:id="tableLaporan" layoutX="2.0" layoutY="276.0" prefHeight="236.0" prefWidth="795.0">
                            <columns>
-                              <TableColumn prefWidth="101.66667175292969" text="nama kendaraan" />
-                              <TableColumn prefWidth="98.33334350585938" text="plat nomor" />
-                              <TableColumn prefWidth="124.66668701171875" text="id petugas" />
-                              <TableColumn prefWidth="121.0" text="jenis kendaraan" />
-                              <TableColumn prefWidth="127.0" text="waktu masuk" />
-                              <TableColumn prefWidth="104.33331298828125" text="waktu keluar" />
-                              <TableColumn prefWidth="157.66668701171875" text="total harga" />
+                              <TableColumn fx:id="col_lap_nama_kendaraan" prefWidth="97.0" text="Nama Kendaraan" />
+                              <TableColumn fx:id="col_lap_plat" minWidth="0.0" prefWidth="103.0" text="Plat Nomor" />
+                              <TableColumn fx:id="col_lap_nama_petugas" prefWidth="126.0" text="Nama Petugas" />
+                              <TableColumn fx:id="col_lap_jenis_kendaraan" prefWidth="121.0" text="Jenis Kendaraan" />
+                              <TableColumn fx:id="col_lap_waktu_masuk" prefWidth="127.0" text="Waktu Masuk" />
+                              <TableColumn fx:id="col_lap_waktu_keluar" prefWidth="110.0" text="Waktu Keluar" />
+                              <TableColumn fx:id="col_lap_total_harga" prefWidth="110.0" text="Total Harga" />
                            </columns>
                         </TableView>
                         <ComboBox fx:id="combokategori" layoutX="637.0" layoutY="170.0" prefHeight="43.0" prefWidth="150.0" promptText="Pilih kategori" />
@@ -141,12 +141,12 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Button fx:id="btnCari" layoutX="444.0" layoutY="175.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="100.0" style="-fx-text-fill: white; -fx-border-width: 0 0 0 0; -fx-background-insets: 0; -fx-border-color: #57caff; -fx-background-radius: 0; -fx-background-color: #57caff;" text="Cari">
+                        <Button fx:id="btnCari" layoutX="464.0" layoutY="177.0" mnemonicParsing="false" onAction="#getDataLaporan" prefHeight="41.0" prefWidth="100.0" style="-fx-text-fill: white; -fx-border-width: 0 0 0 0; -fx-background-insets: 0; -fx-border-color: #57caff; -fx-background-radius: 0; -fx-background-color: #57caff;" text="Cari">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Button>
-                        <Label layoutX="230.0" layoutY="129.0" prefHeight="46.0" prefWidth="89.0" text="To">
+                        <Label layoutX="245.0" layoutY="127.0" prefHeight="46.0" prefWidth="89.0" text="To">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -162,7 +162,7 @@
                            </font>
                         </Label>
                         <DatePicker fx:id="dateFrom" layoutX="14.0" layoutY="181.0" />
-                        <DatePicker fx:id="dateTo" layoutX="232.0" layoutY="182.0" />
+                        <DatePicker fx:id="dateTo" layoutX="237.0" layoutY="182.0" />
                         <Label fx:id="labelPendapatan" layoutX="597.0" layoutY="554.0" text="0.00">
                            <font>
                               <Font size="18.0" />

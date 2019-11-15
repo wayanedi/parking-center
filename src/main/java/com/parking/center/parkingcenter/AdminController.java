@@ -12,6 +12,7 @@ import com.parking.center.parkingcenter.DB.PetugasDAO;
 import com.parking.center.parkingcenter.DB.UserDAO;
 import com.parking.center.parkingcenter.model.JenisKendaraanModel;
 import com.parking.center.parkingcenter.model.KategoriModel;
+import com.parking.center.parkingcenter.model.LaporanModel;
 import com.parking.center.parkingcenter.model.PetugasModel;
 import com.parking.center.parkingcenter.model.UserModel;
 import java.awt.event.KeyEvent;
@@ -544,8 +545,6 @@ public class AdminController implements Initializable {
         comboBox_role.setValue("user");
         comboBox_jenisKelamin.getItems().addAll("Laki-Laki", "Perempuan");
         comboBox_jenisKelamin.setValue("Perempuan");
-        
-        
     }    
     
     @FXML
@@ -585,4 +584,50 @@ public class AdminController implements Initializable {
         //Display the message
         this.petugasId=id;
     }
+    
+    //===============================================================================================
+    @FXML
+    public TableView<LaporanModel> tableLaporan;
+    
+    @FXML
+    private TableColumn<LaporanModel, String> col_lap_nama_kendaraan;
+    
+    @FXML
+    private TableColumn<LaporanModel, String> col_lap_plat;
+    
+    @FXML
+    private TableColumn<LaporanModel, String> col_lap_nama_petugas;
+    
+    @FXML
+    private TableColumn<LaporanModel, String> col_lap_jenis_kendaraan; 
+    
+    @FXML
+    private TableColumn<LaporanModel, String> col_lap_waktu_masuk;
+    
+    @FXML
+    private TableColumn<LaporanModel, String> col_lap_waktu_keluar;
+    
+    @FXML
+    private TableColumn<LaporanModel, Integer> col_lap_total_harga;
+    
+    public void getDataLaporan(ActionEvent event){
+        
+    }
+    
+    private void initTable() throws SQLException, ClassNotFoundException{
+        initColsInfo();
+    }
+        
+    private void initColsInfo() throws SQLException,ClassNotFoundException{
+            jenis_info.setCellValueFactory(new PropertyValueFactory("namaKendaraan"));
+            sisa_slot.setCellValueFactory(new PropertyValueFactory("slot"));
+            jenis_info.setCellFactory(TextFieldTableCell.forTableColumn());    
+        try {
+            sisaSlotModel = LaporanDAO.getSisaSlot();
+            System.out.println(sisaSlotModel.size());;
+            tabel_info.setItems(sisaSlotModel);
+        } catch (SQLException | ClassNotFoundException ex) {
+           // Logger.getLogger(InformasiSlotController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     }
 }
