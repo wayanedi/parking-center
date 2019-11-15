@@ -175,11 +175,14 @@ public class CatatKeluarController implements Initializable {
                     return;
             
                 }
-                int bayar = Integer.parseInt(fieldbayar.getText().toString());
-                int harga = Integer.parseInt(labelTotalHarga.getText().toString());
-                int kembalian = bayar - harga;
+                if(!fieldbayar.getText().isEmpty() && !fieldbayar.getText().equals("")){
+                    int bayar = Integer.parseInt(fieldbayar.getText().toString());
+                    int harga = Integer.parseInt(labelTotalHarga.getText().toString());
+                    int kembalian = bayar - harga;
+
+                    textFieldkembalian.setText(Integer.toString(kembalian));
+                }
                 
-                textFieldkembalian.setText(Integer.toString(kembalian));
             }
         });
         // TODO
