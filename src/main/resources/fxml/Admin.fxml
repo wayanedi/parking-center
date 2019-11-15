@@ -112,7 +112,7 @@
                 <Label font="$x2" layoutX="78.0" layoutY="332.0" text="Jenis Kelamin" />
               </children>
             </Pane>
-            <Pane fx:id="kosongPane" prefHeight="671.0" prefWidth="810.0" visible="false">
+            <Pane fx:id="kosongPane" prefHeight="671.0" prefWidth="810.0">
                      <children>
                         <Label layoutX="631.0" layoutY="550.0" prefHeight="35.0" prefWidth="107.0">
                            <font>
@@ -124,7 +124,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TableView layoutX="2.0" layoutY="276.0" prefHeight="236.0" prefWidth="795.0">
+                        <TableView fx:id="tableLaporan" layoutX="2.0" layoutY="276.0" prefHeight="236.0" prefWidth="795.0">
                            <columns>
                               <TableColumn prefWidth="101.66667175292969" text="nama kendaraan" />
                               <TableColumn prefWidth="98.33334350585938" text="plat nomor" />
@@ -141,24 +141,29 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Button fx:id="laporancari" layoutX="444.0" layoutY="175.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="100.0" style="-fx-text-fill: white; -fx-border-width: 0 0 0 0; -fx-background-insets: 0; -fx-border-color: #57caff; -fx-background-radius: 0; -fx-background-color: #57caff;" text="Cari">
+                        <Button fx:id="btnCari" layoutX="444.0" layoutY="175.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="100.0" style="-fx-text-fill: white; -fx-border-width: 0 0 0 0; -fx-background-insets: 0; -fx-border-color: #57caff; -fx-background-radius: 0; -fx-background-color: #57caff;" text="Cari">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Button>
-                        <TextField fx:id="to" layoutX="229.0" layoutY="174.0" prefHeight="35.0" prefWidth="157.0" />
                         <Label layoutX="230.0" layoutY="129.0" prefHeight="46.0" prefWidth="89.0" text="To">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="from" layoutX="13.0" layoutY="175.0" prefHeight="35.0" prefWidth="157.0" />
                         <Label layoutX="362.0" text="Laporan">
                            <font>
                               <Font name="System Bold" size="50.0" />
                            </font>
                         </Label>
                         <Label layoutX="14.0" layoutY="127.0" prefHeight="46.0" prefWidth="89.0" text="From">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <DatePicker fx:id="dateFrom" layoutX="14.0" layoutY="181.0" />
+                        <DatePicker fx:id="dateTo" layoutX="232.0" layoutY="182.0" />
+                        <Label fx:id="labelPendapatan" layoutX="597.0" layoutY="554.0" text="0.00">
                            <font>
                               <Font size="18.0" />
                            </font>
