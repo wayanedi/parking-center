@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.parking.center.parkingcenter.AdminController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.parking.center.parkingcenter.AdminController">
   <center>
     <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
       <children>
-        <Pane prefHeight="400.0" prefWidth="452.0" visible="true">
+        <Pane prefHeight="671.0" prefWidth="813.0">
           <children>
             <Pane fx:id="setup_Parkir" layoutX="1.0" layoutY="-1.0" prefHeight="672.0" prefWidth="803.0" visible="false">
               <children>
@@ -40,11 +40,11 @@
                 <Button id="button_addSetupParkir" layoutX="526.0" layoutY="359.0" mnemonicParsing="false" onAction="#addSetupParkir" prefHeight="35.0" prefWidth="138.0" style="-fx-background-color:#57caff;&#10;    -fx-text-fill: white;&#10;    -fx-border-color:#57caff;&#10;    -fx-border-width: 0 0 0 0;&#10;    -fx-background-insets: 0;" text="Tambah" />
                 <TableView fx:id="table_setup_parkir" layoutX="12.0" layoutY="419.0" prefHeight="229.0" prefWidth="777.0">
                   <columns>
-                    <TableColumn fx:id="col_nama_kendaraan" maxWidth="5000.0" minWidth="10.0" onEditCommit="#namaKendaraanOnEdit" prefWidth="189.0" text="Nama Kendaraan" />
-                    <TableColumn fx:id="col_harga_perjam" maxWidth="5000.0" minWidth="10.0" onEditCommit="#hargaPerJamOnEdit" prefWidth="138.0" text="Harga Perjam" />
-                    <TableColumn fx:id="col_harga_setengah" maxWidth="5000.0" minWidth="10.0" onEditCommit="#hargaSetengahOnEdit" prefWidth="182.0" text="Harga Setengah hari" />
-                    <TableColumn fx:id="col_harga_perhari" maxWidth="5000.0" minWidth="10.0" onEditCommit="#hargaPerHariOnEdit" prefWidth="137.0" text="Harga Perhari" />
-                    <TableColumn fx:id="col_slot" maxWidth="5000.0" minWidth="0.0" onEditCommit="#slotOnEdit" prefWidth="137.0" text="Slot Parkir" />
+                    <TableColumn fx:id="col_nama_kendaraan" maxWidth="5000.0" minWidth="10.0" prefWidth="189.0" text="Nama Kendaraan" />
+                    <TableColumn fx:id="col_harga_perjam" maxWidth="5000.0" minWidth="10.0" prefWidth="138.0" text="Harga Perjam" />
+                    <TableColumn fx:id="col_harga_setengah" maxWidth="5000.0" minWidth="10.0" prefWidth="182.0" text="Harga Setengah hari" />
+                    <TableColumn fx:id="col_harga_perhari" maxWidth="5000.0" minWidth="10.0" prefWidth="137.0" text="Harga Perhari" />
+                    <TableColumn fx:id="col_slot" maxWidth="5000.0" minWidth="0.0" prefWidth="137.0" text="Slot Parkir" />
                     <TableColumn fx:id="col_update" prefWidth="94.0" text="Update" />
                     <TableColumn fx:id="col_hapus" prefWidth="75.0" text="Hapus" />
                   </columns>
@@ -78,7 +78,7 @@
                 <Button id="button_addUser" fx:id="button_addUser" layoutX="500.0" layoutY="523.0" mnemonicParsing="false" onAction="#button_addUser" prefHeight="33.251953125" prefWidth="200.00009999999747" style="-fx-text-fill: white; -fx-border-width: 0 0 0 0; -fx-background-insets: 0; -fx-border-color: #57caff; -fx-background-radius: 0; -fx-background-color: #57caff;" text="Tambah" />
               </children>
             </Pane>
-            <Pane fx:id="daftar_Staff" cache="false" layoutX="0.0" layoutY="0.0" mouseTransparent="true" opacity="1.0" pickOnBounds="true" prefHeight="671.0" prefWidth="811.0">
+            <Pane fx:id="daftar_Staff" cache="false" layoutX="0.0" layoutY="0.0" mouseTransparent="true" opacity="1.0" pickOnBounds="true" prefHeight="671.0" prefWidth="811.0" visible="false">
               <children>
                 <Label layoutX="351.0" layoutY="14.0" text="Daftar Staff">
                   <font>
@@ -87,7 +87,7 @@
                 </Label>
                 <TableView fx:id="table_daftar_staff" editable="true" layoutX="32.0" layoutY="94.0" prefHeight="559.0" prefWidth="754.0">
                   <columns>
-                    <TableColumn fx:id="col_nama_pengguna" maxWidth="5000.0" minWidth="10.0" onEditCommit="#namaPenggunaOnEdit" prefWidth="136.0" resizable="false" text="Nama Petugas" />
+                    <TableColumn fx:id="col_nama_pengguna" maxWidth="5000.0" minWidth="10.0" prefWidth="136.0" resizable="false" text="Nama Petugas" />
                     <TableColumn fx:id="col_email" maxWidth="5000.0" minWidth="10.0" prefWidth="183.0" resizable="false" text="Email" />
                     <TableColumn fx:id="col_nomor_ktp" maxWidth="5000.0" minWidth="10.0" prefWidth="138.0" resizable="false" text="Nomor KTP" />
                     <TableColumn fx:id="col_nomor_telp" maxWidth="5000.0" minWidth="10.0" prefWidth="155.0" resizable="false" text="Nomor telpon" />
@@ -112,7 +112,58 @@
                 <Label font="$x2" layoutX="78.0" layoutY="332.0" text="Jenis Kelamin" />
               </children>
             </Pane>
-            <Pane fx:id="kosongPane" prefHeight="200.0" prefWidth="200.0" visible="false" />
+            <Pane fx:id="kosongPane" prefHeight="671.0" prefWidth="810.0" visible="false">
+                     <children>
+                        <Label layoutX="631.0" layoutY="550.0" prefHeight="35.0" prefWidth="107.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="434.0" layoutY="553.0" text="Total pendapatan">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <TableView layoutX="2.0" layoutY="276.0" prefHeight="236.0" prefWidth="795.0">
+                           <columns>
+                              <TableColumn prefWidth="101.66667175292969" text="nama kendaraan" />
+                              <TableColumn prefWidth="98.33334350585938" text="plat nomor" />
+                              <TableColumn prefWidth="124.66668701171875" text="id petugas" />
+                              <TableColumn prefWidth="121.0" text="jenis kendaraan" />
+                              <TableColumn prefWidth="127.0" text="waktu masuk" />
+                              <TableColumn prefWidth="104.33331298828125" text="waktu keluar" />
+                              <TableColumn prefWidth="157.66668701171875" text="total harga" />
+                           </columns>
+                        </TableView>
+                        <ComboBox fx:id="combokategori" layoutX="637.0" layoutY="170.0" prefHeight="43.0" prefWidth="150.0" promptText="Pilih kategori" />
+                        <Label layoutX="638.0" layoutY="124.0" prefHeight="46.0" prefWidth="89.0" text="Kategori ">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="laporancari" layoutX="444.0" layoutY="175.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="100.0" style="-fx-text-fill: white; -fx-border-width: 0 0 0 0; -fx-background-insets: 0; -fx-border-color: #57caff; -fx-background-radius: 0; -fx-background-color: #57caff;" text="Cari">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                        <TextField fx:id="to" layoutX="229.0" layoutY="174.0" prefHeight="35.0" prefWidth="157.0" />
+                        <Label layoutX="230.0" layoutY="129.0" prefHeight="46.0" prefWidth="89.0" text="To">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="from" layoutX="13.0" layoutY="175.0" prefHeight="35.0" prefWidth="157.0" />
+                        <Label layoutX="362.0" text="Laporan">
+                           <font>
+                              <Font name="System Bold" size="50.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="127.0" prefHeight="46.0" prefWidth="89.0" text="From">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
           </children>
         </Pane>
       </children>

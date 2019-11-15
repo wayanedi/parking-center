@@ -13,6 +13,7 @@ import com.parking.center.parkingcenter.model.JenisKendaraanModel;
 import com.parking.center.parkingcenter.model.PetugasModel;
 import com.parking.center.parkingcenter.model.UserModel;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -25,6 +26,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -33,6 +36,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Font;
 import javafx.util.converter.IntegerStringConverter;
 
 /**
@@ -115,19 +120,10 @@ public class AdminController implements Initializable {
     @FXML
     private TableColumn<PetugasModel, String> col_nomor_telp;
     
-    @FXML
-    private Label label_name;
     
     @FXML
     private TableColumn<PetugasModel, String> col_jenis_kelamin;
     
-    @FXML
-    private TableColumn<PetugasModel, Button> col_updateStaff;
-    
-    @FXML
-    private TableColumn<PetugasModel, Button> col_hapusStaff;
-//    @FXML
-//    public static TableView<JenisKendaraanModel> table_setup_parkir2;
 
     @FXML
     private TableColumn<JenisKendaraanModel, Integer> col_harga_perhari;
@@ -174,6 +170,9 @@ public class AdminController implements Initializable {
     private TextField textField_noKtp;
     
     @FXML
+    private BorderPane borderPane;
+    
+    @FXML
     private TextField textField_username;
     
     @FXML
@@ -189,6 +188,12 @@ public class AdminController implements Initializable {
     private Label label_nama;
     
     //===========fungsi untuk user management=================
+    @FXML
+    private Font x1;
+    @FXML
+    private Font x3;
+    @FXML
+    private Font x2;
     
     
     @FXML
@@ -359,7 +364,6 @@ public class AdminController implements Initializable {
         
     }
     
-    @FXML
     private void namaPenggunaOnEdit(TableColumn.CellEditEvent<PetugasModel, String> cell){
         PetugasModel petugasmodel= table_daftar_staff.getSelectionModel().getSelectedItem();
         petugasmodel.setNama_petugas(cell.getNewValue());
@@ -392,31 +396,26 @@ public class AdminController implements Initializable {
         }
     }
     
-    @FXML
     private void namaKendaraanOnEdit(TableColumn.CellEditEvent<JenisKendaraanModel, String> cell){
         JenisKendaraanModel jenisKendaraanModel= table_setup_parkir.getSelectionModel().getSelectedItem();
         jenisKendaraanModel.setNamaKendaraan(cell.getNewValue());
     }
     
-    @FXML
     private void hargaPerJamOnEdit(TableColumn.CellEditEvent<JenisKendaraanModel, Integer> cell){
         JenisKendaraanModel jenisKendaraanModel= table_setup_parkir.getSelectionModel().getSelectedItem();
         jenisKendaraanModel.setHargaPerJam(cell.getNewValue());
     }
     
-    @FXML
     private void hargaPerHariOnEdit(TableColumn.CellEditEvent<JenisKendaraanModel, Integer> cell){
         JenisKendaraanModel jenisKendaraanModel= table_setup_parkir.getSelectionModel().getSelectedItem();
         jenisKendaraanModel.setHargaPerHari(cell.getNewValue());
     }
     
-    @FXML
     private void slotOnEdit(TableColumn.CellEditEvent<JenisKendaraanModel, Integer> cell){
         JenisKendaraanModel jenisKendaraanModel= table_setup_parkir.getSelectionModel().getSelectedItem();
         jenisKendaraanModel.setSlot(cell.getNewValue());
     }
     
-    @FXML
     private void hargaSetengahOnEdit(TableColumn.CellEditEvent<JenisKendaraanModel, Integer> cell){
         JenisKendaraanModel jenisKendaraanModel= table_setup_parkir.getSelectionModel().getSelectedItem();
         jenisKendaraanModel.setHargaPerSetHari(cell.getNewValue());
@@ -427,6 +426,7 @@ public class AdminController implements Initializable {
     
     @FXML
     private void addStaff(ActionEvent event) {
+        kosongPane.setVisible(false);
         tambah_Staff.setVisible(true);
         setup_Parkir.setVisible(false);
         edit_profile_admin.setVisible(false);
@@ -441,6 +441,7 @@ public class AdminController implements Initializable {
     
     @FXML
     private void setupStaff(ActionEvent event) {
+        kosongPane.setVisible(false);
         tambah_Staff.setVisible(false);
         setup_Parkir.setVisible(true);
         edit_profile_admin.setVisible(false);
@@ -454,6 +455,7 @@ public class AdminController implements Initializable {
     
     @FXML
     private void getEdit(ActionEvent event) {
+        kosongPane.setVisible(false);
         tambah_Staff.setVisible(false);
         setup_Parkir.setVisible(false);
         edit_profile_admin.setVisible(true);
@@ -467,6 +469,7 @@ public class AdminController implements Initializable {
     
     @FXML
     private void getDaftar(ActionEvent event) {
+        kosongPane.setVisible(false);
         tambah_Staff.setVisible(false);
         setup_Parkir.setVisible(false);
         edit_profile_admin.setVisible(false);
@@ -480,6 +483,7 @@ public class AdminController implements Initializable {
     
     @FXML
     private void getLaporan(ActionEvent event) {
+        kosongPane.setVisible(true);
         tambah_Staff.setVisible(false);
         setup_Parkir.setVisible(false);
         edit_profile_admin.setVisible(false);
@@ -527,7 +531,7 @@ public class AdminController implements Initializable {
         
         // TODO
         
-        kosongPane.setVisible(true);
+        kosongPane.setVisible(false);
         tambah_Staff.setVisible(false);
         setup_Parkir.setVisible(false);
         edit_profile_admin.setVisible(false);
@@ -578,5 +582,4 @@ public class AdminController implements Initializable {
         //Display the message
         this.petugasId=id;
     }
-    
 }
