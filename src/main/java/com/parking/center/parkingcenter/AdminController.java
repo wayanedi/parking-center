@@ -7,9 +7,11 @@
 package com.parking.center.parkingcenter;
 
 import com.parking.center.parkingcenter.DB.JenisKendaraanDAO;
+import com.parking.center.parkingcenter.DB.LaporanAdminDAO;
 import com.parking.center.parkingcenter.DB.PetugasDAO;
 import com.parking.center.parkingcenter.DB.UserDAO;
 import com.parking.center.parkingcenter.model.JenisKendaraanModel;
+import com.parking.center.parkingcenter.model.KategoriModel;
 import com.parking.center.parkingcenter.model.PetugasModel;
 import com.parking.center.parkingcenter.model.UserModel;
 import java.awt.event.KeyEvent;
@@ -497,6 +499,7 @@ public class AdminController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         table_setup_parkir.setEditable(true);
         int hasil=0;
         try {

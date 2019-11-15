@@ -14,10 +14,30 @@ import java.util.Date;
 public class LaporanModel {
     
     private String platNomor;
+    private String namaKendaraan;
+    private String namaPetugas;
     private String jenisKendaraan;
     private String waktuMasuk;
+    private String waktuKeluar;
     private int totalHarga;
     private int statusKendaraan;
+    
+    
+    public LaporanModel(){}
+    
+    
+    public LaporanModel(String namaKendaraan, String platNomor, String namaPetugas, String jenisKendaraan, String waktuMasuk, String waktuKeluar, int totalHarga){
+        this.namaKendaraan = namaKendaraan;
+        this.platNomor = platNomor;
+        this.namaPetugas = namaPetugas;
+        this.jenisKendaraan = jenisKendaraan;
+        this.waktuMasuk = waktuMasuk;
+        this.waktuKeluar = waktuKeluar;
+        this.totalHarga = totalHarga;
+        
+    }
+    
+    
     
     /**
      * @return the platNomor
@@ -87,6 +107,48 @@ public class LaporanModel {
      */
     public void setStatusKendaraan(int statusKendaraan) {
         this.statusKendaraan = statusKendaraan;
+    }
+
+    /**
+     * @return the namaKendaraan
+     */
+    public String getNamaKendaraan() {
+        return namaKendaraan;
+    }
+
+    /**
+     * @param namaKendaraan the namaKendaraan to set
+     */
+    public void setNamaKendaraan(String namaKendaraan) {
+        this.namaKendaraan = namaKendaraan;
+    }
+
+    /**
+     * @return the namaPetugas
+     */
+    public String getNamaPetugas() {
+        return namaPetugas;
+    }
+
+    /**
+     * @param namaPetugas the namaPetugas to set
+     */
+    public void setNamaPetugas(String namaPetugas) {
+        this.namaPetugas = namaPetugas;
+    }
+
+    /**
+     * @return the waktukeluar
+     */
+    public String getWaktuKeluar() {
+        return waktuKeluar;
+    }
+
+    /**
+     * @param waktukeluar the waktukeluar to set
+     */
+    public void setWaktuKeluar(String waktukeluar) {
+        this.waktuKeluar = waktukeluar;
     }
     
     
