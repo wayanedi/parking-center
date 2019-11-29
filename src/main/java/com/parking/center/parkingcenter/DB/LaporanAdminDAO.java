@@ -1,10 +1,11 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package com.parking.center.parkingcenter.DB;
 
+import com.parking.center.parkingcenter.AdminController;
 import com.parking.center.parkingcenter.model.KategoriModel;
 import com.parking.center.parkingcenter.model.LaporanModel;
 import java.sql.PreparedStatement;
@@ -18,6 +19,7 @@ import javafx.collections.ObservableList;
  * @author yanedi
  */
 public class LaporanAdminDAO {
+   
     
      public static ObservableList<LaporanModel> getLaporanKategori(String from, String to, int id) throws SQLException, ClassNotFoundException {
         
@@ -50,8 +52,9 @@ public class LaporanAdminDAO {
         while(rs.next()){
             
             laporanModel = new LaporanModel(rs.getString("nama_kendaraan"), rs.getString("plat_nomor"), rs.getString("nama_petugas"), rs.getString("nama_kendaraan"), rs.getString("waktu_masuk"), rs.getString("waktu_keluar"), rs.getInt("total_harga"));
-            laporan.add(laporanModel);
-        }
+            AdminController.TOTAL += rs.getInt("total_harga");
+            laporan.add(laporanModel); 
+       }
         
         return laporan;
 
@@ -88,6 +91,7 @@ public class LaporanAdminDAO {
             
             laporanModel = new LaporanModel(rs.getString("nama_kendaraan"), rs.getString("plat_nomor"), rs.getString("nama_petugas"), rs.getString("nama_kendaraan"), rs.getString("waktu_masuk"), rs.getString("waktu_keluar"), rs.getInt("total_harga"));
             laporan.add(laporanModel);
+            AdminController.TOTAL += rs.getInt("total_harga");
         }
         
         return laporan;
