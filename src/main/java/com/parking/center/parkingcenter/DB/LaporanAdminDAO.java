@@ -25,7 +25,7 @@ public class LaporanAdminDAO {
         
         String query;
         
-        query = "SELECT nama_kendaraan, plat_nomor, nama_petugas, nama_kendaraan, waktu_masuk, waktu_keluar, total_harga from laporan INNER JOIN petugas on laporan.id_petugas = petugas.id_petugas INNER JOIN jenis_kendaraan on laporan.jenis_kendaraan = jenis_kendaraan.id_jenis_kendaraan WHERE waktu_keluar between ? and ? AND laporan.jenis_kendaraan =?";
+        query = "SELECT nama_kendaraan, plat_nomor, nama_petugas, nama_kendaraan, waktu_masuk, waktu_keluar, total_harga from laporan INNER JOIN petugas on laporan.id_petugas = petugas.id_petugas INNER JOIN jenis_kendaraan on laporan.jenis_kendaraan = jenis_kendaraan.id_jenis_kendaraan WHERE waktu_keluar_kendaraan between ? and ? AND laporan.jenis_kendaraan =?";
         System.out.println(query);
          
         DBUtil db = DBUtil.getInstance();
@@ -64,7 +64,7 @@ public class LaporanAdminDAO {
         
         String query;
         
-        query = "SELECT nama_kendaraan, plat_nomor, nama_petugas, nama_kendaraan, waktu_masuk, waktu_keluar, total_harga from laporan INNER JOIN petugas on laporan.id_petugas = petugas.id_petugas INNER JOIN jenis_kendaraan on laporan.jenis_kendaraan = jenis_kendaraan.id_jenis_kendaraan WHERE waktu_keluar between ? and ?";
+        query = "SELECT nama_kendaraan, plat_nomor, nama_petugas, nama_kendaraan, waktu_masuk, waktu_keluar, total_harga from laporan INNER JOIN petugas on laporan.id_petugas = petugas.id_petugas INNER JOIN jenis_kendaraan on laporan.jenis_kendaraan = jenis_kendaraan.id_jenis_kendaraan WHERE waktu_keluar_kendaraan between ? and ?";
         System.out.println(query);
          
         DBUtil db = DBUtil.getInstance();

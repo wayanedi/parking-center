@@ -320,7 +320,7 @@ public class AdminController implements Initializable {
             alert.setHeaderText("Data berhasil dimasukan!");
             data = JenisKendaraanDAO.getAlls();
             table_setup_parkir.setItems(data);
-
+            
             int hasil = 0;
             try {
                 hasil = JenisKendaraanDAO.getTotalSlot();
@@ -731,6 +731,7 @@ public class AdminController implements Initializable {
         else{
         ObservableList<LaporanModel> laporanModel = null;
         try {
+            this.TOTAL=0;
             if (combokategori.getSelectionModel().getSelectedItem().toString().equals("")) {
                 laporanModel = LaporanAdminDAO.getAllLaporan(dateDari, dateKe);
             } else if (!combokategori.getSelectionModel().getSelectedItem().toString().isEmpty()) {
@@ -755,7 +756,7 @@ public class AdminController implements Initializable {
             String month = date[1];
             String day = date[2];
 
-            return day + "/" + month + "/" + year;
+            return year + "/" + month + "/" + day;
         }
     }
 }
