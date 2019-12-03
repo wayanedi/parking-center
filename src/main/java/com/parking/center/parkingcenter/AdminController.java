@@ -705,10 +705,11 @@ public class AdminController implements Initializable {
 //         System.out.println(dateFrom.getValue().toString());
         String dateDari = "";
         String dateKe = "";
-
+        
         try {
             dateKe = convertDate(dateTo.getValue().toString());
             dateDari = convertDate(dateFrom.getValue().toString());
+            
         } catch (Exception e) {
             System.out.println("error");
             Alert alert;
@@ -717,11 +718,17 @@ public class AdminController implements Initializable {
             alert.setHeaderText("Tanggal masih kosong!");
             alert.showAndWait();
         }
-
-        System.out.println(dateDari);
-        System.out.println(dateKe);
-
-//        System.out.println(dateTo.getValue().toString());
+        
+        int a =  dateDari.compareTo(dateKe);
+        
+        if(a>0){
+            Alert alert;
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Laporan");
+            alert.setHeaderText("Tanggal tidak valid!");
+            alert.showAndWait();
+        }
+        else{
         ObservableList<LaporanModel> laporanModel = null;
         try {
             if (combokategori.getSelectionModel().getSelectedItem().toString().equals("")) {
@@ -734,6 +741,7 @@ public class AdminController implements Initializable {
             tableLaporan.setItems(laporanModel);
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(InformasiSlotController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         }
     }
 
