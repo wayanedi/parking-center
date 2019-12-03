@@ -11,6 +11,10 @@ import com.parking.center.parkingcenter.model.SisaSlotModel;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
@@ -20,6 +24,11 @@ import javafx.scene.control.Alert;
  * @author yanedi
  */
 public class LaporanDAO {
+    
+    private static final DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+     private static final DateFormat dd = new SimpleDateFormat("dd");
+     private static final DateFormat mm = new SimpleDateFormat("MM");
+     private static final DateFormat yy = new SimpleDateFormat("yyyy");
     
     public static CatatKeluarModel getLaporanKendaraan(String plat) throws SQLException, ClassNotFoundException{
         
@@ -44,15 +53,21 @@ public class LaporanDAO {
         
     }
     
-    public static void updateLaporan(CatatKeluarModel catat) throws SQLException, ClassNotFoundException{
+    public static void updateLaporan(CatatKeluarModel catat) throws SQLException, ClassNotFoundException, ParseException{
         
-        String query = "UPDATE laporan SET total_harga=?, waktu_keluar=?, status_kendaraan='"+1+"'";
+        Date date = sdf.parse(catat.getWaktuKeluar());
+       
+        String tanggal = yy.format(date).toString()+"/"+mm.format(date).toString()+"/"+dd.format(date).toString();
+        
+        String query = "UPDATE laporan SET total_harga=?, waktu_keluar=?, waktu_keluar_kendaraan=?, status_kendaraan='"+1+"' WHERE plat_nomor=? AND status_kendaraan='0'";
         DBUtil db = DBUtil.getInstance();
         db.dbConnect();
         PreparedStatement preparedStatement;
         preparedStatement = db.conn.prepareStatement(query);
         preparedStatement.setInt(1, catat.getTotalHarga());
         preparedStatement.setString(2, catat.getWaktuKeluar());
+        preparedStatement.setString(3, tanggal);
+        preparedStatement.setString(4, catat.getPlat());
         db.dbExecuteUpdate(preparedStatement);
         
     }

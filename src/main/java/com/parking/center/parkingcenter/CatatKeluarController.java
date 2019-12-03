@@ -61,7 +61,7 @@ public class CatatKeluarController implements Initializable {
      private Label textFieldkembalian;
      
      @FXML
-    void btnCatatKeluar(ActionEvent event) throws SQLException, ClassNotFoundException {
+    void btnCatatKeluar(ActionEvent event) throws SQLException, ClassNotFoundException, ParseException {
         
         Alert alert;
         alert = new Alert(Alert.AlertType.INFORMATION);
@@ -92,7 +92,8 @@ public class CatatKeluarController implements Initializable {
     @FXML
     private void btnCari(ActionEvent event) throws SQLException, ClassNotFoundException, ParseException{
         
-        catat = LaporanDAO.getLaporanKendaraan(textFieldPlatNomor.getText().trim().toUpperCase());
+        String plat =textFieldPlatNomor.getText().trim().toUpperCase();
+        catat = LaporanDAO.getLaporanKendaraan(plat);
         
         if(catat == null){
             Alert alert;
@@ -147,7 +148,7 @@ public class CatatKeluarController implements Initializable {
         
         System.out.println("harga: " + harga);
         labelTotalHarga.setText(Integer.toString(harga));
-        catat = new CatatKeluarModel(sdf.format(now), harga);
+        catat = new CatatKeluarModel(sdf.format(now), harga, plat);
 
     }
 

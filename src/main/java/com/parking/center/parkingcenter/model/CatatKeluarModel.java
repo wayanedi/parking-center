@@ -5,6 +5,9 @@
  */
 package com.parking.center.parkingcenter.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 /**
  *
  * @author yanedi
@@ -18,6 +21,9 @@ public class CatatKeluarModel {
     private String waktuKeluar;
     private String jenisKendaraan;
     private int totalHarga;
+    private String plat;
+    
+   
     
     /**
      *
@@ -37,10 +43,11 @@ public class CatatKeluarModel {
     }
     
     
-    public CatatKeluarModel(String waktuKeluar, int totalHarga){
+    public CatatKeluarModel(String waktuKeluar, int totalHarga, String plat){
         
         this.totalHarga = totalHarga;
         this.waktuKeluar = waktuKeluar;
+        this.plat = plat;
     }
 
     /**
@@ -139,6 +146,20 @@ public class CatatKeluarModel {
      */
     public void setJenisKendaraan(String jenisKendaraan) {
         this.jenisKendaraan = jenisKendaraan;
+    }
+
+    /**
+     * @return the plat
+     */
+    public String getPlat() {
+        return plat;
+    }
+
+    /**
+     * @param plat the plat to set
+     */
+    public void setPlat(String plat) {
+        this.plat = plat;
     }
     
     
