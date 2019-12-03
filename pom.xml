@@ -82,8 +82,8 @@
             </plugin>
             <plugin>
                 <groupId>com.oracle</groupId>
-		<artifactId>ojdbc8</artifactId>
-		<version>19.3</version>
+                <artifactId>ojdbc8</artifactId>
+                <version>19.3</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -115,5 +115,17 @@
             <artifactId>sqlite-jdbc</artifactId>
             <version>3.28.0</version>
         </dependency>
+        
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.17</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.17</version>
+        </dependency>
+
     </dependencies>
 </project>
