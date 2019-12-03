@@ -15,6 +15,8 @@ import com.parking.center.parkingcenter.model.LaporanModel;
 import com.parking.center.parkingcenter.model.PetugasModel;
 import com.parking.center.parkingcenter.model.UserModel;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -46,6 +48,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 import javafx.util.StringConverter;
 import javafx.util.converter.IntegerStringConverter;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 /**
  * FXML Controller class
@@ -673,6 +679,89 @@ public class AdminController implements Initializable {
         idx = combokategori.getSelectionModel().getSelectedIndex();
         id_laporan_cmb_kategori.getSelectionModel().select(idx);
 
+    }
+    
+    public void saveDataToExcel(ActionEvent event) throws IOException{
+        
+        if(tableLaporan.getItems().size() ==0){
+            
+            Alert alert;
+            alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Save File Warning !");
+            alert.setHeaderText(null);
+            alert.setContentText("No Data in Table View");
+            alert.showAndWait();
+            
+            return;
+            
+        }
+        
+        LaporanModel laporan = new LaporanModel();
+        
+        HSSFWorkbook workbook = new HSSFWorkbook();
+        HSSFSheet spreadsheet = workbook.createSheet("creation_from_fx");
+
+        HSSFRow row = spreadsheet.createRow(0);
+        HSSFCell cell;
+
+        cell = row.createCell(1);
+        cell.setCellValue("Nama Kendaraan");
+        cell = row.createCell(2);
+        cell.setCellValue("Plat Nomor");
+        cell = row.createCell(3);
+        cell.setCellValue("Nama Petugas");
+        cell = row.createCell(4);
+        cell.setCellValue("Jenis Kendaraan");
+        cell = row.createCell(5);
+        cell.setCellValue("Waktu Masuk");
+        cell = row.createCell(6);
+        cell.setCellValue("Waktu Keluar");
+        cell = row.createCell(7);
+        cell.setCellValue("Total Harga");
+        
+        int total = 0;
+        for(int i=0; i<tableLaporan.getItems().size();i++){
+            
+            laporan = tableLaporan.getItems().get(i);
+            row = spreadsheet.createRow(i+1);
+            cell = row.createCell(1);
+            cell.setCellValue(laporan.getNamaKendaraan());
+            cell = row.createCell(2);
+            cell.setCellValue(laporan.getPlatNomor());
+            cell = row.createCell(3);
+            cell.setCellValue(laporan.getNamaPetugas());
+            cell = row.createCell(4);
+            cell.setCellValue(laporan.getJenisKendaraan());
+            cell = row.createCell(5);
+            cell.setCellValue(laporan.getWaktuMasuk());
+            cell = row.createCell(6);
+            cell.setCellValue(laporan.getWaktuKeluar());
+            cell = row.createCell(7);
+            cell.setCellValue(laporan.getTotalHarga());
+            total+=laporan.getTotalHarga();
+            
+        }
+        
+        int idx = tableLaporan.getItems().size()+1;
+        
+        row = spreadsheet.createRow(idx);
+        
+        cell = row.createCell(6);
+        cell.setCellValue("Total Pendapatan");
+        cell = row.createCell(7);
+        cell.setCellValue(total);
+        
+        try (FileOutputStream out = new FileOutputStream(new File("laporanParkingCenter.xls"))) {
+            workbook.write(out);
+            Alert alert;
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Save File Information");
+            alert.setHeaderText(null);
+            alert.setContentText("Save Success !");
+            alert.showAndWait();
+        }
+        
+        
     }
 
     public void getDataLaporan(ActionEvent event) {
